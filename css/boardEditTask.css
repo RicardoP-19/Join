@@ -1,0 +1,350 @@
+main {
+    margin-left: 232px;
+    padding: 32px 64px;
+    max-width: 1440px;
+}
+
+.overlay-edit-task-board {
+    padding: 24px;
+    gap: 16px;
+    max-width: 460px;
+    font-size: 14px;
+    max-height: 80vh;
+}
+
+.ctn-main-edit-task {
+    overflow-y: scroll;
+    gap: 16px;
+    flex-direction: column;
+    width: 100%;
+    padding: 12px 0;
+}
+
+.ctn-close.d-flex-y {
+    justify-content: flex-end;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.prio-group {
+    justify-content: space-between;
+}
+
+.prio {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    background-color: white;
+    font-size: 15px;
+    width: 31%;
+}
+
+.prio img {
+    margin-left: 8px;
+    width: 15px;
+}
+
+.prio-group button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+    transform: translateY(-1px);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.form-group-subtask {
+    flex-direction: column;
+    position: relative;
+}
+
+.label-overlay-template {
+    width: 100%;
+}
+
+.gap-8 {
+    gap: 8px;
+}
+
+.label-prio {
+    font-weight: 600;
+    color: var(--darkblue);
+}
+
+#description {
+    height: 108px;
+}
+
+.subtask-connect {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.subtask-connect input {
+    width: 100%;
+    padding-right: 60px;
+}
+
+.ctn-edit-all-subtask {
+    width: 100%;
+}
+
+.ctn-add-subtask {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.ctn-clear-add-subtask {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    gap: 4px;
+}
+
+.add-subtask {
+    width: 20px;
+    cursor: pointer;
+}
+
+.clear-input-subtask {
+    height: 10px;
+    width: 10px;
+    cursor: pointer;
+}
+
+.ctn-clear-input-subtask {
+    padding: 4px;
+}
+
+.ctn-add-input-subtask {
+    padding: 4px;
+}
+
+.ctn-clear-input-subtask:hover,
+.ctn-add-input-subtask:hover {
+    background-color: var(--lightgrey);
+    border-radius: 50%;
+}
+
+.add-input-subtask {
+    height: 10px;
+    width: 10px;
+    scale: 1.1;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.img-save-edit-subtask {
+    height: 10px;
+    width: 10px;
+    scale: 1.1;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.horizonal-line-subtask {
+    border: 1px solid var(--middlegrey);
+}
+
+.add-subtask:hover {
+    background-color: var(--lightgrey);
+    border-radius: 50%;
+}
+
+.contact:hover {
+    background-color: var(--middlegrey);
+    border-radius: 8px;
+}
+
+.edit-task-footer {
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+button.btn-active:hover {
+    background-color: var(--lightblue);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+    transform: translateY(-1px);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.img-check {
+    width: 16px;
+    height: 16px;
+}
+
+.urgent-active {
+    background-color: var(--red);
+    color: white;
+}
+
+.medium-active {
+    background-color: var(--orange);
+    color: white;
+}
+
+.low-active {
+    background-color: var(--green);
+    color: white;
+}
+
+.assigned-content {
+    flex-wrap: wrap;
+}
+
+.dropdown-contacts {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid #ccc;
+    z-index: 1;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: -8px;
+    border-radius: 6px;
+}
+
+.contact {
+    justify-content: space-between;
+    padding: 4px 12px;
+    gap: 2px;
+    margin-bottom: 2px;
+    cursor: pointer;
+}
+
+.contact-left label {
+    padding-left: 12px;
+}
+
+.show {
+    display: block;
+}
+
+.checked {
+    background-color: var(--darkblue);
+    border-radius: 8px;
+    color: white;
+}
+
+.checked:hover {
+    background-color: rgba(42, 54, 71, 0.95);
+    border-radius: 8px;
+    color: white;
+}
+
+.custom-checkbox-edit {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-image: url('../assets/img/checkbox.png');
+    background-size: cover;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked+.custom-checkbox-edit {
+    background-image: url('../assets/img/checkbox-checked-white.png');
+}
+
+.subtask-item-edit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 12px;
+    gap: 2px;
+    width: 100%;
+    font-size: 14px;
+}
+
+.subtask-icons {
+    gap: 6px;
+}
+
+.subtask-icons img,
+.horizontal-line-hover {
+    height: 11px;
+    transition: opacity 0.3s;
+    opacity: 0;
+}
+
+.subtask-item-edit:hover .horizontal-line-hover,
+.subtask-item-edit:hover .subtask-icons img {
+    opacity: 1;
+}
+
+.img-edit-subtask,
+.img-delete-subtask {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.img-edit-subtask:hover,
+.img-delete-subtask:hover,
+.img-save-edit-subtask:hover {
+    transform: scale(1.1);
+}
+
+.subtask-item-edit:hover {
+    background-color: var(--lightgrey);
+    border-radius: 6px;
+}
+
+.input-subtask-edit {
+    padding: 0 12px 0 0;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    width: 100%;
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.input-subtask-edit:hover {
+    border: none;
+    cursor: default;
+}
+
+.ctn-edit-all-subtasks {
+    max-height: 100px;
+    margin-bottom: 8px;
+    overflow-y: scroll;
+}
+
+button.btn-disabled {
+    background-color: var(--grey);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    gap: 6px;
+}
+
+button.btn-active {
+    background-color: var(--darkblue);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    gap: 6px;
+}
+
+.underlined {
+    border-bottom: 1px solid var(--lightblue);
+}
+
+.no-hover-edit:hover {
+    background-color: transparent;
+    cursor: default;
+}

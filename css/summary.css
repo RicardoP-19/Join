@@ -1,0 +1,173 @@
+body,
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    margin-left: 232px;
+    padding: 32px 64px;
+    max-width: 1440px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+a {
+    color: inherit;
+}
+
+.header-summary {
+    gap: 24px;
+}
+
+.headline-summary {
+    font-size: 60px;
+    font-weight: 700;
+}
+
+.vertical-line-blue {
+    width: 3px;
+    height: 60px;
+    background-color: var(--lightblue);
+    border-radius: 2px;
+}
+
+.headline-right {
+    font-size: 28px;
+}
+
+.horizontal-line-blue {
+    width: 120px;
+    height: 3px;
+    background-color: var(--lightblue);
+    border-radius: 2px;
+}
+
+.vertical-line-grey {
+    width: 3px;
+    height: 90px;
+    background-color: var(--middlegrey);
+    border-radius: 2px;
+}
+
+.ctn-tasks-summary {
+    flex-direction: column;
+    min-width: 552px;
+    gap: 24px;
+}
+
+.ctn-tasks {
+    background-color: var(--textwhite);
+    border-radius: 24px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+.ctn-tasks:hover {
+    cursor: pointer;
+    background-color: var(--darkblue);
+    color: white;
+    transform: scale(1.04);
+}
+
+.ctn-tasks img {
+    transition: transform 0.3s ease;
+}
+
+.ctn-tasks:hover .img-pencil {
+    content: url('/assets/img/pencilLight.svg');
+}
+
+.ctn-tasks:hover .img-check {
+    content: url('/assets/img/checkLight.svg');
+}
+
+.gap-20 {
+    gap: 20px;
+}
+
+.ctn-task-smal {
+    width: 33%;
+    height: 154px;
+}
+
+.ctn-task-middle {
+    width: 50%;
+    height: 154px;
+}
+
+.ctn-task-large {
+    width: 100%;
+    height: 154px;
+}
+
+.counter {
+    font-size: 48px;
+    font-weight: 600;
+}
+
+.main-summary-top {
+    width: 100%;
+    gap: 24px;
+}
+
+.img {
+    width: 60px;
+}
+
+.summary-task {
+    flex-direction: column;
+}
+
+.main-summary-bottom {
+    width: 100%;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.task-bottom-summary {
+    flex-direction: column;
+    gap: 8px;
+}
+
+.text-counter {
+    font-size: 20px;
+    text-align: center;
+}
+
+.main-summary-middle-left {
+    width: 264px;
+}
+
+.date-upcoming-deadline {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.main-summary-middle-right {
+    flex: 1;
+    flex-direction: column;
+    gap: 12px;
+    justify-content: baseline;
+}
+
+.ctn-greeting {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 64px;
+}
+
+.daytime-greeting {
+    font-size: 40px;
+}
+
+.user-greeting {
+    font-size: 48px;
+    color: var(--lightblue);
+    font-weight: 600;
+}

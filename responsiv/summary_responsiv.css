@@ -1,0 +1,280 @@
+@media (max-width: 1280px) {
+
+    .greeting-summary {
+        opacity: 1;
+        height: calc(100vh - 300px);
+        width: 100%;
+    }
+
+    .ctn-greeting {
+        align-items: center;
+        padding: 0;
+    }
+
+    .header-summary,
+    .ctn-tasks-summary {
+        display: none;
+    }
+
+    .header-summary {
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .summary-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    @keyframes showAndHide {
+        0% {
+            opacity: 1;
+        }
+
+        70% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    .fade-in {
+        animation: fadeIn 0.3s ease-in-out forwards;
+    }
+
+    .greeting-hide {
+        animation: showAndHide 2s forwards;
+    }
+
+}
+
+@media (max-width: 1000px) {
+
+    main {
+        margin-left: 0;
+    }
+
+    .main-summary {
+        justify-content: center;
+    }
+
+    .header-summary {
+        justify-content: center;
+    }
+
+    .summary-container {
+        display: block;
+
+    }
+
+}
+
+@media (max-width: 800px) {
+
+    main {
+        padding: 32px;
+        margin-bottom: 100px;
+        overflow-y: scroll;
+    }
+
+    .headline-summary {
+        font-size: 52px;
+    }
+
+    .headline-right {
+        font-size: 20px;
+    }
+
+    .counter {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 620px) {
+
+    .ctn-tasks-summary {
+        min-width: 100%;
+    }
+
+    .header-summary.d-flex-y {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .vertical-line-blue {
+        display: none;
+    }
+
+    h1.headline-summary {
+        margin: 0;
+    }
+
+    .horizontal-line-blue.d-none {
+        display: block !important;
+        margin-bottom: 24px;
+        height: 2px;
+        width: 80px;
+    }
+
+    .headline-right {
+        margin-bottom: 8px;
+        font-size: 16px;
+    }
+
+    .main-summary-middle-left {
+        width: 47%;
+    }
+
+    .text-counter {
+        font-size: 16px;
+    }
+
+    .ctn-tasks {
+        height: 124px;
+    }
+
+    .date-upcoming-deadline {
+        font-size: 20px;
+    }
+
+    .text-deadline {
+        font-size: 16px;
+    }
+
+    a#main-summary-middle-right {
+        padding: 0 6px;
+        text-align: center;
+    }
+
+    .vertical-line-grey {
+        height: 55px;
+        width: 1px;
+    }
+}
+
+@media (max-width: 450px) {
+
+    main {
+        padding: 24px 16px;
+        margin-bottom: 60px;
+        overflow-y: auto;
+    }
+
+    .ctn-tasks-summary {
+        min-width: 552px;
+    }
+
+    .header-summary.d-flex-y {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .vertical-line-blue {
+        display: none;
+    }
+
+    h1.headline-summary {
+        margin: 0;
+        font-size: 32px;
+    }
+
+    .horizontal-line-blue.d-none {
+        display: block !important;
+        margin-bottom: 24px;
+    }
+
+    .headline-right {
+        margin-bottom: 4px;
+    }
+
+    .ctn-tasks-summary {
+        min-width: 100%;
+        gap: 12px;
+    }
+
+    .main-summary-middle-left {
+        width: 47%;
+    }
+
+    .img {
+        width: 23%;
+        min-width: 35px !important;
+    }
+
+    .counter {
+        font-size: 24px
+    }
+
+    .text-counter {
+        font-size: 13px;
+    }
+
+    a.summary-done.d-flex.ctn-tasks.gap-20.ctn-task-middle {
+        gap: 12px;
+    }
+
+    .ctn-tasks {
+        height: 76px;
+    }
+
+    .date-upcoming-deadline {
+        font-size: 14px;
+    }
+
+    a.main-summary-middle-left.d-flex.gap-20 {
+        gap: 12px;
+    }
+
+    .text-deadline {
+        font-size: 13px;
+    }
+
+    a#main-summary-middle-right {
+        padding: 0 6px;
+        text-align: center;
+    }
+
+    .ctn-task-smal {
+        gap: 0px;
+    }
+
+    .vertical-line-grey {
+        height: 55px;
+        width: 1px;
+    }
+
+    .main-summary-bottom {
+        gap: 16px;
+    }
+
+    .main-summary-top {
+        gap: 16px;
+    }
+
+    .daytime-greeting {
+        font-size: 28px;
+    }
+
+    .user-greeting {
+        font-size: 32px;
+    }
+}

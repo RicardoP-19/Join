@@ -1,0 +1,90 @@
+@media (max-width: 1000px) {
+    * {
+        font-size: 14px;
+    }
+
+    body {
+        overflow: hidden !important;
+    }
+
+    form {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow-y: scroll;
+        padding-right: 8px;
+    }
+
+    .addtask-footer {
+        display: flex;
+        justify-content: center;
+        align-items: center !important;
+        padding-top: 90px;
+        flex-direction: column;
+    }
+
+    h1 {
+        width: 100%;
+        text-align: left;
+    }
+
+    .form-left,
+    .form-right {
+        width: 100% !important;
+    }
+
+    .form-left {
+        margin-bottom: 20px;
+    }
+
+    .addtask-footer {
+
+        padding-top: 40px !important;
+    }
+
+    .selectedUser {
+        position: static !important;
+        padding-top: 8px !important;
+        padding-bottom: 8px !important;
+    }
+}
+
+
+@media (max-width: 500px) {
+    .prio-group {
+        display: flex;
+        flex-direction: column !important;
+        gap: 8px;
+    }
+
+    h1 {
+        font-size: 40px !important;
+    }
+
+    .clear,
+    .create-task {
+        font-size: 18px !important;
+        padding: 6px 12px !important;
+    }
+
+    .subtask-buttons {
+        display: inline !important;
+    }
+
+    .subtask-button {
+        display: inline !important;
+        background-color: var(--lightgrey);
+    }
+
+    #subtask-list li button {
+        display: inline !important;
+    }
+
+    .subtask-button {
+        background-color: white !important;
+    }
+
+    li:hover {
+        background-color: transparent !important;
+    }
+}

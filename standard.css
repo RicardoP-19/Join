@@ -1,0 +1,141 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  background-color: var(--lightgrey);
+  font-family: 'Inter', sans-serif;
+}
+
+:root {
+  --darkblue: #2a3647;
+  --darkblueMenu: #091931;
+  --lightblue: #29abe2;
+  --blue: #0038ff;
+  --bluelight: #1fd7c1;
+  --textwhite: #ffffff;
+  --textblack: #000000;
+  --middlegrey: #d1d1d1;
+  --lightgrey: #f6f7f8;
+  --red: #ff3d00;
+  --bluehover: #29ABE2;
+  --green: #7ae229;
+  --orange: #ffa800;
+  --grey: #A8A8A8;
+  --bluegrey: #2e3d51;
+}
+
+
+.headerline {
+  font-size: 60px;
+  font-weight: 700;
+}
+
+.btn {
+  border-radius: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.d-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.width100 {
+  width: 100%;
+}
+
+.height100 {
+  height: 100%;
+}
+
+.d-flex-x {
+  display: flex;
+  justify-content: center;
+}
+
+.d-flex-y {
+  display: flex;
+  align-items: center;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.border-unset {
+  border: unset;
+}
+
+.padding-left20 {
+  padding-left: 20px;
+}
+
+.padding-right20 {
+  padding-right: 20px;
+}
+
+.padding20 {
+  padding: 20px;
+}
+
+.margin0 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.headline {
+  font-size: 60px;
+  font-weight: 700;
+}
+
+content {
+  max-width: 1440px;
+}
+
+body {
+  --sb-track-color: transparent;
+  --sb-thumb-color: var(--middlegrey);
+  --sb-size: 5px;
+  --sb-horizontal-size: 5px;
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size);
+  height: var(--sb-horizontal-size);
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 0px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 16px;
+}
+
+::-webkit-scrollbar {
+  width: var(--sb-size);
+  height: var(--sb-horizontal-size);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--middlegrey);
+  border-radius: 16px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}

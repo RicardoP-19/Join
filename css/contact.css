@@ -1,0 +1,353 @@
+.contact-container {
+    display: flex;
+    margin-left: 688px; 
+    padding: 20px;
+    align-items: center;
+}
+
+form {
+    justify-content: center;
+}
+
+.contact-detail-container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+}
+
+.contact-details p {
+    padding-top: 20px;
+}
+
+.contact-list {
+    width: 456px;
+    position: fixed;
+    top: 100px; 
+    left: 232px; 
+    background-color: white;
+    height: calc(100vh - 100px);
+    overflow-y: auto; 
+    padding-right: 10px;
+    box-shadow: rgba(0, 0, 0, 0.08) 4px 0px 6px 0px;
+    cursor: pointer;
+}
+
+.add-contact-container {
+    position: sticky;
+    top: 0;
+    background-color: white; 
+    padding-bottom: 20px;
+    z-index: 1000; 
+}
+
+.contact-information {
+    font-size: 21px;
+}
+
+.contacts {
+    margin-top: 20px;
+    height: 100vh;
+}
+
+.contact-group {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.contact-group h2 {
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 5px;
+    padding: 10px;
+    margin-left: 16px;
+}
+
+.contact-group hr {
+    border: none;
+    border-top: 1px solid var(--middlegrey);
+    margin-bottom: 10px;
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 16px;
+}
+
+.contact:hover {
+    background-color: var(--lightgrey);
+    border-radius: 10px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    line-height: 40px;
+    color: white;
+    font-weight: 200;
+    border: 1px solid white;
+}
+
+.avatar-details {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 100px; 
+    color: white;
+    font-weight: 200;
+    border: 2px solid white; 
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.name {
+    font-weight: 300;
+    font-size: 21px;
+    margin-bottom: 5px;
+}
+
+.email {
+    color: var(--lightblue);
+    font-size: 14px;
+}
+
+.contact-details {
+    gap: 24px;
+    display: none;
+}
+
+.contact-details p {
+    font-size: 18px;
+    color: var(--grey);
+}
+
+.vertical-line-blue {
+    width: 3px;
+    height: 60px;
+    background-color: var(--lightblue);
+    border-radius: 2px;
+}
+
+.headline-right {
+    font-size: 28px;
+}
+
+.horizontal-line-blue {
+    width: 120px;
+    height: 3px;
+    background-color: var(--lightblue);
+    border-radius: 2px;
+    display: none;
+}
+
+.overlay {
+    display: none; 
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1000; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+.overlay.show {
+    display: flex; 
+}
+
+.overlay-content {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    text-align: center; 
+    display: flex;
+    width: 900px;
+    height: 450px;
+}
+
+.overlay-left {
+    background-color: var(--darkblue);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    border-radius: 20px 0 0 20px;
+    width: 250px;
+    padding-left: 30px;
+    position: relative; 
+}
+
+.close-icon {
+    position: absolute; 
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    display: none;
+    height: 20px !important;
+    width: 20px !important;
+}
+
+.overlay-left img {
+    height: 54px;
+    width: auto;
+}
+
+.overlay-contact-middle img{
+    height: 110px;
+    padding: 50px;
+}
+
+input {
+    display: block;
+    margin: 5px 0;
+    padding: 10px 40px 10px 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+#add-name, #edit-name {
+    background-image: url('/assets/icon/person.svg');
+}
+
+#add-email, #edit-email {
+    background-image: url('/assets/icon/mail.svg');
+}
+
+#add-phone, #edit-phone {
+    background-image: url('/assets/icon/phone.svg');
+}
+
+.contact-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-left: 1px solid #ddd;
+    width: 100%;
+    max-width: 400px;
+}
+
+.contact-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
+    font-size: 24px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.contact-details p {
+    font-size: 16px;
+}
+
+.contact-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.contact-rightheadline {
+    flex-direction: row;
+    justify-content: flex-start; 
+    display: flex; 
+    align-items: center;
+}
+
+.direction-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.direction-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.contact-email {
+    color: var(--lightblue);
+}
+
+.contact-phone {
+    color: black;
+}
+
+.contact-data {
+    color: black;
+    padding-bottom: 10px;
+}
+
+.contact-name {
+    font-size: 36px;
+}
+
+.selected-contact {
+    background-color: var(--darkblue);
+    color: white;
+    border-radius: 10px;
+}
+
+.selected-contact .name {
+    color: white;
+}
+
+.contact.selected-contact:hover {
+    background-color: var(--darkblue); 
+    cursor: default; 
+}
+
+.edit-overlay-middle {
+    padding: 54px;
+}
+
+@keyframes slide-in {
+    0% {
+        opacity: 0;
+        transform: translateX(1000px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.slide-out {
+    animation: slide-in 0.2s ease-in-out 0s 1 reverse forwards;
+}
+
+.slide-in {
+    animation: slide-in 0.2s ease-in-out 0s 1 normal forwards;
+}
+
+.error-message {
+    color: red;
+    font-size: 10px;
+    display: none;
+    text-align: left;
+}
+
+input.invalid {
+    border: 1px solid red;
+}

@@ -1,0 +1,42 @@
+@media (max-width: 1000px) {
+  .header-headline {
+    display: none;
+  }
+
+  .header-content {
+    padding-right: 0px;
+    padding-left: 20px;
+    height: 72px;
+  }
+
+  .mobile-logo {
+    display: block;
+  }
+
+  .mobile-logo img {
+    height: 40px;
+  }
+
+  .header-right {
+    width: 80px;
+    justify-content: center;
+  }
+
+  .header-right a {
+    display: none;
+  }
+
+  .user-letter {
+    width: 40px;
+    height: 40px;
+  }
+
+  .show-logout-mobile {
+    top: 77px;
+    z-index: 300;
+  }
+
+  h2#user-initial {
+    font-size: 20px;
+  }
+}

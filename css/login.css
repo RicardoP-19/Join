@@ -1,0 +1,144 @@
+#loginBody {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.login-header {
+  display: flex;
+  justify-content: end;
+  padding: 32px 64px 0px;
+}
+
+.sign-up-content {
+  gap: 35px;
+  height: 49px;
+}
+
+.sign-up-content a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--darkblue);
+  height: 49px;
+  width: 91px;
+  border-radius: 8px;
+  font-weight: 700;
+  color: var(--textwhite);
+}
+
+.sign-up-content a:hover {
+  transform: scale(1.01);
+  background-color: var(--bluehover);
+  filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.3));
+}
+
+.login-section {
+  flex: 1;
+}
+
+.login {
+  flex-direction: column;
+  margin-top: 54px;
+  width: 470px;
+  border-radius: 30px;
+  box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
+
+.login-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 26px;
+}
+
+.login-content h1 {
+  margin: 0;
+  padding-top: 30px;
+  padding-bottom: 18px;
+  font-size: 60px;
+  font-weight: 700;
+}
+
+.underline {
+  width: 60px;
+  height: 3px;
+  background-color: var(--lightblue);
+  border-radius: 2px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 0 68px 28px;
+}
+
+.checkbox {
+  padding-left: 24px;
+  gap: 8px;
+}
+
+.checkbox input {
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+.login-buttons {
+  display: flex;
+  gap: 35px;
+  padding-bottom: 30px;
+}
+
+.login-in {
+  background-color: var(--darkblue);
+  height: 40px;
+  width: 94px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--textwhite);
+  cursor: pointer;
+}
+
+.login-in:hover {
+  transform: scale(1.01);
+  background-color: var(--bluehover);
+  filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.3));
+  border: none;
+}
+
+.guest-log {
+  background-color: var(--textwhite);
+  height: 38px;
+  width: 140px;
+  border: 1px solid black;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--darkblue);
+}
+
+.guest-log:hover {
+  transform: scale(1.01);
+  color: var(--bluehover);
+  filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.3));
+  border-color: var(--bluehover);
+} 
+
+.info-notice {
+  margin-top: 80px;
+  padding-bottom: 20px;
+  display: flex;
+  gap: 35px;
+}
+
+.info-notice a {
+  color: var(--grey);
+}
+
+.info-notice a:hover {
+  color: var(--lightblue);
+  transform: scale(1.06);
+}
