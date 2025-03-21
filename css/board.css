@@ -108,6 +108,7 @@ main::-webkit-scrollbar {
 }
 
 .ctn-task p {
+    word-break: break-all;
     margin: 0;
 }
 
@@ -291,6 +292,131 @@ main::-webkit-scrollbar {
     width: 95%;
 }
 
+.gallery-container {
+    overflow-x: scroll;
+}
+
+#gallery, #galleryOverlay {
+    display: flex;
+    gap: 4px;
+    margin-top: 6px;
+    overflow-x: auto;
+}
+
+.image-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 110px;
+    border: 1px solid var(--middlegrey);
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.upload-image {
+    width: 110px;
+    height: 50px;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    object-fit: cover;
+    object-position: center;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.image-filename {
+    font-size: 12px;
+}
+
+.delete-container {
+    display: none;
+    position: absolute;
+    width: 110px;
+    height: 50px;
+    border-radius: 10px 10px 0 0;
+    background-color: rgba(47, 47, 47, 0.5);
+}
+
+.icon {
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.delete {
+    background-image: url('/assets/icon/trash.png');
+}
+
+.viewer {
+    background-image: url('/assets/icon/cloud_download.png');
+}
+
+.icon:hover {
+    background-color: #29ABE2;
+    border-radius: 50px;
+}
+
+.image-box:hover .delete-container {
+    display: block;
+}
+
+.upload-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.upload-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.upload-info {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--grey);
+}
+
+.upload-delete img{
+    width: 19px;
+    cursor: pointer;
+}
+
+.upload-input {
+    width: 100%;
+    height: 40px;
+    gap: 10px;
+    background-color: #EEEFEF;
+    border: 2px dotted #a8a8a8a7;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.delete-icon {
+    background-image: url('/assets/icon/trash.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.delete-icon:hover {
+    background-color: #29ABE2;
+    border-radius: 50px;
+}
+
 .person-detail p {
     padding-left: 16px;
 }
@@ -375,6 +501,6 @@ iframe {
     border-radius: 20px;
     border: none;
     width: 90%;
-    height: 80vh;
+    height: 100vh;
     max-width: 1200px;
 }
