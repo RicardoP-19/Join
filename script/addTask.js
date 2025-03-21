@@ -1,3 +1,7 @@
+let allAttachment = [];
+
+let galleryOverlay = null;
+
 /**
  * Initializes the application by fetching contacts, setting the minimum date for the due date input, and setting the medium priority.
  */
@@ -7,6 +11,7 @@ function init() {
     mediumPriority();
     progressToDo();
 }
+
 
 function progressToDo() {
     localStorage.setItem('progressStatus', 'todo')
@@ -193,7 +198,8 @@ function gatherFormData(progessStatus) {
         priority: selectedPriority,
         category: getFormValue("category"),
         progress: progessStatus,
-        subtasks: gatherSubtasks()
+        subtasks: gatherSubtasks(),
+        attachments: allImages,
     };
 }
 
@@ -259,6 +265,7 @@ function clearForm() {
     clearSubtasks();
     setFormValue("subtasks", '');
     resetValidations();
+    clearGallery();
 }
 
 

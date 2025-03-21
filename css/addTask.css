@@ -15,6 +15,12 @@ main {
     height: calc(100vh-96px);
 }
 
+.task-form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
 .task-container {
     display: flex;
     justify-content: space-between;
@@ -229,11 +235,117 @@ textarea {
     color: red;
 }
 
+.upload-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.upload-input {
+    width: 100%;
+    height: 50px;
+    gap: 10px;
+    background-color: #EEEFEF;
+    border: 2px dotted #a8a8a8a7;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.input-placeholder {
+    padding: 0;
+    color: var(--grey);
+}
+
+.upload-info-delete-container {
+    justify-content: space-between !important;
+}
+
+.upload-info {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--grey);
+}
+
+.upload-delete {
+    padding-bottom: 6px;
+    cursor: pointer;
+}
+
+#gallery {
+    display: flex;
+    gap: 4px;
+    margin-top: 6px;
+    overflow-x: auto;
+}
+
+.image-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 110px;
+    border: 1px solid var(--middlegrey);
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.upload-image {
+    width: 110px;
+    height: 50px;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    object-fit: cover;
+    object-position: center;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.image-filename {
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+    color: var(--grey);
+    word-break: break-all;
+    padding: 2px;
+}
+
+.delete-container {
+    position: absolute;
+    width: 110px;
+    height: 50px;
+    border-radius: 10px 10px 0 0;
+    background-color: rgba(47, 47, 47, 0.5);
+}
+
+.image-box:hover .delete-container {
+    display: block;
+}
+
+.delete-icon {
+    background-image: url('/assets/icon/trash.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.delete-icon:hover {
+    background-color: #29ABE2;
+    border-radius: 50px;
+}
+
+.error-text {
+    color: var(--red);
+    font-weight: 400;
+}
+
 .addtask-footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding-top: 90px;
 }
 
 #assignedInput {

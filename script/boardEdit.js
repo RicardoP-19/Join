@@ -40,6 +40,8 @@ let allSubtasksArray = [];
 let editAssignedContacts = [];
 
 
+let allAttachment = [];
+
 /**
  * Displays the edit task overlay for the specified task.
  * @param {string} taskId - The ID of the task to be edited.
@@ -349,6 +351,7 @@ function updateTask(taskId) {
     task.dueDate = document.getElementById('due-date-edit').value;
     task.priority = getActivePriority();
     task.assignedTo = getAssignedTo();
+    task.attachments = allAttachment; 
     task.subtasks = allSubtasksArray;
     updateOnDatabase(`tasks/${taskId}`, task);
     closeEditTaskOverlay();
@@ -363,6 +366,8 @@ function updateTask(taskId) {
  */
 function closeEditTaskOverlay() {
     document.body.style.overflow = '';
+    allAttachment = [];
+    allImages = [];
     let overlayBoardEditRef = document.getElementById('overlay-board-edit');
     overlayBoardEditRef.classList.add('slide-out');
     setTimeout(() => {
@@ -401,3 +406,47 @@ function getAssignedTo() {
 }
 
 
+function renderAttachmentsOverlay(taskId) {
+    allAttachment = [];
+    let task = tasks.find(t => t.id === taskId);
+    let attachments = task.attachments;
+    let allAttachmentsHtml = '';
+    if (!attachments || attachments.length === 0) {
+        return `<p>No images</p>`;
+    } else {
+        for (let iAttachment = 0; iAttachment < attachments.length; iAttachment++) {
+            const attachment = attachments[iAttachment];
+            allAttachment.push(attachment);
+            allAttachmentsHtml += getAttachmentTemplateOverlay(iAttachment, attachment);
+        }
+    }
+    return allAttachmentsHtml;
+}
+
+
+function renderAttachmentsEdit(taskId) {
+    let task = tasks.find(t => t.id === taskId);
+    let attachments = task.attachments;
+    let allAttachmentsHtml = '';
+    if (!attachments || attachments.length === 0) {
+        return `<p>No images</p>`;
+    } else {
+        for (let iAttachment = 0; iAttachment < attachments.length; iAttachment++) {
+            const attachment = attachments[iAttachment];
+            console.log(attachment, 'renderAttachmentsEdit');
+            allAttachmentsHtml += getAttachmentTemplateEdit(iAttachment, attachment);
+        }
+    }
+    return allAttachmentsHtml;
+}
+
+
+function deleteImageOverlay(index) {
+    allAttachment.splice(index, 1);
+    let galleryContainer = document.getElementById('galleryOverlay');
+    let newHtml = '';
+    for (let i = 0; i < allAttachment.length; i++) {
+        newHtml += getAttachmentTemplateEdit(i, allAttachment[i]);
+    }
+    galleryContainer.innerHTML = newHtml;
+}

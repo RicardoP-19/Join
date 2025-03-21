@@ -18,8 +18,8 @@
     <script defer src="/script/addTaskSubtasks.js"></script>
     <script src="/templates/addTask_templates.js"></script>
     <script src="/script/database.js"></script>
-
-    <title>Join - Add Task</title>
+    <script defer src="/script/filepicker.js"></script>
+    <title>Join</title>
 </head>
 
 <body onload="init()">
@@ -42,23 +42,6 @@
                             <textarea id="description" name="description" placeholder="Enter a Description"></textarea>
                         </div>
                         <div class="form-group">
-                            <span for="assigned">Assigned to</span>
-                            <div id="inputAssigned" class="assigned-input d-flex-y">
-                                <input id="assignedInput" onclick="assignedListToogle()"
-                                    onkeyup="assignedSearch(); inputValueCheck()"
-                                    placeholder="Select contacts to assign" type="text">
-                                <img id="assignedImage" onclick="assignedListToogle()"
-                                    src="/assets/icon/arrow_drop_downaa.svg" alt="Down">
-                            </div>
-                            <div id="assignedList" class="assigned-list d-none">
-                            </div>
-                            <div id="selectedUser" class="selectedUser d-none">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="break-between"></div>
-                    <div class="form-right">
-                        <div class="form-group">
                             <span for="due-date">Due date<span class="required">*</span></span>
                             <input type="date" id="due-date" name="due-date" placeholder="dd/mm/yyyy"
                                 oninput="validateDate()" required>
@@ -78,6 +61,42 @@
                                     <img src="/assets/img/lowsym.png" alt="">
                                 </button>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <span for="assigned">Assigned to</span>
+                            <div id="inputAssigned" class="assigned-input d-flex-y">
+                                <input id="assignedInput" onclick="assignedListToogle()"
+                                    onkeyup="assignedSearch(); inputValueCheck()"
+                                    placeholder="Select contacts to assign" type="text">
+                                <img id="assignedImage" onclick="assignedListToogle()"
+                                    src="/assets/icon/arrow_drop_downaa.svg" alt="Down">
+                            </div>
+                            <div id="assignedList" class="assigned-list d-none">
+                            </div>
+                            <div id="selectedUser" class="selectedUser d-none">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="break-between"></div>
+                    <div class="form-right">
+                        <div class="form-group">
+                            <div class="upload-container">
+                                <span>Attachments</span>
+                                <div class="d-flex upload-info-delete-container">
+                                    <span class="upload-info">Allowed file types are JPEG and PNG</span>
+                                    <div id="delete" class="d-none d-flex">
+                                        <img class="upload-delete" src="./../assets/icon/delete.png" alt="Delete" onclick="clearGallery()">
+                                        <span >Delete all</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex upload-input" onclick="filepicker.click()">
+                                <span class="input-placeholder">Drag a file or browse</span>
+                                <img src="./../assets/icon/upload_plus.png" alt="Add">
+                                <input type="file" id="filepicker" class="d-none" accept="image/*" multiple>
+                            </div>
+                            <div id="gallery"></div>
+                            <div id="error"></div>
                         </div>
                         <div class="form-group">
                             <span for="category">Category<span class="required">*</span></span>
