@@ -14,7 +14,6 @@ function openFilePicker() {
 
 document.addEventListener("DOMContentLoaded", () => {
     const filepicker = document.getElementById('filepicker');
-    const gallery = document.getElementById('gallery');
     if (filepicker) {
         filepicker.addEventListener('change', async () => {
             const files = filepicker.files;
@@ -26,32 +25,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function uploadSelectedFiles() {
+    console.log('upload-aktiv');
     const filepicker = document.getElementById('filepicker');
-    const galleryOverlay = document.getElementById('galleryOverlay');
     const files = filepicker.files;
     if (files.length == 0) return;
     filesArrayIterate(files);
 }
 
 
-function filesArrayIterate(files) {
-    Array.from(files).forEach(async file => {
+// function filesArrayIterate(files) {
+//     Array.from(files).forEach(async file => {
+//         if (isValidImage(file)) return;
+//         const compressedBase64 = await compressImage(file, 800, 800, 0.7);
+//         allImages.push({filename: file.name, base64: compressedBase64,});
+//         createImage();           
+//     });
+//     renderAttachmet();
+// }
+
+async function filesArrayIterate(files) {
+    const imagePromises = Array.from(files).map(async file => {
         if (isValidImage(file)) return;
         const compressedBase64 = await compressImage(file, 800, 800, 0.7);
-        allImages.push({filename: file.name, base64: compressedBase64,});
-        createImage();             
+        return { filename: file.name, base64: compressedBase64 };
     });
-    renderAttachmet();
-}
 
-
-function renderAttachmet() {
-    if (allAttachment) {
-        allAttachment.forEach(image => {
-            allImages.push(image);
-        });
-        allAttachment = allImages;
-    }
+    const newImages = (await Promise.all(imagePromises)).filter(Boolean);
+    allImages.push(...newImages);
+    createImage();
 }
 
 
@@ -103,15 +104,29 @@ async function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.
 
 
 function createImage() {
-    if (gallery) {        
+    const gallery = document.getElementById('gallery');
+    const galleryOverlay = document.getElementById('galleryOverlay');
+    if (gallery) {
+        console.log('gallery');    
         renderGallery();
-    } if(galleryOverlay){
+    } if (galleryOverlay) {
+        console.log('galleryOverlay');
         renderGalleryOverlay();
+        checkAttachments();
+    }
+}
+
+function checkAttachments() {
+    const attachmentContainer = document.getElementById('attachmentOverlay');
+    if (allImages.length > 0 || allAttachment.length > 0) {
+        attachmentContainer.classList.add('d-none');
+    } else {
+        attachmentContainer.classList.remove('d-none');
     }
 }
 
 function renderGallery() {
-    trash.classList.remove('d-none');
+    // trash.classList.remove('d-none');
     gallery.innerHTML = '';
     allImages.forEach((image, index) => {
         gallery.innerHTML += `
@@ -155,9 +170,11 @@ function hideDeleteButton(index) {
 function deleteImage(index) {
     allImages.splice(index, 1);
     createImage();
-    if (allImages.length === 0) {
-        trash.classList.add('d-none');
-    }
+    checkAttachments();
+    // if (allImages.length === 0) {
+    //     // trash.classList.add('d-none');
+    //     checkAttachments();
+    // }
 }
 
 

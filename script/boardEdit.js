@@ -351,7 +351,7 @@ function updateTask(taskId) {
     task.dueDate = document.getElementById('due-date-edit').value;
     task.priority = getActivePriority();
     task.assignedTo = getAssignedTo();
-    task.attachments = allAttachment; 
+    task.attachments = [...allAttachment, ...allImages];
     task.subtasks = allSubtasksArray;
     updateOnDatabase(`tasks/${taskId}`, task);
     closeEditTaskOverlay();
@@ -419,6 +419,7 @@ function renderAttachmentsOverlay(taskId) {
             allAttachment.push(attachment);
             allAttachmentsHtml += getAttachmentTemplateOverlay(iAttachment, attachment);
         }
+
     }
     return allAttachmentsHtml;
 }
@@ -441,9 +442,17 @@ function renderAttachmentsEdit(taskId) {
 }
 
 
+// function checkAttachments() {
+//     const attachmentContainer = document.getElementById('attachmentOverlay');
+//     if (attachment.length > 0) {
+//         attachmentContainer.classList.add('d-none');
+//     }
+// }
+
+
 function deleteImageOverlay(index) {
     allAttachment.splice(index, 1);
-    let galleryContainer = document.getElementById('galleryOverlay');
+    let galleryContainer = document.getElementById('overlayWrapper');
     let newHtml = '';
     for (let i = 0; i < allAttachment.length; i++) {
         newHtml += getAttachmentTemplateEdit(i, allAttachment[i]);
