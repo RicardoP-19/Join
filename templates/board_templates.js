@@ -359,8 +359,9 @@ function getEditOverlayTemplate(task) {
                                 <input onchange="uploadSelectedFiles()" type="file" id="filepicker" class="d-none" accept="image/*" multiple>
                             </div>
                         </div>
-                        <div id="galleryOverlay">
-                            ${renderAttachmentsEdit(task.id)}
+                        <div id="overlayWrapper" class="gallery-overlay-wrapper">
+                            <div id="attachmentOverlay" class="attachment-image">${renderAttachmentsEdit(task.id)}</div>
+                            <div id="galleryOverlay" class="gallery-overlay-content"></div>
                         </div>
                     </div>
 
@@ -381,7 +382,6 @@ function getEditOverlayTemplate(task) {
                                 </div>
                             </div>
                         </div>
-
                         <div id="ctn-edit-all-subtasks" class="ctn-edit-all-subtasks">
                             ${renderAllSubtasks(task.id)}
                         </div>
