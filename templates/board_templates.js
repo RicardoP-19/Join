@@ -348,13 +348,13 @@ function getEditOverlayTemplate(task) {
                             <span>Attachments</span>
                             <div class="upload-container">
                                 <span class="upload-info">Allowed file types are JPEG and PNG</span>
-                                <div id="deleteOverlay" class="d-none d-flex upload-delete">
+                                <div id="delete" class="d-none d-flex upload-delete">
                                     <img src="./../assets/icon/delete.png" alt="Delete" onclick="clearGallery()">
                                     <span >Delete all</span>
                                 </div>
                             </div>
                             <div class="d-flex upload-input" onclick="openFilePicker()">
-                                <span class="input-placeholder">Drag a file or browse</span>
+                                <span class="input-placeholder">Add images</span>
                                 <img src="./../assets/icon/upload_plus.png" alt="Add">
                                 <input onchange="uploadSelectedFiles()" type="file" id="filepicker" class="d-none" accept="image/*" multiple>
                             </div>

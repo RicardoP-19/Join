@@ -111,7 +111,7 @@ function createImage() {
 }
 
 function renderGallery() {
-    // trash.classList.remove('d-none');
+    trash.classList.remove('d-none');
     gallery.innerHTML = '';
     allImages.forEach((image, index) => {
         gallery.innerHTML += `
@@ -167,6 +167,7 @@ function clearGallery() {
     if (gallery) {
         gallery.innerHTML = '';
         allImages = [];
+        allAttachment = [];
         trash.classList.add('d-none');
     }
 }
