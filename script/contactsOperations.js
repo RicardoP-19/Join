@@ -88,6 +88,7 @@ function showAddContactOverlay() {
     addContactOverlay.style.display = 'flex';
     addContactOverlay.classList.remove('slide-out');
     addContactOverlay.classList.add('slide-in');
+    renderContactImage();
     setTimeout(() => {
         addContactOverlay.classList.remove('slide-in');
     }, 200);

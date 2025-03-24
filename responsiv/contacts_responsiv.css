@@ -141,7 +141,7 @@
         padding: 10px;
     }
 
-    .overlay-contact-middle img {
+    .profil-image {
         padding: 10px;
     }
 }
@@ -187,7 +187,7 @@
         display: none;
     }
 
-    .overlay-contact-middle img {
+    .profil-image {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
