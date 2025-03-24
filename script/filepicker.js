@@ -2,9 +2,20 @@ const filepicker = document.getElementById('filepicker');
 const error = document.getElementById('error');
 const trash = document.getElementById('delete');
 let allImages = [];
+let addTaskOpen = false;
+
+function openAddTaskFilePicker() {
+    addTaskOpen = true;
+    const filepicker = document.getElementById('filepicker');
+    if (filepicker) {           
+        filepicker.click();
+    }
+
+}
 
 
-function openFilePicker() {
+function openOverlayFilePicker() {
+    addTaskOpen = false;
     const filepicker = document.getElementById('filepicker');
     if (filepicker) {           
         filepicker.click();
@@ -94,11 +105,9 @@ async function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.
 
 
 function createImage() {
-    const gallery = document.getElementById('gallery');
-    const galleryOverlay = document.getElementById('galleryOverlay');
-    if (gallery) {  
+    if (addTaskOpen) {        
         renderGallery();
-    } if (galleryOverlay) {
+    }else if (!addTaskOpen) {
         renderGalleryOverlay();
         checkAttachments();
     }
@@ -116,7 +125,8 @@ function checkAttachments() {
 
 
 function renderGallery() {
-    // trash.classList.remove('d-none');
+    const gallery = document.getElementById('gallery');
+    trash.classList.remove('d-none');
     gallery.innerHTML = '';
     allImages.forEach((image, index) => {
         gallery.innerHTML += `
@@ -133,6 +143,7 @@ function renderGallery() {
 
 
 function renderGalleryOverlay() {
+    const galleryOverlay = document.getElementById('galleryOverlay');
     galleryOverlay.innerHTML = '';
     allImages.forEach((image, index) => {
         galleryOverlay.innerHTML += `
@@ -159,8 +170,12 @@ function hideDeleteButton(index) {
 
 
 function deleteImage(index) {
+    const trash = document.getElementById('delete');
     allImages.splice(index, 1);
     createImage();
+    if (allAttachment.length == 0) {
+        trash.classList.add('d-none');
+    }
 }
 
 
