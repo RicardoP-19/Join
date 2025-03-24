@@ -353,7 +353,7 @@ function getEditOverlayTemplate(task) {
                                     <span >Delete all</span>
                                 </div>
                             </div>
-                            <div class="d-flex upload-input" onclick="openFilePicker()">
+                            <div class="d-flex upload-input" onclick="openOverlayFilePicker()">
                                 <span class="input-placeholder">Add images</span>
                                 <img src="./../assets/icon/upload_plus.png" alt="Add">
                                 <input onchange="uploadSelectedFiles()" type="file" id="filepicker" class="d-none" accept="image/*" multiple>
