@@ -62,11 +62,18 @@ function toggleContactListVisibility() {
  * @param {string} initials - The contact initials.
  * @param {string} color - The avatar color.
  */
-function updateContactDetails(id, name, email, phone, initials, color) {
+function updateContactDetails(id, name, email, phone, initials, color, avatar) {
     const contactDetails = document.getElementById('contact-details');
     document.querySelector('.contact-name').textContent = name;
-    document.querySelector('.contact-avatar').style.backgroundColor = color; 
-    document.querySelector('.contact-avatar').textContent = initials;
+    // document.querySelector('.contact-avatar').style.backgroundColor = color; 
+    // document.querySelector('.contact-avatar').textContent = initials;
+    const avatarElement = document.querySelector('.contact-avatar');
+    if (avatar.image) {
+        avatarElement.innerHTML = `<img src="${avatar.image}" alt="Profilbild" class="profil-image">`;
+    } else {
+        avatarElement.style.backgroundColor = color;
+        avatarElement.textContent = initials;
+    }
     document.getElementById('contact-email').textContent = email;
     document.getElementById('contact-phone').textContent = phone;
     document.getElementById('edit-contact-id').value = id;
@@ -84,7 +91,6 @@ function displayContactDetailContainer(contactDetails) {
     contactDetails.style.display = 'block';
     contactDetails.classList.remove('slide-out');
     contactDetails.classList.add('slide-in');
-
     setTimeout(() => {
         contactDetails.classList.remove('slide-in');
     }, 200);
@@ -104,7 +110,6 @@ function hideContactDetails() {
     closeButton.style.display = 'none';
     const editBtn = document.getElementById("edit-btn");
     const deleteBtn = document.getElementById("delete-btn");
-
     editBtn.classList.remove("show");
     deleteBtn.classList.remove("show");
 }
@@ -118,7 +123,6 @@ function hideContactDetails() {
 function selectContact(id) {
     const contacts = document.querySelectorAll('.contact');
     contacts.forEach(contact => contact.classList.remove('selected-contact'));
-
     const selectedContact = document.querySelector(`.contact[onclick*="'${id}'"]`);
     if (selectedContact) {
         selectedContact.classList.add('selected-contact');
@@ -150,8 +154,7 @@ function checkButtonPositionAndSetColor() {
  */
 function toggleEditDelete() {
     const editBtn = document.getElementById("edit-btn");
-    const deleteBtn = document.getElementById("delete-btn");
-  
+    const deleteBtn = document.getElementById("delete-btn");  
     if (editBtn.classList.contains("show")) {
       editBtn.classList.remove("show");
       deleteBtn.classList.remove("show");
@@ -194,7 +197,6 @@ async function saveContact(contact) {
         body: JSON.stringify(contact),
         headers: { 'Content-Type': 'application/json' }
     });
-
     return response.ok;
 }
 
@@ -216,13 +218,11 @@ function clearInputFields() {
 async function editContact() {
     const contactData = getContactData();
     if (!contactData) return false;
-
     setContactAvatar(contactData);
     const response = await updateContact(contactData);
     if (response.ok && contactData.name !== document.getElementById('edit-name').getAttribute('data-original-name')) {
         await updateContactNameInTasks(contactData.id, contactData.name);
     }
-
     return handleContactUpdate(response, contactData);
 }
 
@@ -233,7 +233,6 @@ async function editContact() {
  */
 function setContactAvatar(contactData) {
     const currentName = document.getElementById('edit-name').getAttribute('data-original-name');
-
     if (contactData.name !== currentName) {
         contactData.avatar = generateAvatar(contactData.name);
     } else {
@@ -274,11 +273,9 @@ function updateEditContactFields(id, name, email, phone, initials, color) {
     const nameField = document.getElementById('edit-name');
     nameField.value = name || '';
     nameField.setAttribute('data-original-name', name);
-
     document.getElementById('edit-email').value = email || '';
     document.getElementById('edit-phone').value = phone || '';
     document.getElementById('edit-contact-id').value = id;
-
     const avatarElement = document.getElementById('edit-avatar');
     avatarElement.style.backgroundColor = color;
     avatarElement.textContent = initials;
@@ -293,12 +290,10 @@ function getContactData() {
     const email = document.getElementById('edit-email').value.trim();
     const phone = document.getElementById('edit-phone').value.trim();
     const id = document.getElementById('edit-contact-id').value;
-
     if (!name || !email || !phone) return null;
     const avatarElement = document.getElementById('edit-avatar');
     const initials = avatarElement.textContent;
     const color = avatarElement.style.backgroundColor;
-
     return { name, email, phone, avatar: { initials, color }, id };
 }
 
@@ -342,12 +337,10 @@ async function deleteContact() {
  */
 async function deleteContactFromDatabase(contactId) {
     const response = await fetch(`${BASE_URL}/contacts/${contactId}.json`, { method: 'DELETE' });
-
     if (response.ok) {
         handleContactDeletionSuccess();
         return true;
     }
-    
     return false;
 }
 
@@ -368,10 +361,21 @@ function handleContactDeletionSuccess() {
  * @param {string} name - The contact name.
  */
 function generateAvatar(name) {
-    return {
-        initials: name.split(' ').map(n => n[0]).join(''),
-        color: '#' + Math.floor(Math.random() * 16777215).toString(16)
-    };
+    if (allImages) {
+        return {
+            image: allImages  // Es wird ein Bild verwendet
+        };
+    } else {
+        return {
+            initials: name.split(' ').map(n => n[0]).join(''),
+            color: '#' + Math.floor(Math.random() * 16777215).toString(16)
+        };
+    }
+
+    // return {
+    //     initials: name.split(' ').map(n => n[0]).join(''),
+    //     color: '#' + Math.floor(Math.random() * 16777215).toString(16)
+    // };
 }
 
 

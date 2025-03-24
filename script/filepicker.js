@@ -3,6 +3,16 @@ const error = document.getElementById('error');
 const trash = document.getElementById('delete');
 let allImages = [];
 let addTaskOpen = false;
+let contact = false;
+
+function openProfilImageFilePicker() {
+    console.log('passt');
+    const filepicker = document.getElementById('filepicker');
+    contact = true
+    if (filepicker) {           
+        filepicker.click();
+    }    
+}
 
 function openAddTaskFilePicker() {
     addTaskOpen = true;
@@ -10,7 +20,6 @@ function openAddTaskFilePicker() {
     if (filepicker) {           
         filepicker.click();
     }
-
 }
 
 
@@ -105,11 +114,26 @@ async function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.
 
 
 function createImage() {
-    if (addTaskOpen) {        
+    if (contact) {
+        console.log('create contact');
+        
+        renderContactImage();
+    }else if (addTaskOpen) {        
         renderGallery();
     }else if (!addTaskOpen) {
         renderGalleryOverlay();
         checkAttachments();
+    }
+}
+
+
+function renderContactImage() {
+    console.log(allImages, 'render contact');
+    const profilImage = document.getElementById('profilImage');
+    if (allImages.length > 0) {
+        profilImage.src = allImages[0].base64;
+    } else {
+        profilImage.src = '/assets/img/addcontact.png';
     }
 }
 
