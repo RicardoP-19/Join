@@ -33,16 +33,6 @@ function uploadSelectedFiles() {
 }
 
 
-// function filesArrayIterate(files) {
-//     Array.from(files).forEach(async file => {
-//         if (isValidImage(file)) return;
-//         const compressedBase64 = await compressImage(file, 800, 800, 0.7);
-//         allImages.push({filename: file.name, base64: compressedBase64,});
-//         createImage();           
-//     });
-//     renderAttachmet();
-// }
-
 async function filesArrayIterate(files) {
     const imagePromises = Array.from(files).map(async file => {
         if (isValidImage(file)) return;
@@ -106,11 +96,9 @@ async function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.
 function createImage() {
     const gallery = document.getElementById('gallery');
     const galleryOverlay = document.getElementById('galleryOverlay');
-    if (gallery) {
-        console.log('gallery');    
+    if (gallery) {  
         renderGallery();
     } if (galleryOverlay) {
-        console.log('galleryOverlay');
         renderGalleryOverlay();
         checkAttachments();
     }
@@ -118,12 +106,14 @@ function createImage() {
 
 function checkAttachments() {
     const attachmentContainer = document.getElementById('attachmentOverlay');
-    if (allImages.length > 0 || allAttachment.length > 0) {
+    if (allAttachment.length > 0 || allImages.length > 0) {
         attachmentContainer.classList.add('d-none');
     } else {
         attachmentContainer.classList.remove('d-none');
+        attachmentContainer.innerHTML = `<p>No images</p>`;
     }
 }
+
 
 function renderGallery() {
     // trash.classList.remove('d-none');
@@ -140,6 +130,7 @@ function renderGallery() {
         `;
     });
 }
+
 
 function renderGalleryOverlay() {
     galleryOverlay.innerHTML = '';
@@ -170,11 +161,6 @@ function hideDeleteButton(index) {
 function deleteImage(index) {
     allImages.splice(index, 1);
     createImage();
-    checkAttachments();
-    // if (allImages.length === 0) {
-    //     // trash.classList.add('d-none');
-    //     checkAttachments();
-    // }
 }
 
 

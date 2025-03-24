@@ -55,6 +55,7 @@ function showEditTaskOverlay(taskId) {
     let task = tasks.find(t => t.id === taskId);
     overlayBoardEditRef.innerHTML = getEditOverlayTemplate(task);
     updateAssignedContacts();
+    checkAttachments();
     checkInputs();
 }
 
