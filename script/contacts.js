@@ -41,12 +41,36 @@ function compareNames(a, b) {
 //     updateContactDetails(id, name, email, phone, initials, color, image);
 // }
 
-function showContactDetails(contact) {  
-    let user = Object.values(allContacts).find(c => c.id === contact.id);
-    selectContact(contact);
+// function showContactDetails(contact) {     
+//     let user = Object.values(allContacts).find(c => c.id === contact.id);
+//     selectContact(contact);
+//     toggleContactListVisibility();
+//     updateContactDetails(user);
+// }
+
+function showContactDetails(contactId) {  
+    console.log("Kontakt-ID erhalten:", contactId);
+    
+    if (!contactId) {
+        console.error("Fehler: Kontakt-ID ist undefined oder null!");
+        return;
+    }
+
+    let user = allContacts[contactId];  // Direkter Zugriff auf den Kontakt
+
+    if (!user) {
+        console.error("Kontakt nicht gefunden:", contactId);
+        return;
+    }
+
+    console.log("Gefundener Benutzer:", user);
+
+    selectContact(user);
     toggleContactListVisibility();
     updateContactDetails(user);
 }
+
+
 
 
 
@@ -70,35 +94,31 @@ function toggleContactListVisibility() {
  * @param {string} initials - The contact initials.
  * @param {string} color - The avatar color.
  */
-// function updateContactDetails(id, name, email, phone, initials, color, avatar) {
-//     const contactDetails = document.getElementById('contact-details');
-//     document.querySelector('.contact-name').textContent = name;
-//     // document.querySelector('.contact-avatar').style.backgroundColor = color; 
-//     // document.querySelector('.contact-avatar').textContent = initials;
-//     const avatarElement = document.querySelector('.contact-avatar');
-//     if (avatar.image) {
-//         avatarElement.innerHTML = `<img src="${avatar.image}" alt="Profilbild" class="profil-image">`;
-//     } else {
-//         avatarElement.style.backgroundColor = color;
-//         avatarElement.textContent = initials;
-//     }
-//     document.getElementById('contact-email').textContent = email;
-//     document.getElementById('contact-phone').textContent = phone;
-//     document.getElementById('edit-contact-id').value = id;
-//     document.querySelector('.edit-btn').onclick = () => showEditContact(id, name, email, phone, initials, color);
-//     displayContactDetailContainer(contactDetails);
-// }
+function updateContactDetails(id, name, email, phone, initials, color, avatar) {
+    const contactDetails = document.getElementById('contact-details');
+    document.querySelector('.contact-name').textContent = name;
+    document.querySelector('.contact-avatar').style.backgroundColor = color; 
+    document.querySelector('.contact-avatar').textContent = initials;
+    const avatarElement = document.querySelector('.contact-avatar');
+    document.getElementById('contact-email').textContent = email;
+    document.getElementById('contact-phone').textContent = phone;
+    document.getElementById('edit-contact-id').value = id;
+    document.querySelector('.edit-btn').onclick = () => showEditContact(id, name, email, phone, initials, color);
+    displayContactDetailContainer(contactDetails);
+}
 
 function updateContactDetails(user) { 
-    avatar = user;
+    let avatar = user;
     const avatarElement = document.querySelector('.contact-avatar');
     const contactDetails = document.getElementById('contact-details');
     
     if (avatar.avatar.image?.[0]?.base64) {
         avatarElement.innerHTML = `<img src="${avatar.avatar.image[0].base64}" alt="Profilbild" class="profil-image">`;
     } else {
-        avatarElement.style.backgroundColor = color;
-        avatarElement.textContent = initials;
+        avatarElement.style.backgroundColor = avatar.color;
+        avatarElement.textContent = avatar.initials;
+        document.querySelector('.contact-avatar').style.backgroundColor = avatar.avatar.color; 
+        document.querySelector('.contact-avatar').textContent = avatar.avatar.initials;
     }
 
     document.querySelector('.contact-name').textContent = avatar.name;
@@ -108,6 +128,7 @@ function updateContactDetails(user) {
     document.querySelector('.edit-btn').onclick = () => showEditContact(avatar.id, avatar.name, avatar.email, avatar.phone, avatar.initials, avatar.color);
     displayContactDetailContainer(contactDetails);
 }
+
 
 /**
  * Display the contact detail container with a slide-in animation.
