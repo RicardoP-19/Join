@@ -84,7 +84,7 @@
 
         </div>
 
-        <div id="add-contact-overlay" class="overlay" onclick="hideOverlay(event)">
+        <div id="add-contact-overlay" class="overlay">
             <div class="overlay-content" onclick="event.stopPropagation()">
                 <div class="overlay-left">
                     <img src="/assets/img/close-white.svg" alt="Close" class="close-icon" onclick="clearValidationErrors(); clearInputFields(); hideOverlay()">
@@ -95,7 +95,7 @@
                 </div>
                 <div class="d-flex">
                     <div class="profil-wrapper d-flex">
-                        <img id="profilImage" class="profil-image" src="`${base64}`" alt="Image">
+                        <img id="profilImage" class="profil-image profil-object" src="`${base64}`" alt="Image">
                         <img class="input-image" onclick="openProfilImageFilePicker()" class="add-image" onmouseover="changeImage()" src="/assets/icon/add_photo.png" alt="Photo">
                         <input type="file" id="filepicker" class="d-none" accept="image/*">
                     </div>

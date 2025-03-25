@@ -35,11 +35,19 @@ function compareNames(a, b) {
  * @param {string} initials - The contact initials.
  * @param {string} color - The avatar color.
  */
-function showContactDetails(id, name, email, phone, initials, color) {
-    selectContact(id);
+// function showContactDetails(id, name, email, phone, initials, color, image) {
+//     selectContact(id);
+//     toggleContactListVisibility();
+//     updateContactDetails(id, name, email, phone, initials, color, image);
+// }
+
+function showContactDetails(contact) {  
+    let user = Object.values(allContacts).find(c => c.id === contact.id);
+    selectContact(contact);
     toggleContactListVisibility();
-    updateContactDetails(id, name, email, phone, initials, color);
+    updateContactDetails(user);
 }
+
 
 
 /**
@@ -62,25 +70,44 @@ function toggleContactListVisibility() {
  * @param {string} initials - The contact initials.
  * @param {string} color - The avatar color.
  */
-function updateContactDetails(id, name, email, phone, initials, color, avatar) {
-    const contactDetails = document.getElementById('contact-details');
-    document.querySelector('.contact-name').textContent = name;
-    // document.querySelector('.contact-avatar').style.backgroundColor = color; 
-    // document.querySelector('.contact-avatar').textContent = initials;
+// function updateContactDetails(id, name, email, phone, initials, color, avatar) {
+//     const contactDetails = document.getElementById('contact-details');
+//     document.querySelector('.contact-name').textContent = name;
+//     // document.querySelector('.contact-avatar').style.backgroundColor = color; 
+//     // document.querySelector('.contact-avatar').textContent = initials;
+//     const avatarElement = document.querySelector('.contact-avatar');
+//     if (avatar.image) {
+//         avatarElement.innerHTML = `<img src="${avatar.image}" alt="Profilbild" class="profil-image">`;
+//     } else {
+//         avatarElement.style.backgroundColor = color;
+//         avatarElement.textContent = initials;
+//     }
+//     document.getElementById('contact-email').textContent = email;
+//     document.getElementById('contact-phone').textContent = phone;
+//     document.getElementById('edit-contact-id').value = id;
+//     document.querySelector('.edit-btn').onclick = () => showEditContact(id, name, email, phone, initials, color);
+//     displayContactDetailContainer(contactDetails);
+// }
+
+function updateContactDetails(user) { 
+    avatar = user;
     const avatarElement = document.querySelector('.contact-avatar');
-    if (avatar.image) {
-        avatarElement.innerHTML = `<img src="${avatar.image}" alt="Profilbild" class="profil-image">`;
+    const contactDetails = document.getElementById('contact-details');
+    
+    if (avatar.avatar.image?.[0]?.base64) {
+        avatarElement.innerHTML = `<img src="${avatar.avatar.image[0].base64}" alt="Profilbild" class="profil-image">`;
     } else {
         avatarElement.style.backgroundColor = color;
         avatarElement.textContent = initials;
     }
-    document.getElementById('contact-email').textContent = email;
-    document.getElementById('contact-phone').textContent = phone;
-    document.getElementById('edit-contact-id').value = id;
-    document.querySelector('.edit-btn').onclick = () => showEditContact(id, name, email, phone, initials, color);
+
+    document.querySelector('.contact-name').textContent = avatar.name;
+    document.getElementById('contact-email').textContent = avatar.email;
+    document.getElementById('contact-phone').textContent = avatar.phone;
+    document.getElementById('edit-contact-id').value = user.id;
+    document.querySelector('.edit-btn').onclick = () => showEditContact(avatar.id, avatar.name, avatar.email, avatar.phone, avatar.initials, avatar.color);
     displayContactDetailContainer(contactDetails);
 }
-
 
 /**
  * Display the contact detail container with a slide-in animation.
@@ -360,24 +387,30 @@ function handleContactDeletionSuccess() {
  * Generate an avatar object with initials and a random color.
  * @param {string} name - The contact name.
  */
-function generateAvatar(name) {
-    if (allImages) {
-        return {
-            image: allImages  // Es wird ein Bild verwendet
-        };
+// function generateAvatar(name) {
+//     if (allImages) {
+//         return {
+//             image: allImages  // Es wird ein Bild verwendet
+//         };
+//     } else {
+//         return {
+//             initials: name.split(' ').map(n => n[0]).join(''),
+//             color: '#' + Math.floor(Math.random() * 16777215).toString(16)
+//         };
+//     }
+// }
+
+
+function generateAvatar(name, image = null) {
+    if (allImages.length > 0) {
+        return { image: allImages};
     } else {
         return {
             initials: name.split(' ').map(n => n[0]).join(''),
             color: '#' + Math.floor(Math.random() * 16777215).toString(16)
         };
     }
-
-    // return {
-    //     initials: name.split(' ').map(n => n[0]).join(''),
-    //     color: '#' + Math.floor(Math.random() * 16777215).toString(16)
-    // };
 }
-
 
 /**
  * Clear the input fields for both adding and editing contacts.

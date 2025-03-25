@@ -36,10 +36,27 @@ function renderContactGroup(letter, contactList) {
  * @param {string} contact.avatar.color - The background color of the avatar.
  * @returns {string} The HTML string for the single contact.
  */
+// function renderContact(contact) {
+//     return `
+//         <div class="contact" onclick="showContactDetails('${contact.id}', '${contact.name}', '${contact.email}', '${contact.phone}', '${contact.avatar.initials}', '${contact.avatar.color}')">
+//             <span class="avatar" style="background-color:${contact.avatar.color};">${contact.avatar.initials}</span>
+//             <div class="contact-info">
+//                 <span class="name">${contact.name}</span>
+//                 <span class="email">${contact.email}</span>
+//             </div>
+//         </div>
+//     `;
+// }
+
+
 function renderContact(contact) {
+    const avatar = contact.avatar?.image?.[0]?.base64
+        ? `<img src="${contact.avatar.image[0].base64}" alt="Profilbild" class="profil-image-list profil-object">`
+        : `<span class="avatar" style="background-color:${contact.avatar.color};">${contact.avatar.initials}</span>`;
+
     return `
-        <div class="contact" onclick="showContactDetails('${contact.id}', '${contact.name}', '${contact.email}', '${contact.phone}', '${contact.avatar.initials}', '${contact.avatar.color}')">
-            <span class="avatar" style="background-color:${contact.avatar.color};">${contact.avatar.initials}</span>
+        <div class="contact" onclick="showContactDetails('${contact.id}')">
+            ${avatar}
             <div class="contact-info">
                 <span class="name">${contact.name}</span>
                 <span class="email">${contact.email}</span>
@@ -48,13 +65,12 @@ function renderContact(contact) {
     `;
 }
 
-
 /**
  * Create an avatar element with the given initials and background color.
  * @param {string} initials - The avatar initials.
  * @param {string} color - The avatar background color.
  * @returns {string} The avatar HTML element.
  */
-function createAvatar(initials, color) {
-    return `<span class="avatar-details d-flex" style="background-color:${color};">${initials}</span>`;
-}
+// function createAvatar(initials, color) {
+//     return `<span class="avatar-details d-flex" style="background-color:${color};">${initials}</span>`;
+// }
