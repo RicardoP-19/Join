@@ -4,8 +4,7 @@
  * @param {string} newName - The new name of the contact.
  */
 async function updateContactNameInTasks(contactId, newName) {
-    const tasksData = await fetchTasks();
-
+    const tasksData = await fetchTasks();    
     for (const taskId in tasksData) {
         const task = tasksData[taskId];
         if (task.assignedTo && Array.isArray(task.assignedTo)) {
@@ -44,7 +43,6 @@ async function removeContactFromTasks(contactId) {
     if (!contactData) {
         return false;
     }
-
     const contactName = contactData.name;
     const tasksData = await fetchTasks();
     return await removeContactFromAllTasks(tasksData, contactId, contactName);
@@ -59,15 +57,13 @@ async function removeContactFromTasks(contactId) {
  * @returns {Promise<boolean>} Returns true if the contact was removed from any task, false otherwise.
  */
 async function removeContactFromAllTasks(tasksData, contactId, contactName) {
-    let removed = false;
-    
+    let removed = false;    
     for (const taskId in tasksData) {
         const task = tasksData[taskId];
         if (task) {
             removed = await updateTaskAssignedTo(task, contactId, contactName, taskId) || removed;
         }
-    }
-    
+    }    
     return removed;
 }
 
@@ -77,7 +73,7 @@ async function removeContactFromAllTasks(tasksData, contactId, contactName) {
  * @returns {Promise<Object>} Returns an object containing all tasks if the fetch is successful, otherwise an empty object.
  */
 async function fetchTasks() {
-    const response = await fetch(`${BASE_URL}/tasks.json`);
+    const response = await fetch(`${BASE_URL}/tasks.json`);    
     if (!response.ok) {
         return {};
     }

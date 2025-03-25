@@ -1,8 +1,12 @@
+
 /**
  * Load and render contacts from the server.
  */
 async function loadContacts() {
     const contacts = await fetchContacts();
+    allContacts = contacts
+    // console.log(allContacts, 'load');
+    
     if (contacts) renderContacts(contacts);
 }
 
@@ -14,9 +18,10 @@ async function loadContacts() {
 async function fetchContacts(contactId) {
     const response = await fetch(`${BASE_URL}/contacts.json`);
     const contacts = await response.json();
-    if (contactId) {
+    if (contactId) {        
         return contacts[contactId];
-    }
+    }    
+    // console.log(contacts, 'fetch');
     
     return contacts;
 }
@@ -30,7 +35,6 @@ function renderContacts(contacts) {
     const contactContainer = document.querySelector('.contacts');
     contactContainer.innerHTML = '';
     const groupedContacts = groupContactsByFirstLetter(contacts);
-
     Object.entries(groupedContacts).forEach(([letter, contactList]) => {
         contactContainer.innerHTML += renderContactGroup(letter, contactList);
     });
@@ -112,7 +116,6 @@ function showEditContact(id, name, email, phone, initials, color) {
     setTimeout(() => {
         editContactOverlay.classList.remove('slide-in');
     }, 200);
-
     updateEditContactFields(id, name, email, phone, initials, color);
 }
 
@@ -137,10 +140,8 @@ function hideOverlay(event) {
 function handleOverlayAnimation(addOverlayId, editOverlayId) {
     const addContactOverlay = document.getElementById(addOverlayId);
     const editContactOverlay = document.getElementById(editOverlayId);
-
     addContactOverlay.classList.add('slide-out');
     editContactOverlay.classList.add('slide-out');
-
     setTimeout(() => {
         addContactOverlay.style.display = 'none';
         editContactOverlay.style.display = 'none';
@@ -159,11 +160,9 @@ function handleOverlayAnimation(addOverlayId, editOverlayId) {
  */
 function validateContactInput(name, email, phone) {
     let isValid = true;
-
     if (!validateName(name)) isValid = false;
     if (!validateEmail(email)) isValid = false;
     if (!validatePhone(phone)) isValid = false;
-
     return isValid;
 }
 
@@ -207,12 +206,10 @@ function validateEmail(email) {
  */
 function validatePhone(phone) {
     const cleanedPhone = phone.replace(/\D/g, '');
-
     if (!/^[\d\s+]+$/.test(phone) || cleanedPhone.length < 5 || cleanedPhone.length > 15) {
         displayError('add-phone', 'phone-error', 'Enter 5-15 digits only.');
         return false;
     }
-
     hideError('add-phone', 'phone-error');
     return true;
 }
@@ -248,12 +245,10 @@ function hideError(inputId, errorId) {
 function clearValidationErrors() {
     const inputs = ['add-name', 'add-email', 'add-phone','edit-name', 'edit-email', 'edit-phone'];
     const errorMessages = ['name-error', 'email-error', 'phone-error','edit-name-error', 'edit-email-error', 'edit-phone-error'];
-
     inputs.forEach((inputId, index) => {
         const inputElement = document.getElementById(inputId);
         const errorElement = document.getElementById(errorMessages[index]);
         errorElement.style.display = 'none';
-
         inputElement.classList.remove('invalid');
     });
 }
@@ -267,7 +262,6 @@ function validateEditContact() {
     const name = document.getElementById('edit-name').value.trim();
     const email = document.getElementById('edit-email').value.trim();
     const phone = document.getElementById('edit-phone').value.trim();
-
     let isValid = true;
     if (!validateEditName(name)) isValid = false;
     if (!validateEditEmail(email)) isValid = false;
@@ -316,12 +310,10 @@ function validateEditEmail(email) {
  */
 function validateEditPhone(phone) {
     const cleanedPhone = phone.replace(/\D/g, '');
-
     if (!/^[\d\s+]+$/.test(phone) || cleanedPhone.length < 5 || cleanedPhone.length > 15) {
         displayError('edit-phone', 'edit-phone-error', 'Enter 5-15 digits only.');
         return false;
     }
-
     hideError('edit-phone', 'edit-phone-error');
     return true;
 }
@@ -385,8 +377,7 @@ function hidePopup(popup) {
  * @param {string} state - The current state of the button, either 'hover' or 'default'. 
  */
 function changeCancelImage(button, state) {
-    const img = button.querySelector('img'); 
-
+    const img = button.querySelector('img');
     if (img) {
         if (state === 'hover') {
             img.src = '/assets/img/close-blue.svg'; 
