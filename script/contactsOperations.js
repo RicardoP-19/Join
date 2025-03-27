@@ -1,12 +1,8 @@
 
-/**
- * Load and render contacts from the server.
- */
+
 async function loadContacts() {
     const contacts = await fetchContacts();
     allContacts = contacts
-    // console.log(allContacts, 'load');
-    
     if (contacts) renderContacts(contacts);
 }
 
@@ -21,8 +17,6 @@ async function fetchContacts(contactId) {
     if (contactId) {        
         return contacts[contactId];
     }    
-    // console.log(contacts, 'fetch');
-    
     return contacts;
 }
 
@@ -99,16 +93,7 @@ function showAddContactOverlay() {
 }
 
 
-/**
- * Show the overlay for editing a contact with a slide-in animation.
- * @param {string} id - The contact ID.
- * @param {string} name - The contact name.
- * @param {string} email - The contact email.
- * @param {string} phone - The contact phone.
- * @param {string} initials - The contact initials.
- * @param {string} color - The avatar color.
- */
-function showEditContact(id, name, email, phone, initials, color) {
+function showEditContact() {
     const editContactOverlay = document.getElementById('edit-contact-overlay');
     editContactOverlay.style.display = 'flex';
     editContactOverlay.classList.remove('slide-out');
@@ -116,8 +101,9 @@ function showEditContact(id, name, email, phone, initials, color) {
     setTimeout(() => {
         editContactOverlay.classList.remove('slide-in');
     }, 200);
-    updateEditContactFields(id, name, email, phone, initials, color);
+    updateEditContactFields();
 }
+
 
 
 /**

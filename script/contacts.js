@@ -26,53 +26,15 @@ function compareNames(a, b) {
 }
 
 
-/**
- * Display contact details in the contact detail view.
- * @param {string} id - The contact ID.
- * @param {string} name - The contact name.
- * @param {string} email - The contact email.
- * @param {string} phone - The contact phone.
- * @param {string} initials - The contact initials.
- * @param {string} color - The avatar color.
- */
-// function showContactDetails(id, name, email, phone, initials, color, image) {
-//     selectContact(id);
-//     toggleContactListVisibility();
-//     updateContactDetails(id, name, email, phone, initials, color, image);
-// }
-
-// function showContactDetails(contact) {     
-//     let user = Object.values(allContacts).find(c => c.id === contact.id);
-//     selectContact(contact);
-//     toggleContactListVisibility();
-//     updateContactDetails(user);
-// }
-
-function showContactDetails(contactId) {  
-    console.log("Kontakt-ID erhalten:", contactId);
-    
-    if (!contactId) {
-        console.error("Fehler: Kontakt-ID ist undefined oder null!");
-        return;
-    }
-
-    let user = allContacts[contactId];  // Direkter Zugriff auf den Kontakt
-
+function showContactDetails(contactId) {
+    let user = allContacts[contactId];
     if (!user) {
-        console.error("Kontakt nicht gefunden:", contactId);
         return;
     }
-
-    console.log("Gefundener Benutzer:", user);
-
     selectContact(user);
     toggleContactListVisibility();
     updateContactDetails(user);
 }
-
-
-
-
 
 /**
  * Toggle the visibility of the contact list for smaller screens.
@@ -87,14 +49,13 @@ function toggleContactListVisibility() {
 
 /**
  * Update the contact details section with the selected contact's data.
- * @param {string} id - The contact ID.
  * @param {string} name - The contact name.
  * @param {string} email - The contact email.
  * @param {string} phone - The contact phone.
  * @param {string} initials - The contact initials.
  * @param {string} color - The avatar color.
  */
-function updateContactDetails(id, name, email, phone, initials, color, avatar) {
+function updateContactDetails(name, email, phone, initials, color) {    
     const contactDetails = document.getElementById('contact-details');
     document.querySelector('.contact-name').textContent = name;
     document.querySelector('.contact-avatar').style.backgroundColor = color; 
@@ -103,31 +64,26 @@ function updateContactDetails(id, name, email, phone, initials, color, avatar) {
     document.getElementById('contact-email').textContent = email;
     document.getElementById('contact-phone').textContent = phone;
     document.getElementById('edit-contact-id').value = id;
-    document.querySelector('.edit-btn').onclick = () => showEditContact(id, name, email, phone, initials, color);
+    document.querySelector('.edit-btn').onclick = () => showEditContact(name, email, phone, initials, color);
     displayContactDetailContainer(contactDetails);
 }
 
-function updateContactDetails(user) { 
-    let avatar = user;
+function updateContactDetails(user) {
+    currentContact = {name: user.name, email: user.email, phone: user.phone, initials: user.avatar.initials, color: user.avatar.color, avatarImage: user.avatar.image?.[0]?.base64 || null};
     const avatarElement = document.querySelector('.contact-avatar');
-    const contactDetails = document.getElementById('contact-details');
-    
-    if (avatar.avatar.image?.[0]?.base64) {
-        avatarElement.innerHTML = `<img src="${avatar.avatar.image[0].base64}" alt="Profilbild" class="profil-image">`;
+    const contactDetails = document.getElementById('contact-details');    
+    if (currentContact.avatarImage) {
+        avatarElement.innerHTML = `<img src="${currentContact.avatarImage}" alt="Profilbild" class="profil-image">`;
     } else {
-        avatarElement.style.backgroundColor = avatar.color;
-        avatarElement.textContent = avatar.initials;
-        document.querySelector('.contact-avatar').style.backgroundColor = avatar.avatar.color; 
-        document.querySelector('.contact-avatar').textContent = avatar.avatar.initials;
-    }
-
-    document.querySelector('.contact-name').textContent = avatar.name;
-    document.getElementById('contact-email').textContent = avatar.email;
-    document.getElementById('contact-phone').textContent = avatar.phone;
-    document.getElementById('edit-contact-id').value = user.id;
-    document.querySelector('.edit-btn').onclick = () => showEditContact(avatar.id, avatar.name, avatar.email, avatar.phone, avatar.initials, avatar.color);
+        avatarElement.style.backgroundColor = currentContact.color;
+        avatarElement.textContent = currentContact.initials;
+    }    
+    document.querySelector('.contact-name').textContent = currentContact.name;
+    document.getElementById('contact-email').textContent = currentContact.email;
+    document.getElementById('contact-phone').textContent = currentContact.phone;    
     displayContactDetailContainer(contactDetails);
 }
+
 
 
 /**
@@ -308,26 +264,35 @@ function handleContactUpdate(response, contactData) {
 }
 
 
-/**
- * Update the input fields and avatar for editing a contact.
- * @param {string} id - The contact ID.
- * @param {string} name - The contact name.
- * @param {string} email - The contact email.
- * @param {string} phone - The contact phone.
- * @param {string} initials - The contact initials.
- * @param {string} color - The avatar background color.
- */
-function updateEditContactFields(id, name, email, phone, initials, color) {
-    const nameField = document.getElementById('edit-name');
-    nameField.value = name || '';
-    nameField.setAttribute('data-original-name', name);
-    document.getElementById('edit-email').value = email || '';
-    document.getElementById('edit-phone').value = phone || '';
-    document.getElementById('edit-contact-id').value = id;
-    const avatarElement = document.getElementById('edit-avatar');
-    avatarElement.style.backgroundColor = color;
-    avatarElement.textContent = initials;
+
+function updateEditContactFields() {
+    document.getElementById('edit-name').value = currentContact.name;
+    document.getElementById('edit-email').value = currentContact.email;
+    document.getElementById('edit-phone').value = currentContact.phone;    
+    const image = document.getElementById('profilImageOverlay');
+    const initials = document.getElementById('profilInitialsOverlay');     
+    if (currentContact.avatarImage) {
+        addImage(image, initials);
+    } else {
+        addInitials(image, initials);
+    }
 }
+
+
+function addImage(image, initials) {
+    image.src = currentContact.avatarImage;
+    image.classList.remove('d-none');
+    initials.classList.add('d-none');
+}
+
+
+function addInitials(image, initials) {
+    image.classList.add('d-none');
+    initials.classList.remove('d-none');
+    initials.style.backgroundColor = currentContact.color;
+    initials.textContent = currentContact.initials;
+}
+
 
 
 /**
@@ -402,24 +367,6 @@ function handleContactDeletionSuccess() {
     document.getElementById('contact-details').style.display = 'none';
     showPopup('Contact successfully deleted');
 }
-
-
-/**
- * Generate an avatar object with initials and a random color.
- * @param {string} name - The contact name.
- */
-// function generateAvatar(name) {
-//     if (allImages) {
-//         return {
-//             image: allImages  // Es wird ein Bild verwendet
-//         };
-//     } else {
-//         return {
-//             initials: name.split(' ').map(n => n[0]).join(''),
-//             color: '#' + Math.floor(Math.random() * 16777215).toString(16)
-//         };
-//     }
-// }
 
 
 function generateAvatar(name, image = null) {
