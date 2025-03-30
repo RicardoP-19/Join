@@ -29,7 +29,7 @@ function renderContact(contact) {
         : `<span class="avatar" style="background-color:${contact.avatar.color};">${contact.avatar.initials}</span>`;
     return `
         <div class="contact" onclick="showContactDetails('${contact.id}')">
-            ${avatar}
+            <div>${avatar}</div>
             <div class="contact-info">
                 <span class="name">${contact.name}</span>
                 <span class="email">${contact.email}</span>

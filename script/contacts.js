@@ -1,3 +1,5 @@
+let avatar = {};
+
 /**
  * Check if the contact has a valid name.
  * @param {string} name - The name to validate.
@@ -33,7 +35,7 @@ function showContactDetails(contactId) {
     }
     selectContact(user);
     toggleContactListVisibility();
-    updateContactDetails(user);
+    updateContactDetails(user, contactId);
 }
 
 /**
@@ -55,20 +57,7 @@ function toggleContactListVisibility() {
  * @param {string} initials - The contact initials.
  * @param {string} color - The avatar color.
  */
-function updateContactDetails(name, email, phone, initials, color) {    
-    const contactDetails = document.getElementById('contact-details');
-    document.querySelector('.contact-name').textContent = name;
-    document.querySelector('.contact-avatar').style.backgroundColor = color; 
-    document.querySelector('.contact-avatar').textContent = initials;
-    const avatarElement = document.querySelector('.contact-avatar');
-    document.getElementById('contact-email').textContent = email;
-    document.getElementById('contact-phone').textContent = phone;
-    document.getElementById('edit-contact-id').value = id;
-    document.querySelector('.edit-btn').onclick = () => showEditContact(name, email, phone, initials, color);
-    displayContactDetailContainer(contactDetails);
-}
-
-function updateContactDetails(user) {
+function updateContactDetails(user, contactId) {
     currentContact = {name: user.name, email: user.email, phone: user.phone, initials: user.avatar.initials, color: user.avatar.color, avatarImage: user.avatar.image?.[0]?.base64 || null};
     const avatarElement = document.querySelector('.contact-avatar');
     const contactDetails = document.getElementById('contact-details');    
@@ -80,7 +69,8 @@ function updateContactDetails(user) {
     }    
     document.querySelector('.contact-name').textContent = currentContact.name;
     document.getElementById('contact-email').textContent = currentContact.email;
-    document.getElementById('contact-phone').textContent = currentContact.phone;    
+    document.getElementById('contact-phone').textContent = currentContact.phone;
+    document.getElementById('edit-contact-id').value = contactId;    
     displayContactDetailContainer(contactDetails);
 }
 
@@ -231,19 +221,20 @@ async function editContact() {
 }
 
 
-/**
- * Sets the contact's avatar based on whether the name has changed.
- * @param {Object} contactData - The data of the contact being edited.
- */
+
 function setContactAvatar(contactData) {
-    const currentName = document.getElementById('edit-name').getAttribute('data-original-name');
-    if (contactData.name !== currentName) {
-        contactData.avatar = generateAvatar(contactData.name);
+    if (currentContact.avatarImage) {
+        contactData.avatar = {image: [{ base64: currentContact.avatarImage }]};
     } else {
-        contactData.avatar = { 
-            initials: document.getElementById('edit-avatar').textContent, 
-            color: document.getElementById('edit-avatar').style.backgroundColor 
-        };
+        const currentName = document.getElementById('edit-name').getAttribute('data-original-name');
+        if (contactData.name !== currentName) {
+            contactData.avatar = generateAvatar(contactData.name);
+        } else {
+            contactData.avatar = { 
+                initials: document.getElementById('profilInitialsOverlay').textContent, 
+                color: document.getElementById('profilInitialsOverlay').style.backgroundColor 
+            };
+        }
     }
 }
 
@@ -257,7 +248,7 @@ function handleContactUpdate(response, contactData) {
     if (response.ok) {
         hideOverlay();
         loadContacts();
-        updateContactDetails(contactData.id, contactData.name, contactData.email, contactData.phone, contactData.avatar.initials, contactData.avatar.color);
+        updateContactDetails(contactData, contactData.id);
         return true;
     }
     return false;
@@ -302,13 +293,19 @@ function getContactData() {
     const name = document.getElementById('edit-name').value.trim();
     const email = document.getElementById('edit-email').value.trim();
     const phone = document.getElementById('edit-phone').value.trim();
-    const id = document.getElementById('edit-contact-id').value;
+    const id = document.getElementById('edit-contact-id').value;    
     if (!name || !email || !phone) return null;
-    const avatarElement = document.getElementById('edit-avatar');
-    const initials = avatarElement.textContent;
-    const color = avatarElement.style.backgroundColor;
-    return { name, email, phone, avatar: { initials, color }, id };
+    const imageElement = document.getElementById('profilImageOverlay');
+    const avatarElement = document.getElementById('edit-avatar');  
+    if (imageElement.src) {
+        avatar.image = imageElement.src;
+    } else {
+        avatar.initials = avatarElement.textContent;
+        avatar.color = avatarElement.style.backgroundColor;
+    }
+    return { name, email, phone, avatar, id };
 }
+
 
 
 /**
