@@ -131,7 +131,6 @@ function createImage() {
         renderGalleryOverlay();
         checkAttachments();
     }
-    allImages = [];
 }
 
 

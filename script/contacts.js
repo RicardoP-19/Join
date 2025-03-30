@@ -202,6 +202,7 @@ function clearInputFields() {
     document.getElementById('add-name').value = '';
     document.getElementById('add-email').value = '';
     document.getElementById('add-phone').value = '';
+    allImages = [];
 }
 
 
