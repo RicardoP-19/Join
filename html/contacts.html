@@ -189,7 +189,6 @@
       <div
         id="edit-contact-overlay"
         class="overlay slide-out"
-        onclick="hideOverlay(event)"
       >
         <div class="overlay-content" onclick="event.stopPropagation()">
           <div class="overlay-left">
@@ -212,9 +211,7 @@
               <img id="profilImageOverlay" class="profil-image profil-object" />
               <img
                 class="input-image"
-                onclick="openProfilImageFilePicker()"
-                class="add-image"
-                onmouseover="changeImage()"
+                onclick="openEditImageFilePicker()"
                 src="/assets/icon/add_photo.png"
                 alt="Photo"
               />

@@ -4,14 +4,23 @@ const trash = document.getElementById('delete');
 let allImages = [];
 let addTaskOpen = false;
 let contact = false;
+let edit = false;
 
 function openProfilImageFilePicker() {
-    console.log('passt');
     const filepicker = document.getElementById('filepicker');
     contact = true
     if (filepicker) {           
         filepicker.click();
-    }    
+    } 
+}
+
+function openEditImageFilePicker() {
+    const filepicker = document.getElementById('filepicker');
+    edit = true
+    if (filepicker) {
+        filepicker.click();
+    } 
+    
 }
 
 function openAddTaskFilePicker() {
@@ -45,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function uploadSelectedFiles() {
-    console.log('upload-aktiv');
     const filepicker = document.getElementById('filepicker');
     const files = filepicker.files;
     if (files.length == 0) return;
@@ -59,7 +67,6 @@ async function filesArrayIterate(files) {
         const compressedBase64 = await compressImage(file, 800, 800, 0.7);
         return { filename: file.name, base64: compressedBase64 };
     });
-
     const newImages = (await Promise.all(imagePromises)).filter(Boolean);
     allImages.push(...newImages);
     createImage();
@@ -115,26 +122,33 @@ async function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.
 
 function createImage() {
     if (contact) {
-        console.log('create contact');
-        
         renderContactImage();
-    }else if (addTaskOpen) {        
+    }else if (edit) {        
+        renderEditContactImage();
+    }else if (addTaskOpen) {
         renderGallery();
-    }else if (!addTaskOpen) {
+    } else if (!addTaskOpen) {
         renderGalleryOverlay();
         checkAttachments();
     }
+    allImages = [];
 }
 
 
 function renderContactImage() {
-    console.log(allImages, 'render contact');
     const profilImage = document.getElementById('profilImage');
     if (allImages.length > 0) {
         profilImage.src = allImages[0].base64;
     } else {
         profilImage.src = '/assets/img/addcontact.png';
     }
+    contact = false;
+}
+
+function renderEditContactImage() {
+    currentContact.avatarImage = allImages[0].base64;
+    updateEditContactFields();
+    edit = false;
 }
 
 function checkAttachments() {
