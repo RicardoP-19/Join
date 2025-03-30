@@ -134,8 +134,8 @@
               <img
                 class="input-image"
                 onclick="openProfilImageFilePicker()"
-                class="add-image"
-                onmouseover="changeImage()"
+                onmouseover="changeInputImage(this)"
+                onmouseout="resetInputImage(this)"
                 src="/assets/icon/add_photo.png"
                 alt="Photo"
               />
@@ -212,6 +212,8 @@
               <img
                 class="input-image"
                 onclick="openEditImageFilePicker()"
+                onmouseover="changeInputImage(this)"
+                onmouseout="resetInputImage(this)"
                 src="/assets/icon/add_photo.png"
                 alt="Photo"
               />

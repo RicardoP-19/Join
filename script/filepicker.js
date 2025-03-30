@@ -206,6 +206,14 @@ function hideDeleteButton(index) {
     document.getElementById(`delete-container${index}`).style.display = 'none';
 }
 
+function changeInputImage(image) {
+    image.src = '/assets/icon/add_photo_hover.png'
+}
+
+function resetInputImage(image) {
+    image.src = '/assets/icon/add_photo.png'
+}
+
 
 function deleteImage(index) {
     const trash = document.getElementById('delete');
