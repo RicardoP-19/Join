@@ -1,17 +1,10 @@
-/**
- * Generates the HTML for a user option in the assignment selection.
- * @param {string} name - The name of the user.
- * @param {string} initial - The initials of the user.
- * @param {string} color - The background color for the initials.
- * @param {string} id - The unique identifier for the user.
- * @param {boolean} checked - Indicates if the checkbox should be checked.
- */
-function generateCreateOption(name, initial, color, id, checked) {
-  return `
+
+function generateCreateOption(name, avatar, id, checked) {
+    return `
     <div class="assigned-content" id="assigned-content-${id}" onclick="selectionUser('${id}')" style="${checked ? 'background-color: lightblue;' : ''}">
         <div class="assigned-user">
-            <div class="assigned-initital d-flex" style="background-color: ${color};">
-                <p>${initial}</p>
+            <div>
+                ${avatar}
             </div>
             <p>${name}</p>
         </div>

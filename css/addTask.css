@@ -129,10 +129,22 @@ span {
 }
 
 .assigned-initital {
-    width: 32px;
-    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0 !important;
     border-radius: 100%;
     color: var(--textwhite);
+}
+
+.assigned-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    object-fit: cover;
+    object-position: top;
 }
 
 .selectedUser {

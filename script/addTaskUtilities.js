@@ -67,14 +67,12 @@ function resetSearch() {
  */
 function assignedListToogle() {
     let list = document.getElementById('assignedList');
-    let users = document.getElementById('selectedUser');
-    
+    let users = document.getElementById('selectedUser');    
     if (list.classList.contains('d-none')) {
         openAssignedList(list, users);
     } else { 
         closeAssignedList(list, users);
-    }
-    
+    }    
     resetSearchValue();
     toogleInputImage();
     toogleInputBorderColor();
@@ -389,8 +387,7 @@ function resetButtonStyle(button, config, img) {
  * @param {string} state - The state of the button, either 'hover' or 'default'.
  */
 function changeImage(button, state) {
-    const img = button.querySelector('img');
-    
+    const img = button.querySelector('img');    
     if (state === 'hover') {
         img.src = '/assets/img/close-blue.svg'; 
     } else {

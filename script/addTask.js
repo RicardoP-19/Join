@@ -29,16 +29,19 @@ async function fetchContacts() {
 }
 
 
-/**
- * Renders all contacts in the assigned to list.
- */
 function renderAllContactsInAssignedTo() {
     let list = document.getElementById('assignedList');
     clearListContent(list);
     allContacts.forEach(contact => {
-        let { name, avatar: { initials, color }, id } = contact;
+        let { name, avatar, id } = contact;
         let checked = isUserAssigned(id) ? 'checked' : '';
-        list.innerHTML += generateCreateOption(name, initials, color, id, checked);
+        let avatarContent = '';
+        if (avatar.image && avatar.image.length > 0) {
+            avatarContent = `<img src="${avatar.image[0].base64}" alt="${name}" class="assigned-image" />`;
+        } else if (avatar.initials && avatar.color) {
+            avatarContent = `<span class="assigned-initital" style="background-color: ${avatar.color};">${avatar.initials}</span>`;
+        }
+        list.innerHTML += generateCreateOption(name, avatarContent, id, checked);
     });
 }
 
