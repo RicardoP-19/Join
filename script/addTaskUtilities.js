@@ -253,23 +253,19 @@ function resetAssignedContentStyles(assignedContent) {
 
 
 
-/**
- * Renders the selected users in the selected user list.
- */
 function renderSelectArray() {
-    let listContent = document.getElementById('selectedUser');
-    listContent.innerHTML = ''; 
-    const maxAvatars = 7; 
-    const extraUsersCount = users.length - maxAvatars;
-    for (let index = 0; index < Math.min(users.length, maxAvatars); index++) {
-        let initial = users[index].avatar.initials;
-        let color = users[index].avatar.color;
-        listContent.innerHTML += generateSelectedUsersHTML(initial, color);
+    const list = document.getElementById('selectedUser');
+    list.innerHTML = '';
+    const max = 7, extra = users.length - max;
+    for (let i = 0; i < Math.min(users.length, max); i++) {
+      const a = users[i].avatar;
+      const html = (a.image && a.image.length > 0) ?
+        `<img src="${a.image[0].base64}" alt="${users[i].name}" class="assigned-image" />` :
+        `<span class="assigned-initital" style="background-color: ${a.color};">${a.initials}</span>`;
+      list.innerHTML += `<div class="assigned-initital d-flex">${html}</div>`;
     }
-    if (extraUsersCount > 0) {
-        listContent.innerHTML += generateExtraUsersHTML(extraUsersCount);
-    }
-}
+    if (extra > 0) list.innerHTML += `<div class="assigned-initital d-flex extra-contacts"><p class="extra-contacts-text">+${extra}</p></div>`;
+  }
 
 
 /**
