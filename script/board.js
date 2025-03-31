@@ -139,11 +139,15 @@ function processAssignedToContacts(assignedToArray) {
  * @returns {string} The HTML string of the contact.
  * @function getContactTemplate
  */
+// function getContactTemplate(assignedToArrayContact) {
+//     let contact = contacts.find(c => c.id === assignedToArrayContact.id);
+//     let initial = contact.avatar.initials;
+//     let color = contact.avatar.color;
+//     return getAssignedToTemplate(initial, color);
+// }
 function getContactTemplate(assignedToArrayContact) {
     let contact = contacts.find(c => c.id === assignedToArrayContact.id);
-    let initial = contact.avatar.initials;
-    let color = contact.avatar.color;
-    return getAssignedToTemplate(initial, color);
+    return getAssignedToTemplate(contact.avatar.initials, contact.avatar.color, contact.avatar.image);
 }
 
 
@@ -222,12 +226,16 @@ function processAssignedToOverlay(assignedToArray) {
  * @returns {string} The HTML string of the contact.
  * @function getContactOverlayTemplate
  */
+// function getContactOverlayTemplate(assignedToArrayContact) {
+//     let contact = contacts.find(c => c.id === assignedToArrayContact.id);
+//     let initial = contact.avatar.initials;
+//     let color = contact.avatar.color;
+//     let name = assignedToArrayContact.name;
+//     return getAssignedToTemplateOverlay(initial, color, name);
+// }
 function getContactOverlayTemplate(assignedToArrayContact) {
     let contact = contacts.find(c => c.id === assignedToArrayContact.id);
-    let initial = contact.avatar.initials;
-    let color = contact.avatar.color;
-    let name = assignedToArrayContact.name;
-    return getAssignedToTemplateOverlay(initial, color, name);
+    return getAssignedToTemplateOverlay(contact.avatar.initials, contact.avatar.color, contact.avatar.image);
 }
 
 

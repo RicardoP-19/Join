@@ -159,6 +159,14 @@ main::-webkit-scrollbar {
     color: var(--textwhite);
 }
 
+.assigned-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
 .mesh {
     margin-right: -12px;
 }
@@ -187,7 +195,7 @@ main::-webkit-scrollbar {
     gap: 32px;
     max-width: 460px;
     font-size: 16px;
-    max-height: 80vh;
+    max-height: 87vh;
 }
 
 .no-hover {
@@ -281,10 +289,8 @@ main::-webkit-scrollbar {
 }
 
 .ctn-assigned-to-detail {
-    flex-direction: column;
     justify-content: flex-start !important;
     gap: 4px;
-    padding-left: 16px;
     font-size: 14px;
     max-height: 140px;
     overflow-y: scroll;
