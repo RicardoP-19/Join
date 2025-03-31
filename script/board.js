@@ -220,19 +220,7 @@ function processAssignedToOverlay(assignedToArray) {
 }
 
 
-/**
- * Generates the HTML template for a contact in the overlay.
- * @param {Object} assignedToArrayContact - The contact data.
- * @returns {string} The HTML string of the contact.
- * @function getContactOverlayTemplate
- */
-// function getContactOverlayTemplate(assignedToArrayContact) {
-//     let contact = contacts.find(c => c.id === assignedToArrayContact.id);
-//     let initial = contact.avatar.initials;
-//     let color = contact.avatar.color;
-//     let name = assignedToArrayContact.name;
-//     return getAssignedToTemplateOverlay(initial, color, name);
-// }
+
 function getContactOverlayTemplate(assignedToArrayContact) {
     let contact = contacts.find(c => c.id === assignedToArrayContact.id);
     return getAssignedToTemplateOverlay(contact.avatar.initials, contact.avatar.color, contact.avatar.image);

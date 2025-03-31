@@ -88,27 +88,6 @@ function getTaskCategoryTemplate(category) {
  * @param {string} name - The full name of the assigned user.
  * @returns {string} The HTML string for the assigned user template in the overlay.
  */
-// function getAssignedToTemplateOverlay(initial, color, name) {
-//     return `     
-//         <div class="person-detail d-flex-y">
-//             <div class="assigned-to d-flex" style="background-color:${color};">${initial}</div>
-//             <p>${name}</p>
-//         </div>`
-// }
-// function getAssignedToTemplateOverlay(initial, color, image = null) {
-//     if (image && image.length > 0) {
-//       return `
-//             <div class="assigned-to-overlay">
-//                 <img class="assigned-image" src="${image[0].base64}" alt="Profile Picture">
-//             </div>`;
-//     } else {
-//       return `
-//             <div class="person-detail d-flex-y">
-//                 <div class="assigned-to d-flex" style="background-color:${color};">${initial}</div>
-//             </div>`
-//     }
-// }
-
 function getAssignedToTemplateOverlay(initial, color, image = null) {
     if (image && image.length > 0) {
       return `<img class="assigned-image" src="${image[0].base64}" alt="Profile Picture">`;

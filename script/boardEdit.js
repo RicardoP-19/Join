@@ -177,19 +177,27 @@ function renderFilteredContactsinAssignedTo() {
  * Updates the display of assigned contacts in the overlay.
  * @function updateAssignedContacts
  */
+// function updateAssignedContacts() {
+//     let assignedContentRef = document.getElementById('assigned-content');
+//     assignedContentRef.innerHTML = '';
+//     if (selectedContacts.length > 0) {
+//         selectedContacts.forEach(contact => {
+//             let color = contact.color;
+//             let initial = contact.initial;
+//             assignedContentRef.innerHTML += `<div class="assigned-to d-flex" style="background-color:${color};">${initial}</div>`;
+//         });
+//     } else {
+//         assignedContentRef.innerHTML = 'No Contact in Assign To';
+//     }
+// }
+
 function updateAssignedContacts() {
-    let assignedContentRef = document.getElementById('assigned-content');
-    assignedContentRef.innerHTML = '';
-    if (selectedContacts.length > 0) {
-        selectedContacts.forEach(contact => {
-            let color = contact.color;
-            let initial = contact.initial;
-            assignedContentRef.innerHTML += `<div class="assigned-to d-flex" style="background-color:${color};">${initial}</div>`;
-        });
-    } else {
-        assignedContentRef.innerHTML = 'No Contact in Assign To';
-    }
-}
+    const container = document.getElementById('assigned-content');
+    container.innerHTML = selectedContacts.map(sc => {
+      const contact = contacts.find(c => c.id === sc.contactId);
+      return getAssignedToTemplateOverlay(contact.avatar.initials, contact.avatar.color, contact.avatar.image);
+    }).join('');
+  }
 
 
 /**
