@@ -370,7 +370,7 @@ textarea {
     left: 0;
     width: 100%;
     background-color: var(--lightgrey);
-    height: 70px;
+    height: 60px;
     overflow-y: auto;
     overflow-x: hidden;
 }
