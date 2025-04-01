@@ -1,14 +1,19 @@
+document.getElementById('assignedInput').addEventListener('click', function () {
+    if (this.value.trim() === '') {
+        renderAllContactsInAssignedTo();
+    }
+});
+
 /**
  * Handles the assigned search input and filters the contacts based on the search text.
  */
 function assignedSearch() {
-    let searchText = document.getElementById('assignedInput').value;
+    let searchText = document.getElementById('assignedInput').value.trim();
     if (searchText.length > 0) {
         searchIndexOfArray(searchText);
     } else { 
         if (searchText.length == 0) {
             resetSearch();
-            renderAllContactsInAssignedTo();
         };
     };
 }
@@ -24,21 +29,17 @@ function searchIndexOfArray(searchText) {
 }
 
 
-/**
- * Renders the search results in the assigned list.
- * @param {Array} result - The filtered list of contacts based on the search.
- */
 function renderSearchResult(result) {
     let searchList = document.getElementById('assignedList');
     searchList.innerHTML = '';
-    for (let index = 0; index < result.length; index++) {
-        let name = result[index].name;
-        let initial = result[index].avatar.initials;
-        let color = result[index].avatar.color;
-        let id = result[index].id;
-        let checked = users.find(user => user.id === id) ? 'checked' : '';
-        searchList.innerHTML += generateCreateOption(name, initial, color, id, checked);        
-    };
+    result.forEach(({ name, avatar, id }) => {
+        let imageUrl = avatar?.image?.[0]?.base64 || '';
+        let avatarContent = imageUrl 
+            ? `<img src="${imageUrl}" alt="${name}'s avatar" class="assigned-image">` 
+            : `<div class="assigned-initital" style="background-color:${avatar?.color};">${avatar?.initials}</div>`;
+        let checked = users.some(user => user.id === id) ? 'checked' : '';
+        searchList.innerHTML += generateCreateOption(name, avatarContent, id, checked);
+    });
     openUserList();
 }
 
