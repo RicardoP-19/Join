@@ -103,9 +103,7 @@ function updateContactSelection(contactIdSelected, isChecked, contactRef) {
         contactRef.classList.add('checked');
         if (!selectedContacts.some(contact => contact.contactId === contactIdSelected)) {
             let contact = contacts.find(c => c.id === contactIdSelected);
-            selectedContacts.push({
-                contactId: contact.id, name: contact.name, initial: contact.avatar.initials, color: contact.avatar.color
-            });
+            selectedContacts.push({contactId: contact.id, name: contact.name, initial: contact.avatar?.initials || "", color: contact.avatar?.color || "", imageUrl: contact.avatar?.image?.[0]?.base64 || ""});
         }
     } else {
         contactRef.classList.remove('checked');
@@ -312,7 +310,3 @@ function showDropdown() {
     dropdown.classList.add("show");
     changeDropdownImage(true);
 }
-
-
-
-

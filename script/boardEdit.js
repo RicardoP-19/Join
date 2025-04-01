@@ -93,28 +93,21 @@ function renderContacts() {
 }
 
 
-/**
- * Creates an HTML template for a single contact.
- * @param {Object} contact - The contact object containing details.
- * @param {string} contact.name - The name of the contact.
- * @param {Object} contact.avatar - The avatar details of the contact.
- * @param {string} contact.avatar.initials - The initials of the contact's avatar.
- * @param {string} contact.avatar.color - The background color of the contact's avatar.
- * @param {string} contact.id - The unique ID of the contact.
- * @returns {string} The HTML template for the contact.
- */
+
 function createContactTemplate(contact) {
     let name = contact.name;
-    let initial = contact.avatar.initials;
-    let color = contact.avatar.color;
+    let initial = contact.avatar?.initials || "";
+    let color = contact.avatar?.color || "";
+    let imageUrl = contact.avatar?.image?.[0]?.base64 || "";
     let id = contact.id;
-    allContacts.push({ contactId: id, name: name, initial: initial, color: color });
+    allContacts.push({ contactId: id, name: name, initial: initial, color: color, imageUrl: imageUrl });
     let isChecked = assignedContacts.length > 0 && assignedContacts[0].find(c => c.id === id) ? 'checked' : '';
     if (isChecked) {
-        selectedContacts.push({ contactId: id, name: name, initial: initial, color: color });
+        selectedContacts.push({ contactId: id, name: name, initial: initial, color: color, imageUrl: imageUrl });
     }
-    return getAssignedToEditTemplateOverlay(initial, color, name, id, isChecked);
+    return getAssignedToEditTemplateOverlay(initial, color, name, imageUrl, id, isChecked);
 }
+
 
 
 /**
@@ -137,67 +130,47 @@ function searchContact() {
 }
 
 
-/**
- * Renders all contacts in the dropdown menu.
- * @function renderAllContacts
- */
+
 function renderAllContacts() {
     let dropdownContactsRef = document.getElementById("dropdown-contacts");
     dropdownContactsRef.innerHTML = "";
-    allContacts.forEach(contact => {
-        let name = contact.name;
-        let initial = contact.initial;
-        let color = contact.color;
-        let iContact = contact.contactId;
-        let isChecked = selectedContacts.some(selectedContact => selectedContact.contactId === iContact) ? 'checked' : '';
-        dropdownContactsRef.innerHTML += getAssignedToEditTemplateOverlay(initial, color, name, iContact, isChecked);
+    allContacts.forEach(({ name, initial, color, contactId, imageUrl }) => {
+        let isChecked = selectedContacts.some(c => c.contactId === contactId) ? 'checked' : '';
+        dropdownContactsRef.innerHTML += getAssignedToEditTemplateOverlay(initial, color, name, imageUrl, contactId, isChecked);
     });
 }
 
 
-/**
- * Renders filtered contacts based on the search input.
- * @function renderFilteredContactsinAssignedTo
- */
+
 function renderFilteredContactsinAssignedTo() {
     let dropdownContactsRef = document.getElementById("dropdown-contacts");
     dropdownContactsRef.innerHTML = "";
     for (let iFilter = 0; iFilter < filteredContacts.length; iFilter++) {
-        let name = filteredContacts[iFilter].name;
-        let initial = filteredContacts[iFilter].initial;
-        let color = filteredContacts[iFilter].color;
-        let iContact = filteredContacts[iFilter].contactId;
-        let isChecked = selectedContacts.some(contact => contact.contactId === iContact) ? 'checked' : '';
-        dropdownContactsRef.innerHTML += getAssignedToEditTemplateOverlay(initial, color, name, iContact, isChecked);
+        let { name, initial, color, contactId, imageUrl } = filteredContacts[iFilter];
+        let isChecked = selectedContacts.some(c => c.contactId === contactId) ? 'checked' : '';
+        dropdownContactsRef.innerHTML += getAssignedToEditTemplateOverlay(initial, color, name, imageUrl, contactId, isChecked);
     }
 }
 
 
-/**
- * Updates the display of assigned contacts in the overlay.
- * @function updateAssignedContacts
- */
-// function updateAssignedContacts() {
-//     let assignedContentRef = document.getElementById('assigned-content');
-//     assignedContentRef.innerHTML = '';
-//     if (selectedContacts.length > 0) {
-//         selectedContacts.forEach(contact => {
-//             let color = contact.color;
-//             let initial = contact.initial;
-//             assignedContentRef.innerHTML += `<div class="assigned-to d-flex" style="background-color:${color};">${initial}</div>`;
-//         });
-//     } else {
-//         assignedContentRef.innerHTML = 'No Contact in Assign To';
-//     }
-// }
 
 function updateAssignedContacts() {
-    const container = document.getElementById('assigned-content');
-    container.innerHTML = selectedContacts.map(sc => {
-      const contact = contacts.find(c => c.id === sc.contactId);
-      return getAssignedToTemplateOverlay(contact.avatar.initials, contact.avatar.color, contact.avatar.image);
-    }).join('');
-  }
+    let assignedContentRef = document.getElementById('assigned-content');
+    assignedContentRef.innerHTML = '';
+    if (selectedContacts.length > 0) {
+        selectedContacts.forEach(contact => {
+            let color = contact.color;
+            let initial = contact.initial;
+            let imageUrl = contact.imageUrl;
+            let contactContent = imageUrl ? 
+                `<img src="${imageUrl}" alt="${contact.name}'s avatar" class="assigned-image">` : 
+                `<div class="assigned-to d-flex" style="background-color:${color};">${initial}</div>`;
+            assignedContentRef.innerHTML += contactContent;
+        });
+    } else {
+        assignedContentRef.innerHTML = 'No Contact in Assign To';
+    }
+}
 
 
 /**
@@ -449,14 +422,6 @@ function renderAttachmentsEdit(taskId) {
     }
     return allAttachmentsHtml;
 }
-
-
-// function checkAttachments() {
-//     const attachmentContainer = document.getElementById('attachmentOverlay');
-//     if (attachment.length > 0) {
-//         attachmentContainer.classList.add('d-none');
-//     }
-// }
 
 
 function deleteImageOverlay(index) {

@@ -210,6 +210,14 @@ button.btn-active:hover {
     border-radius: 6px;
 }
 
+.assigned-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
 .contact {
     justify-content: space-between;
     padding: 4px 12px;
