@@ -5,21 +5,14 @@
  */
 function getBoardNoTaskTemplate(message) {
     return `                        
-    <div class="ctn-no-tasks d-flex">
-        ${message}
-    </div>`;
+        <div class="ctn-no-tasks d-flex">
+            ${message}
+        </div>
+    `;
 }
 
 
-/**
- * Generates a template for the assigned user display.
- * @param {string} initial - The initial of the assigned user.
- * @param {string} color - The background color for the assigned user.
- * @returns {string} The HTML string for the assigned user template.
- */
-// function getAssignedToTemplate(initial, color) {
-//     return `<div class="assigned-to mesh d-flex" style="background-color:${color};">${initial}</div>`
-// }
+
 function getAssignedToTemplate(initial, color, image = null) {
     if (image && image.length > 0) {
         return `<div class="assigned-to mesh d-flex">
@@ -64,10 +57,11 @@ function getImagePrioTemplate(priority) {
  */
 function getTaskProgressBarTemplate(totalSubtasks, completedSubtasks) {
     return `        
-            <div class="task-subtasks d-flex-y">
-                <progress max="${totalSubtasks}" value="${completedSubtasks}"></progress>
-                <span class="subtasks-count">${completedSubtasks}/${totalSubtasks} Subtasks</span>
-            </div>`;
+        <div class="task-subtasks d-flex-y">
+            <progress max="${totalSubtasks}" value="${completedSubtasks}"></progress>
+            <span class="subtasks-count">${completedSubtasks}/${totalSubtasks} Subtasks</span>
+        </div>
+    `;
 }
 
 
@@ -110,7 +104,8 @@ function getSubtasksOverlayTemplate(indexSubTask, task) {
             <input onchange="updateSubtaskStatus(${indexSubTask}, '${task.id}')" type="checkbox" id="checkbox${indexSubTask}" class="subtask" ${(subtasksArray[indexSubTask].completed == true) ? "checked" : ""}>
             <span class="custom-checkbox" onclick="toggleCheckbox(${indexSubTask}, '${task.id}')"></span>
             <label class="label-overlay-template" for="checkbox${indexSubTask}">${subtasksArray[indexSubTask].title}</label>
-        </div>`
+        </div>
+    `;
 }
 
 
@@ -137,7 +132,8 @@ function getAllSubtasksTemplate(iSubtasks, title) {
                     <img id="save-subtask${iSubtasks}" onclick="saveSubtask(${iSubtasks})" class="img-save-edit-subtask" src="/assets/img/check.png" alt="Delete Subtask">
                 </div>
             </li>
-        </ul>`
+        </ul>
+    `;
 }
 
 
@@ -147,36 +143,33 @@ function getAllSubtasksTemplate(iSubtasks, title) {
  */
 function getNoSubtaskInTaskTemplate() {
     return `
-            <ul id="no-subtask-edit">
-                <li class="subtask-item-edit d-flex-y">
-                    <input id="input-subtask-edit" class="input-subtask-edit" type="text" value="No subtasks in this task!" disabled>
-                </li>
-            </ul>`
+        <ul id="no-subtask-edit">
+            <li class="subtask-item-edit d-flex-y">
+                <input id="input-subtask-edit" class="input-subtask-edit" type="text" value="No subtasks in this task!" disabled>
+            </li>
+        </ul>
+    `;
 }
 
 
-/**
- * Generates the HTML template for an assigned contact in the edit overlay.
- * @param {string} initial - The initial of the contact.
- * @param {string} color - The background color for the contact display.
- * @param {string} name - The name of the contact.
- * @param {number} iContact - The index of the contact.
- * @param {boolean} isChecked - Indicates whether the contact is checked.
- * @returns {string} The HTML string for rendering the assigned contact in the overlay.
- */
-function getAssignedToEditTemplateOverlay(initial, color, name, contactIdSelected, isChecked) {
+
+function getAssignedToEditTemplateOverlay(initial, color, name, imageUrl, contactIdSelected, isChecked) {
+    let avatarContent = imageUrl ? 
+        `<img src="${imageUrl}" alt="${name}'s avatar" class="assigned-image">` : 
+        `<div class="assigned-to d-flex" style="background-color:${color};">${initial}</div>`;
     return `
         <div class="contact d-flex-y ${isChecked}" id="contact${contactIdSelected}" onclick="toggleCheckboxContact('${contactIdSelected}')">
             <div class="contact-left d-flex-y">
-                <div class="assigned-to d-flex" style="background-color:${color};">${initial}</div>
+                ${avatarContent}
                 <label for="checkboxContact${contactIdSelected}">${name}</label>
-            </div >
+            </div>
             <div class="contact-right">
                 <input type="checkbox" id="checkboxContact${contactIdSelected}" name="checkboxContact${contactIdSelected}" class="checkbox-contact"
-                 ${isChecked ? 'checked' : ''} >
+                ${isChecked ? 'checked' : ''}>
                 <span class="custom-checkbox-edit"></span>
             </div>
-        </div> `;
+        </div>
+    `;
 }
 
 
@@ -219,31 +212,32 @@ function getAttachmentTemplateEdit(index, attachment) {
  */
 function getBoardTaskTemplate(task) {
     return `
-    <div onclick="showDetailTaskOverlay('${task.id}')" id="task-${task.id}" class="ctn-task d-flex-x" draggable="true" ondragstart="startDragging('${task.id}')">
-        <div class="ctn-header-task d-flex-x">   
-            ${getTaskCategoryTemplate(task.category)}
-            <div id="move-to-responsive" class="move-to-responsive">
-                <a class="move-task d-flex" onclick="toggleMenuMoveTo('${task.id}'); handleClickMenu(event)"><img class="img-menu" src="/assets/icon/more.png" alt="More functions"></a>
-                <div id="menu-${task.id}" class="menu-move-to d-flex-x d-none" onclick="handleClickMenu(event)">
-                    <ul class="ul-move-to d-flex-x">
-                        <li class="category-move-to" onclick="moveTaskResponsive('todo', '${task.id}')">To do</li>
-                        <li class="category-move-to" onclick="moveTaskResponsive('in progress', '${task.id}')">In Progress</li>
-                        <li class="category-move-to" onclick="moveTaskResponsive('await feedback', '${task.id}')">Await Feedback</li>
-                        <li class="category-move-to" onclick="moveTaskResponsive('done', '${task.id}')">Done</li>
-                    </ul>
+        <div onclick="showDetailTaskOverlay('${task.id}')" id="task-${task.id}" class="ctn-task d-flex-x" draggable="true" ondragstart="startDragging('${task.id}')">
+            <div class="ctn-header-task d-flex-x">   
+                ${getTaskCategoryTemplate(task.category)}
+                <div id="move-to-responsive" class="move-to-responsive">
+                    <a class="move-task d-flex" onclick="toggleMenuMoveTo('${task.id}'); handleClickMenu(event)"><img class="img-menu" src="/assets/icon/more.png" alt="More functions"></a>
+                    <div id="menu-${task.id}" class="menu-move-to d-flex-x d-none" onclick="handleClickMenu(event)">
+                        <ul class="ul-move-to d-flex-x">
+                            <li class="category-move-to" onclick="moveTaskResponsive('todo', '${task.id}')">To do</li>
+                            <li class="category-move-to" onclick="moveTaskResponsive('in progress', '${task.id}')">In Progress</li>
+                            <li class="category-move-to" onclick="moveTaskResponsive('await feedback', '${task.id}')">Await Feedback</li>
+                            <li class="category-move-to" onclick="moveTaskResponsive('done', '${task.id}')">Done</li>
+                        </ul>
+                    </div>
+                 </div>
+            </div>     
+            <p id="task-title" class="task-title">${task.title}</p>
+            <p id="task-description" class="task-description">${task.description}</p>
+            ${renderTaskProgressBar(task.subtasks)}
+            <div class="ctn-task-bottom d-flex-y">
+                <div class="ctn-assigned-to mesh d-flex-y">
+                    ${renderAssignedTo(task.assignedTo)}
                 </div>
-             </div>
-        </div>     
-        <p id="task-title" class="task-title">${task.title}</p>
-        <p id="task-description" class="task-description">${task.description}</p>
-        ${renderTaskProgressBar(task.subtasks)}
-        <div class="ctn-task-bottom d-flex-y">
-            <div class="ctn-assigned-to mesh d-flex-y">
-                ${renderAssignedTo(task.assignedTo)}
+                ${getImagePrioTemplate(task.priority)}
             </div>
-            ${getImagePrioTemplate(task.priority)}
         </div>
-    </div>`;
+    `;
 }
 
 
@@ -254,48 +248,49 @@ function getBoardTaskTemplate(task) {
  */
 function getTaskOverlayTemplate(task) {
     return `
-    <div onclick="bubblingProtection(event)" id="overlay-detail-task-board" class="overlay-detail-task-board ctn-task no-hover d-flex-x">
-        <div class="ctn-category-close d-flex-y">
-            ${getTaskCategoryTemplate(task.category)}
-            <img onclick="closeDetailTaskOverlay()" class="btn-close-detail-task" src="/assets/img/close.svg" alt="Image Close">
-        </div>
-        <div class="ctn-main-Detail-Task d-flex-x">
-            <p id="task-title-detail" class="task-title-detail">${task.title}</p>
-            <p id="task-description-detail" class="task-description-detail">${task.description}</p>
-            <div class="ctn-due-date d-flex-y">
-                <p class="label">Due date:</p>
-                <p class="due-date">${formatDate(task.dueDate)}</p>
+        <div onclick="bubblingProtection(event)" id="overlay-detail-task-board" class="overlay-detail-task-board ctn-task no-hover d-flex-x">
+            <div class="ctn-category-close d-flex-y">
+                ${getTaskCategoryTemplate(task.category)}
+                <img onclick="closeDetailTaskOverlay()" class="btn-close-detail-task" src="/assets/img/close.svg" alt="Image Close">
             </div>
-            <div class="ctn-priority d-flex-y">
-                <p class="label">Priority:</p>
-                <p class="prio-detail">${task.priority}</p>
-                ${getImagePrioTemplate(task.priority)}
-            </div>
-            <div>
-                <p class="label">Assigned To:</p>
-                <div class="ctn-assigned-to-detail d-flex-x">
-                    ${renderAssignedToOverlay(task.assignedTo)}
+            <div class="ctn-main-Detail-Task d-flex-x">
+                <p id="task-title-detail" class="task-title-detail">${task.title}</p>
+                <p id="task-description-detail" class="task-description-detail">${task.description}</p>
+                <div class="ctn-due-date d-flex-y">
+                    <p class="label">Due date:</p>
+                    <p class="due-date">${formatDate(task.dueDate)}</p>
                 </div>
-            </div>            
-            <div class="gallery-container">
-                <span>Attachments</span>
-                <div id="gallery">
-                    ${renderAttachmentsOverlay(task.id)}
+                <div class="ctn-priority d-flex-y">
+                    <p class="label">Priority:</p>
+                    <p class="prio-detail">${task.priority}</p>
+                    ${getImagePrioTemplate(task.priority)}
+                </div>
+                <div>
+                    <p class="label">Assigned To:</p>
+                    <div class="ctn-assigned-to-detail d-flex-x">
+                        ${renderAssignedToOverlay(task.assignedTo)}
+                    </div>
+                </div>            
+                <div class="gallery-container">
+                    <span>Attachments</span>
+                    <div id="gallery">
+                        ${renderAttachmentsOverlay(task.id)}
+                    </div>
+                </div>
+                <div>
+                    <p class="label">Subtasks:</p>
+                    <div class="ctn-subtasks d-flex-x">
+                        ${renderSubtasksOverlay(task)}
+                    </div>
                 </div>
             </div>
-            <div>
-                <p class="label">Subtasks:</p>
-                <div class="ctn-subtasks d-flex-x">
-                    ${renderSubtasksOverlay(task)}
-                </div>
+            <div class="ctn-delete-edit d-flex-y">
+                <img id="btn-delete-task" class="btn-delete-task" onclick="deleteTask('${task.id}')" src="/assets/img/dustbinDarkText.svg" alt="Image Delete">
+                <span class="vertikalLine"></span>
+                <img onclick="showEditTaskOverlay('${task.id}')" class="btn-edit-task" src="/assets/img/editDarkText.svg" alt="Image Close">
             </div>
         </div>
-        <div class="ctn-delete-edit d-flex-y">
-            <img id="btn-delete-task" class="btn-delete-task" onclick="deleteTask('${task.id}')" src="/assets/img/dustbinDarkText.svg" alt="Image Delete">
-            <span class="vertikalLine"></span>
-            <img onclick="showEditTaskOverlay('${task.id}')" class="btn-edit-task" src="/assets/img/editDarkText.svg" alt="Image Close">
-        </div>
-    </div>`
+    `;
 }
 
 
@@ -351,7 +346,6 @@ function getEditOverlayTemplate(task) {
                         <div id="assigned-content" class="assigned-content d-flex-y gap-8">
                         </div>
                     </div>
-
                     <div class="upload-wrapper">
                         <div>
                             <span>Attachments</span>
@@ -373,7 +367,6 @@ function getEditOverlayTemplate(task) {
                             <div id="galleryOverlay" class="gallery-overlay-content"></div>
                         </div>
                     </div>
-
                     <div class="d-flex-x column gap-8">
                          <label for="subtasks-edit">Subtasks</label>
                         <div class="subtask-connect">
@@ -406,5 +399,5 @@ function getEditOverlayTemplate(task) {
                 </div>
             </div>
         </div>      
-       `;
+    `;
 }
