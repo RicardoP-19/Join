@@ -195,7 +195,6 @@ main::-webkit-scrollbar {
     gap: 32px;
     max-width: 460px;
     font-size: 16px;
-    max-height: 87vh;
 }
 
 .no-hover {
@@ -528,7 +527,7 @@ iframe {
 .overlay-add-task-board-add {
     background-color: var(--textwhite) !important;
     margin: 0;
-    padding: 32px;
+    padding: 20px;
     border-radius: 20px;
     border: none;
     width: 90%;

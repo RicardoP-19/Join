@@ -152,12 +152,12 @@ function renderEditContactImage() {
 
 function checkAttachments() {
     const attachmentContainer = document.getElementById('attachmentOverlay');
-    if (allAttachment.length > 0 || allImages.length > 0) {
+    if (allImages.length > 0) {
         attachmentContainer.classList.add('d-none');
-    } else {
+    } else if (allAttachment.length == 0) {
         attachmentContainer.classList.remove('d-none');
         attachmentContainer.innerHTML = `<p>No images</p>`;
-    }
+    } 
 }
 
 
