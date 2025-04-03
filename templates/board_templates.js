@@ -2,7 +2,7 @@
  * Generates a template for displaying a message when there are no tasks.
  * @param {string} message - The message to display.
  * @returns {string} The HTML string for the no task template.
- */
+*/
 function getBoardNoTaskTemplate(message) {
     return `                        
         <div class="ctn-no-tasks d-flex">
@@ -11,8 +11,13 @@ function getBoardNoTaskTemplate(message) {
     `;
 }
 
-
-
+/**
+ * Generates a template for an assigned user with their initial or image.
+ * @param {string} initial - The initial of the assigned user.
+ * @param {string} color - The background color for the assigned user.
+ * @param {Array} [image=null] - The image object (optional).
+ * @returns {string} The HTML string for the assigned user template.
+*/
 function getAssignedToTemplate(initial, color, image = null) {
     if (image && image.length > 0) {
         return `<div class="assigned-to mesh d-flex">
@@ -23,22 +28,20 @@ function getAssignedToTemplate(initial, color, image = null) {
     }
 }
 
-
 /**
  * Generates a template for additional assigned users when there are more than 5.
  * @param {number} numberOfAssignedTo - The total number of assigned users.
  * @returns {string} The HTML string for the additional assigned user template.
- */
+*/
 function getAssignedToTemplateAdditional(numberOfAssignedTo) {
     return `<div class="assigned-to mesh d-flex" style="background-color:grey;">+${numberOfAssignedTo - 5}</div>`
 }
-
 
 /**
  * Generates an image template representing the priority of a task.
  * @param {string} priority - The priority level of the task (e.g., Low, Medium, Urgent).
  * @returns {string} The HTML string for the priority image template.
- */
+*/
 function getImagePrioTemplate(priority) {
     const priortyImages = {
         'Low': '/assets/img/lowsym.png',
@@ -48,13 +51,12 @@ function getImagePrioTemplate(priority) {
     return `<img class="image-prio-board" src="${priortyImages[priority]}" alt="">`
 }
 
-
 /**
  * Generates a template for the task progress bar.
  * @param {number} totalSubtasks - The total number of subtasks.
  * @param {number} completedSubtasks - The number of completed subtasks.
  * @returns {string} The HTML string for the task progress bar template.
- */
+*/
 function getTaskProgressBarTemplate(totalSubtasks, completedSubtasks) {
     return `        
         <div class="task-subtasks d-flex-y">
@@ -64,16 +66,14 @@ function getTaskProgressBarTemplate(totalSubtasks, completedSubtasks) {
     `;
 }
 
-
 /**
  * Generates a template for the task category display.
  * @param {string} category - The category of the task.
  * @returns {string} The HTML string for the task category template.
- */
+*/
 function getTaskCategoryTemplate(category) {
     return `<p id="task-category" class="task-category ${category == 'User Story' ? 'bg-user-story' : 'bg-technical-task'}">${category}</p>`
 }
-
 
 /**
  * Generates a template for an assigned user in the overlay, showing name and initial.
@@ -81,7 +81,7 @@ function getTaskCategoryTemplate(category) {
  * @param {string} color - The background color for the assigned user.
  * @param {string} name - The full name of the assigned user.
  * @returns {string} The HTML string for the assigned user template in the overlay.
- */
+*/
 function getAssignedToTemplateOverlay(initial, color, image = null) {
     if (image && image.length > 0) {
       return `<img class="assigned-image" src="${image[0].base64}" alt="Profile Picture">`;
@@ -90,13 +90,12 @@ function getAssignedToTemplateOverlay(initial, color, image = null) {
     }
   }
 
-
 /**
  * Generates a template for a subtask in the overlay.
  * @param {number} indexSubTask - The index of the subtask in the array.
  * @param {Object} task - The task object that contains the subtasks.
  * @returns {string} The HTML string for the subtask overlay template.
- */
+*/
 function getSubtasksOverlayTemplate(indexSubTask, task) {
     let subtasksArray = task.subtasks;
     return `
@@ -108,13 +107,12 @@ function getSubtasksOverlayTemplate(indexSubTask, task) {
     `;
 }
 
-
 /**
  * Generates the HTML template for a list of subtasks in edit mode.
  * @param {number} iSubtasks - The index of the subtask in the list.
  * @param {string} title - The title of the subtask.
  * @returns {string} The HTML string for rendering a subtask in edit mode.
- */
+*/
 function getAllSubtasksTemplate(iSubtasks, title) {
     let trimmedTitle = title.trim();
     return `                     
@@ -140,7 +138,7 @@ function getAllSubtasksTemplate(iSubtasks, title) {
 /**
  * Generates the HTML template for displaying a message when there are no subtasks.
  * @returns {string} The HTML string indicating no subtasks in the task.
- */
+*/
 function getNoSubtaskInTaskTemplate() {
     return `
         <ul id="no-subtask-edit">
@@ -151,8 +149,16 @@ function getNoSubtaskInTaskTemplate() {
     `;
 }
 
-
-
+/**
+ * Generates a template for an assigned user in the edit overlay, with their initial or image.
+ * @param {string} initial - The initial of the assigned user.
+ * @param {string} color - The background color for the assigned user.
+ * @param {string} name - The name of the assigned user.
+ * @param {string} imageUrl - The image URL for the assigned user.
+ * @param {string} contactIdSelected - The contact ID for the selected user.
+ * @param {boolean} isChecked - Whether the assigned user is checked or not.
+ * @returns {string} The HTML string for the assigned user template in the edit overlay.
+*/
 function getAssignedToEditTemplateOverlay(initial, color, name, imageUrl, contactIdSelected, isChecked) {
     let avatarContent = imageUrl ? 
         `<img src="${imageUrl}" alt="${name}'s avatar" class="assigned-image">` : 
@@ -172,19 +178,12 @@ function getAssignedToEditTemplateOverlay(initial, color, name, imageUrl, contac
     `;
 }
 
-
-// function getAttachmentTemplateOverlay(index, attachment) {
-//     return `
-//         <div class="image-box">
-//             <img class="upload-image" src="${attachment.base64}" alt="${attachment.filename}">
-//             <div class="delete-container">
-//                 <div class="viewer icon"></div>
-//             </div>
-//             <span class="image-filename">${attachment.filename}</span>
-//         </div>
-//     `;
-// }
-
+/**
+ * Generates a template for displaying an attachment in the overlay.
+ * @param {number} index - The index of the attachment.
+ * @param {Object} attachment - The attachment object containing the base64 data and filename.
+ * @returns {string} The HTML string for the attachment template in the overlay.
+*/
 function getAttachmentTemplateOverlay(index, attachment) {
     return `
         <div class="image-box">
@@ -197,6 +196,12 @@ function getAttachmentTemplateOverlay(index, attachment) {
     `;
 }
 
+/**
+ * Generates a template for displaying an attachment in the edit mode.
+ * @param {number} index - The index of the attachment.
+ * @param {Object} attachment - The attachment object containing the base64 data and filename.
+ * @returns {string} The HTML string for the attachment template in the edit mode.
+*/
 function getAttachmentTemplateEdit(index, attachment) {
     return `
         <div class="image-box">
@@ -221,7 +226,7 @@ function getAttachmentTemplateEdit(index, attachment) {
  * @param {Array} task.assignedTo - The list of users assigned to the task.
  * @param {string} task.priority - The priority level of the task (e.g., Low, Medium, Urgent).
  * @returns {string} The HTML string for the task template.
- */
+*/
 function getBoardTaskTemplate(task) {
     return `
         <div onclick="showDetailTaskOverlay('${task.id}')" id="task-${task.id}" class="ctn-task d-flex-x" draggable="true" ondragstart="startDragging('${task.id}')">
@@ -257,7 +262,7 @@ function getBoardTaskTemplate(task) {
  * Generates a detailed overlay template for a task.
  * @param {Object} task - The task object containing details to display in the overlay.
  * @returns {string} The HTML string for the task overlay template.
- */
+*/
 function getTaskOverlayTemplate(task) {
     return `
         <div onclick="bubblingProtection(event)" id="overlay-detail-task-board" class="overlay-detail-task-board ctn-task no-hover d-flex-x">
@@ -305,12 +310,11 @@ function getTaskOverlayTemplate(task) {
     `;
 }
 
-
 /**
  * Generates the HTML template for editing a task in the overlay.
  * @param {Object} task - The task object containing details to edit.
  * @returns {string} The HTML string for rendering the edit task overlay.
- */
+*/
 function getEditOverlayTemplate(task) {
     let today = new Date().toISOString().split('T')[0];
     return `

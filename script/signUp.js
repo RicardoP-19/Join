@@ -1,7 +1,7 @@
 /**
  * Validates the form by checking if all fields are filled out and if the checkbox is checked.
  * Activates or deactivates the button based on the validation.
- */
+*/
 function validateForm() {
   let name = document.getElementById('name').value;
   let email = document.getElementById('email').value;
@@ -15,30 +15,27 @@ function validateForm() {
   };
 }
 
-
 /**
  * Activates the registration button by changing its style and enabling functionality.
- */
+*/
 function buttonAktiv() {
   document.getElementById("registrationButton").classList.remove('disable-btn');
   document.getElementById("registrationButton").classList.add('sign-up-btn');
   document.getElementById("registrationButton").disabled = false;
 }
 
-
 /**
  * Deactivates the registration button and changes its style to make it unusable.
- */
+*/
 function buttonNotAktiv() {
   document.getElementById("registrationButton").classList.add('disable-btn');
   document.getElementById("registrationButton").classList.remove('sign-up-btn');
   document.getElementById("registrationButton").disabled = true;
 }
 
-
 /**
  * Validates the password input. If both password fields are empty, the input is reset.
- */
+*/
 function validateInputValue() {
   let password = document.getElementById('password');
   let confirmPassword = document.getElementById('confirmPassword');
@@ -47,10 +44,9 @@ function validateInputValue() {
   };
 }
 
-
 /**
  * Resets the input fields for password and error messages and removes the error display.
- */
+*/
 function resetInput() {
   document.getElementById('error').classList.remove('msg-box');
   document.getElementById('inputPassword').classList.remove('msg-box');
@@ -58,10 +54,9 @@ function resetInput() {
   document.getElementById('error').classList.add('d-none');
 }
 
-
 /**
  * Handles the visibility and layout of the password input field.
- */
+*/
 function passwortInput() {
   let container = document.getElementById('inputPassword');
   let input = document.getElementById('password');
@@ -69,10 +64,9 @@ function passwortInput() {
   determineInputValue(container, input, image);
 }
 
-
 /**
  * Handles the visibility and layout of the confirm password input field.
- */
+*/
 function confirmInput() {
   let container = document.getElementById('inputConfirmPassword');
   let input = document.getElementById('confirmPassword');
@@ -80,13 +74,12 @@ function confirmInput() {
   determineInputValue(container, input, image);
 }
 
-
 /**
  * Determines the input state and changes the input type (password/text) and icon accordingly.
  * @param {HTMLElement} container - The container of the input field.
  * @param {HTMLInputElement} input - The input field.
  * @param {HTMLImageElement} image - The input field's icon.
- */
+*/
 function determineInputValue(container, input, image) {
   if (input.value == 0) {
     standardInput(container, input, image);
@@ -101,46 +94,42 @@ function determineInputValue(container, input, image) {
   };
 }
 
-
 /**
  * Resets the input field to its default state (password type, default icon).
  * @param {HTMLElement} container - The container of the input field.
  * @param {HTMLInputElement} input - The input field.
  * @param {HTMLImageElement} image - The input field's icon.
- */
+*/
 function standardInput(container, input, image) {
   input.type = "password";
   image.src = "/assets/icon/lock.svg";
   container.style.borderColor = 'lightgrey';
 }
 
-
 /**
  * Sets the input field to password state (blue border, "visibility_off" icon).
  * @param {HTMLElement} container - The container of the input field.
  * @param {HTMLImageElement} image - The input field's icon.
- */
+*/
 function passwordInput(container, image) {
   container.style.borderColor = 'var(--bluehover)';
   image.src = "/assets/icon/visibility_off.png";
 }
 
-
 /**
  * Sets the input field to text state (blue border, "visibility" icon).
  * @param {HTMLElement} container - The container of the input field.
  * @param {HTMLImageElement} image - The input field's icon.
- */
+*/
 function textInput(container, image) {
   container.style.borderColor = 'var(--bluehover)';
   image.src = "/assets/icon/visibility.png";
 }
 
-
 /**
  * Toggles the visibility of the password field based on the current state.
  * @param {string} id - The ID of the input field.
- */
+*/
 function togglePasswordVisibility(id) {
   let input = document.getElementById(id);
   let passwordImage = document.getElementById('passwordImage');
@@ -148,13 +137,12 @@ function togglePasswordVisibility(id) {
   currentStatus(input, passwordImage, confirmImage);
 }
 
-
 /**
  * Checks the current status of the password input and changes the icon and input type accordingly.
  * @param {HTMLInputElement} input - The password input field.
  * @param {HTMLImageElement} passwordImage - The icon for the password field.
  * @param {HTMLImageElement} confirmImage - The icon for the confirm password field.
- */
+*/
 function currentStatus(input, passwordImage, confirmImage) {
   if (input.value == 0) {
     return;
@@ -171,22 +159,20 @@ function currentStatus(input, passwordImage, confirmImage) {
   };
 }
 
-
 /**
  * Changes the input type of the password field to text and updates the icon to "visibility".
  * @param {HTMLInputElement} input - The password input field.
  * @param {HTMLImageElement} image - The input field's icon.
- */
+*/
 function changeTypeAndImage(input, image) {
   input.type = "text";
   image.src = "/assets/icon/visibility.png";
 }
 
-
 /**
  * Resets the input type of the password field to "password" and updates the icon to "visibility_off".
  * @param {HTMLInputElement} input - The password or confirm password input field.
- */
+*/
 function resetTypeAndImage(input) {
   let passwordImage = document.getElementById('passwordImage');
   let confirmImage = document.getElementById('confirmPasswordImage');
@@ -201,19 +187,17 @@ function resetTypeAndImage(input) {
   };
 }
 
-
 /**
  * Checks if the password and confirm password match and proceeds with registration.
- */
+*/
 async function registrationUser() {
   checkPasswort();
 }
 
-
 /**
  * Checks if the entered password matches the confirm password.
  * If they match, the registration process continues, otherwise an error message is displayed.
- */
+*/
 function checkPasswort() {
   let password = document.getElementById('password').value;
   let confirmPassword = document.getElementById('confirmPassword').value;
@@ -224,10 +208,9 @@ function checkPasswort() {
   };
 }
 
-
 /**
  * Displays an error message when the password and confirm password do not match.
- */
+*/
 function passwordDontMatch() {
   document.getElementById('error').classList.add('msg-span');
   document.getElementById('inputPassword').classList.add('msg-box');
@@ -236,12 +219,11 @@ function passwordDontMatch() {
   buttonNotAktiv();
 }
 
-
 /**
  * Handles user registration by gathering user input and saving it to the database.
  * It first registers the user in the "users" collection, then creates a contact
  * entry in the "contacts" collection with an avatar generated from the user's name.
- */
+*/
 async function postRegistrationUser() {
   let name = document.getElementById('name').value;
   let email = document.getElementById('email').value;
@@ -256,29 +238,25 @@ async function postRegistrationUser() {
   await registrationSuccesful();
 }
 
-
 /**
  * Creates a new contact object with a generated avatar from the user's name and email.
- *
  * @function createNewContact
  * @param {string} name - The name of the contact.
  * @param {string} email - The email address of the contact.
  * @returns {Object} - The contact object containing name, email, and avatar.
- */
+*/
 function createNewContact(name, email) {
   let avatar = generateAvatar(name);
   return createContact(name, email, avatar);
 }
 
-
 /**
  * Generates an avatar for a user based on their name.
  * The avatar contains the initials of the user's name and a random color.
- *
  * @function generateAvatar
  * @param {string} name - The name of the user.
  * @returns {Object} - An avatar object containing initials and color.
- */
+*/
 function generateAvatar(name) {
   return {
       initials: name.split(' ').map(n => n[0]).join(''),
@@ -286,16 +264,14 @@ function generateAvatar(name) {
   };
 }
 
-
 /**
  * Creates a contact object with the provided name, email, and avatar.
- *
  * @function createContact
  * @param {string} name - The name of the contact.
  * @param {string} email - The email address of the contact.
  * @param {Object} avatar - The avatar object of the contact.
  * @returns {Object} - The contact object containing name, email, and avatar.
- */
+*/
 function createContact(name, email, avatar) {
   return {
       name: name,
@@ -305,10 +281,9 @@ function createContact(name, email, avatar) {
   };
 }
 
-
 /**
  * Displays a success message when registration is successful.
- */
+*/
 function registrationSuccesful() {
   document.getElementById('popUp').classList.remove('d-none');
   setTimeout(() => {
@@ -316,11 +291,10 @@ function registrationSuccesful() {
   }, 1000);
 }
 
-
 /**
  * Redirects the user to the login page.
  * This function changes the current window location to '/index.html'.
- */
+*/
 function loginInForwarding() {
   window.location.replace('/index.html');
 }

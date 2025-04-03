@@ -1,6 +1,5 @@
 /**
  * Renders a group of contacts by their starting letter.
- *
  * @param {string} letter - The starting letter of the contact group.
  * @param {Array} contactList - The list of contacts belonging to this group.
  * @param {Object} contactList[].id - The unique identifier of the contact.
@@ -11,7 +10,7 @@
  * @param {string} contactList[].avatar.initials - The initials displayed in the avatar.
  * @param {string} contactList[].avatar.color - The background color of the avatar.
  * @returns {string} The HTML string for the contact group.
- */
+*/
 function renderContactGroup(letter, contactList) {
     return `
         <div class="contact-group">
@@ -22,7 +21,18 @@ function renderContactGroup(letter, contactList) {
     `;
 }
 
-
+/**
+ * Renders an individual contact's information and avatar.
+ * @param {Object} contact - The contact object.
+ * @param {string} contact.id - The unique identifier of the contact.
+ * @param {string} contact.name - The name of the contact.
+ * @param {string} contact.email - The email of the contact.
+ * @param {string} contact.phone - The phone number of the contact.
+ * @param {Object} contact.avatar - The avatar details of the contact.
+ * @param {string} contact.avatar.initials - The initials displayed in the avatar.
+ * @param {string} contact.avatar.color - The background color of the avatar.
+ * @returns {string} The HTML string for the individual contact.
+*/
 function renderContact(contact) {
     const avatar = contact.avatar?.image?.[0]?.base64
         ? `<img src="${contact.avatar.image[0].base64}" alt="Profilbild" class="profil-image-list profil-object">`
