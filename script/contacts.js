@@ -362,13 +362,13 @@ function handleContactDeletionSuccess() {
  * @returns {Object} - An object with avatar data (initials and color or image).
 */
 function generateAvatar(name, image = null) {
-    if (allImages.length > 0) {
-        return { image: allImages};
-    } else {
+    if (name && image == null){
         return {
             initials: name.split(' ').map(n => n[0]).join(''),
             color: '#' + Math.floor(Math.random() * 16777215).toString(16)
         };
+    } else if (allImages.length > 0) {
+        return { image: allImages};
     }
 }
 
