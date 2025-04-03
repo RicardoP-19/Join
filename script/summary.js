@@ -3,7 +3,7 @@
  * @async
  * @function onloadFuncSummary
  * @returns {Promise<void>} - Resolves when data loading is complete.
- */
+*/
 async function onloadFuncSummary() {
     tasks = Object.values(await loadFromDatabase(`/tasks`));
     try {
@@ -17,12 +17,11 @@ async function onloadFuncSummary() {
     handleResponsiveLayout()
 }
 
-
 /**
  * Adjusts the layout based on the window width.
  * @function handleResponsiveLayout
  * @returns {void}
- */
+*/
 function handleResponsiveLayout() {
     if (window.innerWidth < 1280) {
         animationSummaryResponsive();
@@ -32,13 +31,12 @@ function handleResponsiveLayout() {
     }
 }
 
-
 /**
  * Calculates and renders the number of tasks based on their progress and priority.
  * @function getNumberOfTasks
  * @param {Array<Object>} tasks - The array of task objects.
  * @returns {void}
- */
+*/
 function getNumberOfTasks(tasks) {
     let toDoTasks = tasks.filter(task => task.progress === "todo");
     let inProgressTasks = tasks.filter(task => task.progress === "in progress");
@@ -48,7 +46,6 @@ function getNumberOfTasks(tasks) {
     let urgentTasks = tasks.filter(task => task.priority === "Urgent");
     renderNumberOfTasks(toDoTasks, inProgressTasks, awaitFeedbackTasks, doneTasks, totalTasks, urgentTasks);
 }
-
 
 /**
  * Renders the number of tasks in various categories onto the page.
@@ -60,7 +57,7 @@ function getNumberOfTasks(tasks) {
  * @param {number} totalTasks - Total number of tasks.
  * @param {Array<Object>} urgentTasks - Array of tasks marked as "Urgent".
  * @returns {void}
- */
+*/
 function renderNumberOfTasks(toDoTasks, inProgressTasks, awaitFeedbackTasks, doneTasks, totalTasks, urgentTasks) {
     document.getElementById('summary-todo-counter').innerHTML = toDoTasks.length;
     document.getElementById('tasks-in-progress-counter').innerHTML = inProgressTasks.length;
@@ -70,12 +67,11 @@ function renderNumberOfTasks(toDoTasks, inProgressTasks, awaitFeedbackTasks, don
     document.getElementById('summary-urgent-counter').innerHTML = urgentTasks.length;
 }
 
-
 /**
  * Displays a greeting message based on the current time of day.
  * @function greetingUser
  * @returns {void}
- */
+*/
 function greetingUser() {
     const currentHour = new Date().getHours();
     let greeting;
@@ -89,12 +85,11 @@ function greetingUser() {
     document.getElementById('daytime-greeting').innerHTML = greeting;
 }
 
-
 /**
  * Displays the name of the logged-in user or a default message for guests.
  * @function greetingUserName
  * @returns {void}
- */
+*/
 function greetingUserName() {
     let loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
     if (loggedInUser) {
@@ -108,12 +103,11 @@ function greetingUserName() {
     }
 }
 
-
 /**
  * Displays the upcoming deadline for urgent tasks or a message if there are none.
  * @function getUpcomingDeadline
  * @returns {void}
- */
+*/
 function getUpcomingDeadline() {
     let urgentTasks = tasks.filter(task => task.priority === "Urgent");
     if (urgentTasks == "") {
@@ -125,25 +119,23 @@ function getUpcomingDeadline() {
     }
 }
 
-
 /**
  * Formats a date string to a more readable format.
  * @function formattingDate
  * @param {string} dateString - The date string to format.
  * @returns {string} - The formatted date string.
- */
+*/
 function formattingDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
-
 
 /**
  * Handles the responsive layout for the summary page by determining 
  * whether to show a greeting animation or all elements based on screen width.
  * @function animationSummaryResponsive
  * @returns {void}
- */
+*/
 function animationSummaryResponsive() {
     const greetingSummary = document.getElementById("greeting-summary");
     const headerSummary = document.getElementById("header-summary");
@@ -158,7 +150,6 @@ function animationSummaryResponsive() {
     }
 }
 
-
 /**
  * Manages the animation display logic based on whether the greeting animation 
  * has been completed or not.
@@ -168,7 +159,7 @@ function animationSummaryResponsive() {
  * @param {HTMLElement} headerSummary - The element for the header section.
  * @param {HTMLElement} tasksSummary - The element for the tasks section.
  * @returns {void}
- */
+*/
 function handleAnimation(isAnimationDone, greetingSummary, headerSummary, tasksSummary) {
     if (!isAnimationDone) {
         handleAnimationStart(greetingSummary, headerSummary, tasksSummary);
@@ -176,7 +167,6 @@ function handleAnimation(isAnimationDone, greetingSummary, headerSummary, tasksS
         handleAnimationComplete(greetingSummary, headerSummary, tasksSummary);
     }
 }
-
 
 /**
  * Initiates the greeting animation by hiding the header and tasks sections 
@@ -186,7 +176,7 @@ function handleAnimation(isAnimationDone, greetingSummary, headerSummary, tasksS
  * @param {HTMLElement} headerSummary - The element for the header section.
  * @param {HTMLElement} tasksSummary - The element for the tasks section.
  * @returns {void}
- */
+*/
 function handleAnimationStart(greetingSummary, headerSummary, tasksSummary) {
     headerSummary.style.display = "none";
     tasksSummary.style.display = "none";
@@ -199,7 +189,6 @@ function handleAnimationStart(greetingSummary, headerSummary, tasksSummary) {
     }, 2000);
 }
 
-
 /**
  * Completes the animation by hiding the greeting message and showing the 
  * header and tasks sections.
@@ -208,13 +197,12 @@ function handleAnimationStart(greetingSummary, headerSummary, tasksSummary) {
  * @param {HTMLElement} headerSummary - The element for the header section.
  * @param {HTMLElement} tasksSummary - The element for the tasks section.
  * @returns {void}
- */
+*/
 function handleAnimationComplete(greetingSummary, headerSummary, tasksSummary) {
     greetingSummary.style.display = "none";
     headerSummary.style.display = "flex";
     tasksSummary.style.display = "flex";
 }
-
 
 /**
  * Shows all elements in the summary layout.
@@ -223,11 +211,9 @@ function handleAnimationComplete(greetingSummary, headerSummary, tasksSummary) {
  * @param {HTMLElement} headerSummary - The element for the header section.
  * @param {HTMLElement} tasksSummary - The element for the tasks section.
  * @returns {void}
- */
+*/
 function showAllElements(greetingSummary, headerSummary, tasksSummary) {
     greetingSummary.style.display = "flex";
     headerSummary.style.display = "flex";
     tasksSummary.style.display = "flex";
 }
-
-

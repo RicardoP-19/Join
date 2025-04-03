@@ -6,6 +6,10 @@ let addTaskOpen = false;
 let contact = false;
 let edit = false;
 
+/**
+ * Opens the file picker for selecting a profile image.
+ * Sets the `contact` variable to true to indicate the profile image context.
+*/
 function openProfilImageFilePicker() {
     const filepicker = document.getElementById('filepicker');
     contact = true
@@ -14,6 +18,10 @@ function openProfilImageFilePicker() {
     } 
 }
 
+/**
+ * Opens the file picker for selecting an image to edit an existing contact.
+ * Sets the `edit` variable to true to indicate the edit context.
+*/
 function openEditImageFilePicker() {
     const filepicker = document.getElementById('filepicker');
     edit = true
@@ -23,6 +31,10 @@ function openEditImageFilePicker() {
     
 }
 
+/**
+ * Opens the file picker for adding a task's image.
+ * Sets the `addTaskOpen` variable to true to indicate the task context.
+*/
 function openAddTaskFilePicker() {
     addTaskOpen = true;
     const filepicker = document.getElementById('filepicker');
@@ -31,7 +43,10 @@ function openAddTaskFilePicker() {
     }
 }
 
-
+/**
+ * Opens the file picker for selecting an image for other general purposes (not for profile or editing).
+ * Sets the `addTaskOpen` variable to false to reset the task context.
+*/
 function openOverlayFilePicker() {
     addTaskOpen = false;
     const filepicker = document.getElementById('filepicker');
@@ -40,7 +55,10 @@ function openOverlayFilePicker() {
     }
 }
 
-
+/**
+ * Handles the file input change event when a file is selected from the file picker.
+ * It processes the selected files and iterates over them for further actions.
+*/
 document.addEventListener("DOMContentLoaded", () => {
     const filepicker = document.getElementById('filepicker');
     if (filepicker) {
@@ -52,7 +70,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-
+/**
+ * Uploads the selected files from the file picker.
+ * Iterates over the selected files and processes them accordingly.
+*/
 function uploadSelectedFiles() {
     const filepicker = document.getElementById('filepicker');
     const files = filepicker.files;
@@ -60,7 +81,10 @@ function uploadSelectedFiles() {
     filesArrayIterate(files);
 }
 
-
+/**
+ * Iterates through the selected files, compresses them if necessary, and adds the images to the gallery.
+ * @param {FileList} files - The list of files selected by the user.
+*/
 async function filesArrayIterate(files) {
     const imagePromises = Array.from(files).map(async file => {
         if (isValidImage(file)) return;
@@ -72,7 +96,12 @@ async function filesArrayIterate(files) {
     createImage();
 }
 
-
+/**
+ * Checks if a file is a valid image based on its MIME type.
+ * If not a valid image, displays an error message.
+ * @param {File} file - The file to validate.
+ * @returns {boolean} - Whether the file is a valid image.
+*/
 function isValidImage(file) {
     if (!file.type.startsWith('image/')) {
         error.textContent = `Die Datei "${file.name}" ist kein gültiges Bild.`;
@@ -85,7 +114,14 @@ function isValidImage(file) {
     }
 }
 
-
+/**
+ * Compresses an image file to a specified size and quality.
+ * @param {File} file - The image file to compress.
+ * @param {number} maxWidth - The maximum width of the compressed image.
+ * @param {number} maxHeight - The maximum height of the compressed image.
+ * @param {number} quality - The quality of the compressed image (from 0 to 1).
+ * @returns {Promise<string>} - A Promise resolving to the compressed image in base64 format.
+*/
 async function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.8) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -119,7 +155,9 @@ async function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.
     });
 }
 
-
+/**
+ * Creates images based on the context, either for profile, editing, or gallery.
+*/
 function createImage() {
     if (contact) {
         renderContactImage();
@@ -133,7 +171,9 @@ function createImage() {
     }
 }
 
-
+/**
+ * Renders the profile image after an image file is selected and processed.
+*/
 function renderContactImage() {
     const profilImage = document.getElementById('profilImage');
     if (allImages.length > 0) {
@@ -144,12 +184,18 @@ function renderContactImage() {
     contact = false;
 }
 
+/**
+ * Renders the image in the context of editing an existing contact.
+*/
 function renderEditContactImage() {
     currentContact.avatarImage = allImages[0].base64;
     updateEditContactFields();
     edit = false;
 }
 
+/**
+ * Checks if there are any attached images and updates the UI accordingly.
+*/
 function checkAttachments() {
     const attachmentContainer = document.getElementById('attachmentOverlay');
     if (allImages.length > 0) {
@@ -160,7 +206,9 @@ function checkAttachments() {
     } 
 }
 
-
+/**
+ * Renders the gallery of uploaded images, including delete buttons.
+*/
 function renderGallery() {
     const gallery = document.getElementById('gallery');
     trash.classList.remove('d-none');
@@ -178,7 +226,9 @@ function renderGallery() {
     });
 }
 
-
+/**
+ * Renders the gallery in an overlay format for displaying images in a fullscreen or popup view.
+*/
 function renderGalleryOverlay() {
     const galleryOverlay = document.getElementById('galleryOverlay');
     galleryOverlay.innerHTML = '';
@@ -195,25 +245,42 @@ function renderGalleryOverlay() {
     });
 }
 
-
+/**
+ * Displays the delete button for an image when the user hovers over it.
+ * @param {number} index - The index of the image in the gallery.
+*/
 function showDeleteButton(index) {
     document.getElementById(`delete-container${index}`).style.display = 'block';
 }
 
-
+/**
+ * Hides the delete button for an image when the user stops hovering over it.
+ * @param {number} index - The index of the image in the gallery.
+*/
 function hideDeleteButton(index) {
     document.getElementById(`delete-container${index}`).style.display = 'none';
 }
 
+/**
+ * Changes the image source on hover for an image input button.
+ * @param {HTMLImageElement} image - The image element to change the source of.
+*/
 function changeInputImage(image) {
     image.src = '/assets/icon/add_photo_hover.png'
 }
 
+/**
+ * Resets the image source to its default when the hover state is removed.
+ * @param {HTMLImageElement} image - The image element to reset the source of.
+*/
 function resetInputImage(image) {
     image.src = '/assets/icon/add_photo.png'
 }
 
-
+/**
+ * Deletes an image from the gallery based on the provided index.
+ * @param {number} index - The index of the image to delete.
+*/
 function deleteImage(index) {
     const trash = document.getElementById('delete');
     allImages.splice(index, 1);
@@ -223,7 +290,9 @@ function deleteImage(index) {
     }
 }
 
-
+/**
+ * Clears the entire gallery by removing all images and resetting the gallery state.
+*/
 function clearGallery() {
     const gallery = document.getElementById('gallery');
     const trash = document.getElementById('delete');
@@ -235,7 +304,10 @@ function clearGallery() {
     }
 }
 
-
+/**
+ * Opens the image viewer to display an image at a specific index.
+ * @param {number} index - The index of the image to view in the viewer.
+*/
 function openImageViewer(index) {
     const gallery = document.getElementById('viewerGallery');
     gallery.innerHTML = '';
@@ -245,7 +317,11 @@ function openImageViewer(index) {
     window.imageViewer.show();
 }
 
-
+/**
+ * Displays the selected image in the image viewer.
+ * @param {number} index - The index of the image to show in the viewer.
+ * @param {HTMLElement} gallery - The gallery container to display the image.
+*/
 function showClickImage(index, gallery) {
     allAttachment.forEach((image, i) => {
         if (i === index) {
@@ -256,7 +332,11 @@ function showClickImage(index, gallery) {
     });
 }
 
-
+/**
+ * Displays all images in the gallery, except the currently selected image, in the image viewer.
+ * @param {number} index - The index of the image to exclude from the gallery.
+ * @param {HTMLElement} gallery - The gallery container to display the images.
+*/
 function showAllImage(index, gallery) {
     allAttachment.forEach((image, i) => {
         if (i !== index) {
@@ -267,8 +347,10 @@ function showAllImage(index, gallery) {
     });
 }
 
-
-
+/**
+ * Closes the image viewer when the close button is clicked and resets the viewer state.
+ * @param {Event} event - The event triggered when the close button is clicked.
+*/
 document.addEventListener('click', (event) => {
     if (event.target.matches('.viewer-button.viewer-close')) {
         const viewerGallery = document.getElementById('viewerGallery');

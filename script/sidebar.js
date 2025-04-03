@@ -2,7 +2,7 @@
  * Sets the background color of the menu based on the current URL.
  * Calls the appropriate function to change the background color 
  * for the corresponding menu item.
- */
+*/
 function menuColor() {
   const currentURL = window.location.href;
   if (currentURL === 'http://127.0.0.1:5502/html/summary.html') {

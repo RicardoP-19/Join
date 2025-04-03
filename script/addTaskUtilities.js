@@ -1,3 +1,6 @@
+/**
+ * Event handler for the assigned input field click event that triggers the re-rendering of all contacts when the input is empty.
+*/
 document.getElementById('assignedInput').addEventListener('click', function () {
     if (this.value.trim() === '') {
         renderAllContactsInAssignedTo();
@@ -6,7 +9,7 @@ document.getElementById('assignedInput').addEventListener('click', function () {
 
 /**
  * Handles the assigned search input and filters the contacts based on the search text.
- */
+*/
 function assignedSearch() {
     let searchText = document.getElementById('assignedInput').value.trim();
     if (searchText.length > 0) {
@@ -18,17 +21,19 @@ function assignedSearch() {
     };
 }
 
-
 /**
  * Filters the contacts array based on the search text and renders the search results.
  * @param {string} searchText - The text to search for in the contacts.
- */
+*/
 function searchIndexOfArray(searchText) {
     result = allContacts.filter(element => element.name.toLowerCase().includes(searchText.toLowerCase()));
     renderSearchResult(result);
 }
 
-
+/**
+ * Renders the search results in the assigned list.
+ * @param {Array} result - The filtered contacts that match the search criteria.
+*/
 function renderSearchResult(result) {
     let searchList = document.getElementById('assignedList');
     searchList.innerHTML = '';
@@ -43,29 +48,26 @@ function renderSearchResult(result) {
     openUserList();
 }
 
-
 /**
  * Opens the user list by displaying the assigned list and hiding the selected user list.
- */
+*/
 function openUserList() {
     document.getElementById('assignedList').classList.remove('d-none');
     document.getElementById('selectedUser').classList.add('d-none');
 }
 
-
 /**
  * Resets the search results and clears the current search.
- */
+*/
 function resetSearch() {
     let list = document.getElementById('assignedList');
     list.innerHTML = '';
     result = '';
 }
 
-
 /**
  * Toggles the visibility of the assigned list and the selected user list.
- */
+*/
 function assignedListToogle() {
     let list = document.getElementById('assignedList');
     let users = document.getElementById('selectedUser');    
@@ -79,12 +81,11 @@ function assignedListToogle() {
     toogleInputBorderColor();
 }
 
-
 /**
  * Opens the assigned list and hides the selected users list.
  * @param {HTMLElement} list - The element containing the assigned list.
  * @param {HTMLElement} users - The element containing the selected users list.
- */
+*/
 function openAssignedList(list, users) {
     list.classList.remove('d-none');
     users.classList.add('d-none');
@@ -92,12 +93,11 @@ function openAssignedList(list, users) {
     document.addEventListener('click', closeListOnClickOutside);
 }
 
-
 /**
  * Closes the assigned list and shows the selected users list.
  * @param {HTMLElement} list - The element containing the assigned list.
  * @param {HTMLElement} users - The element containing the selected users list.
- */
+*/
 function closeAssignedList(list, users) {
     list.classList.add('d-none');
     users.classList.remove('d-none');
@@ -105,32 +105,28 @@ function closeAssignedList(list, users) {
     document.removeEventListener('click', closeListOnClickOutside);
 }
 
-
 /**
  * Closes the list when a click is detected outside the list.
  * @param {Event} event - The click event.
- */
+*/
 function closeListOnClickOutside(event) {
     let listElement = document.getElementById('assignedList');
     let assignedInput = document.getElementById('inputAssigned');
-
     if (!listElement.contains(event.target) && !assignedInput.contains(event.target)) {
         assignedListToogle(); 
     }
 }
 
-
 /**
  * Resets the value of the assigned input field.
- */
+*/
 function resetSearchValue() {
     document.getElementById('assignedInput').value = '';
 }
 
-
 /**
  * Checks the input value and resets it if it is empty.
- */
+*/
 function inputValueCheck() {
     let value = document.getElementById('assignedInput').value;
     if (value == 0) {
@@ -140,10 +136,9 @@ function inputValueCheck() {
     };
 }
 
-
 /**
  * Toggles the image source for the assigned input dropdown.
- */
+*/
 function toogleInputImage() {
     let image = document.getElementById('assignedImage');
     if (image.src.includes('assets/icon/arrow_drop_downaa.svg')) {
@@ -153,10 +148,9 @@ function toogleInputImage() {
     };
 }
 
-
 /**
  * Toggles the border color of the assigned input field based on its current state.
- */
+*/
 function toogleInputBorderColor() {
     let inputElement  = document.getElementById('inputAssigned');
     let color = window.getComputedStyle(inputElement).borderColor;
@@ -167,11 +161,10 @@ function toogleInputBorderColor() {
     };
 }
 
-
 /**
  * Selects or deselects a user by their ID and updates the user selection.
  * @param {string} id - The ID of the user to select or deselect.
- */
+*/
 function selectionUser(id) {    
     let user = allContacts.find(user => user.id == id);    
     let result = users.find((element) => element == user);
@@ -184,11 +177,10 @@ function selectionUser(id) {
     renderSelectArray();
 }
 
-
 /**
  * Toggles the checkbox state for a user based on their ID.
  * @param {string} id - The ID of the user whose checkbox state should be toggled.
- */
+*/
 function toggleUserCheckbox(id) {
     let checkbox = getCheckbox(id);
     let assignedContent = getAssignedContent(id);
@@ -198,39 +190,35 @@ function toggleUserCheckbox(id) {
     }
 }
 
-
 /**
  * Retrieves the checkbox element for a specific user.
  * @param {string} id - The unique identifier of the user.
- */
+*/
 function getCheckbox(id) {
     return document.querySelector(`input[data-user-id="${id}"]`);
 }
 
-
 /**
  * Retrieves the assigned content element for a specific user.
  * @param {string} id - The unique identifier of the user.
- */
+*/
 function getAssignedContent(id) {
     return document.getElementById(`assigned-content-${id}`);
 }
 
-
 /**
  * Toggles the checked state of the given checkbox.
  * @param {HTMLInputElement} checkbox - The checkbox element to toggle.
- */
+*/
 function toggleCheckbox(checkbox) {
     checkbox.checked = !checkbox.checked;
 }
-
 
 /**
  * Updates the styles of the assigned content based on whether the checkbox is checked or not.
  * @param {boolean} isChecked - The state of the checkbox (true if checked, false if not).
  * @param {HTMLElement} assignedContent - The content element to update styles for.
- */
+*/
 function updateAssignedContentStyles(isChecked, assignedContent) {
     if (isChecked) {
         assignedContent.style.backgroundColor = 'var(--darkblue)';
@@ -241,19 +229,19 @@ function updateAssignedContentStyles(isChecked, assignedContent) {
     }
 }
 
-
 /**
  * Resets the styles of the assigned content to their default state.
  * @param {HTMLElement} assignedContent - The content element to reset styles for.
- */
+*/
 function resetAssignedContentStyles(assignedContent) {
     assignedContent.style.backgroundColor = '';
     assignedContent.style.color = '';
     assignedContent.style.borderRadius = '';
 }
 
-
-
+/**
+ * Renders the selected users in the "selected user" list, limiting the display to 7 users.
+*/
 function renderSelectArray() {
     const list = document.getElementById('selectedUser');
     list.innerHTML = '';
@@ -266,13 +254,12 @@ function renderSelectArray() {
       list.innerHTML += `<div class="assigned-initital d-flex">${html}</div>`;
     }
     if (extra > 0) list.innerHTML += `<div class="assigned-initital d-flex extra-contacts"><p class="extra-contacts-text">+${extra}</p></div>`;
-  }
-
+}
 
 /**
  * Deletes a user from the users array by their ID.
  * @param {string} id - The ID of the user to delete.
- */
+*/
 function deleteUser(id) {
     let index = users.findIndex((user) => user == id);
     if (users.length > 1 ) {
@@ -285,31 +272,27 @@ function deleteUser(id) {
 
 /**
  * Sets the default priority to medium and retrieves it from local storage if available.
- */
+*/
 function mediumPriority() {
     changePrio('Medium');
 }
 
-
 /**
  * Changes the task priority and updates the button styles accordingly.
  * @param {string} priority - The new priority to set.
- */
+*/
 function changePrio(priority) {
     const priorityConfig = getPriorityConfig();
     const buttons = document.querySelectorAll('.prio');
     selectedPriority = priority;
-
     localStorage.setItem('selectedPriority', priority);
-
     buttons.forEach(button => updateButtonStyle(button, priority, priorityConfig));
 }
-
 
 /**
  * Retrieves the configuration for task priorities.
  * @returns {Object} - The configuration object for different priorities.
- */
+*/
 function getPriorityConfig() {
     return {
         'Urgent': {
@@ -330,13 +313,12 @@ function getPriorityConfig() {
     };
 }
 
-
 /**
  * Updates the style of the priority buttons based on the selected priority.
  * @param {HTMLElement} button - The button element to update.
  * @param {string} selectedPriority - The currently selected priority.
  * @param {Object} config - The configuration for button styles.
- */
+*/
 function updateButtonStyle(button, selectedPriority, config) {
     const buttonPriority = button.textContent.trim();
     const img = button.querySelector('img');
@@ -347,13 +329,12 @@ function updateButtonStyle(button, selectedPriority, config) {
     }
 }
 
-
 /**
  * Applies the active style to a priority button.
  * @param {HTMLElement} button - The button element to apply the style to.
  * @param {Object} config - The configuration for the active style.
  * @param {HTMLImageElement} img - The image element inside the button.
- */
+*/
 function applyActiveStyle(button, config, img) {
     button.style.backgroundColor = config.color;
     img.src = config.activeImg;
@@ -362,13 +343,12 @@ function applyActiveStyle(button, config, img) {
     button.classList.add(`${button.textContent.trim().toLowerCase()}-active`);
 }
 
-
 /**
  * Resets the style of a priority button to its default appearance.
  * @param {HTMLElement} button - The button element to reset.
  * @param {Object} config - The configuration object containing default styles and image paths.
  * @param {HTMLImageElement} img - The image element inside the button to update the source.
- */
+*/
 function resetButtonStyle(button, config, img) {
     button.style.backgroundColor = 'white';
     img.src = config.defaultImg;
@@ -377,12 +357,11 @@ function resetButtonStyle(button, config, img) {
     button.classList.remove(`${button.textContent.trim().toLowerCase()}-active`);
 }
 
-
 /**
  * Changes the source of an image inside a button depending on the hover state.
  * @param {HTMLElement} button - The button element containing the image to be changed.
  * @param {string} state - The state of the button, either 'hover' or 'default'.
- */
+*/
 function changeImage(button, state) {
     const img = button.querySelector('img');    
     if (state === 'hover') {
