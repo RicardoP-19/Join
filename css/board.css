@@ -534,3 +534,12 @@ iframe {
     height: 100vh;
     max-width: 1200px;
 }
+
+.viewer-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+}

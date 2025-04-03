@@ -234,3 +234,51 @@ function clearGallery() {
         trash.classList.add('d-none');
     }
 }
+
+
+function openImageViewer(index) {
+    const gallery = document.getElementById('viewerGallery');
+    gallery.innerHTML = '';
+    showClickImage(index, gallery);
+    showAllImage(index, gallery);
+    window.imageViewer = new Viewer(gallery);
+    window.imageViewer.show();
+}
+
+
+function showClickImage(index, gallery) {
+    allAttachment.forEach((image, i) => {
+        if (i === index) {
+            gallery.innerHTML += `
+                <img src="${image.base64}" alt="${image.filename}" class="viewer-image">
+        `;
+        }
+    });
+}
+
+
+function showAllImage(index, gallery) {
+    allAttachment.forEach((image, i) => {
+        if (i !== index) {
+            gallery.innerHTML += `
+                <img src="${image.base64}" alt="${image.filename}" class="viewer-image" style="display:none;">
+            `;
+        }
+    });
+}
+
+
+
+document.addEventListener('click', (event) => {
+    if (event.target.matches('.viewer-button.viewer-close')) {
+        const viewerGallery = document.getElementById('viewerGallery');
+        if (viewerGallery) {
+            viewerGallery.classList.add('d-none');
+        }
+        if (window.imageViewer) {
+            window.imageViewer.destroy();
+            window.imageViewer = null;
+        }
+        document.body.focus();
+    }
+});
