@@ -47,7 +47,6 @@
 
     .overlay-detail-task-board {
         height: auto;
-        /* max-height: 80vh; */
         width: 95%;
         gap: 32px;
     }
@@ -164,7 +163,6 @@
 
     .overlay-detail-task-board {
         height: auto;
-        max-height: 75vh;
         width: 95%;
         gap: 16px;
         font-size: 14px;
