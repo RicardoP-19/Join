@@ -47,9 +47,17 @@ header {
     height: 56px;
 }
 
-.user-letter:hover {
-    background-color: var(--lightgrey);
+.user-letter img {
+    width: 56px;
+    height: 56px;
+    border-radius: 100%;
+    object-fit: cover;
+    object-position: top;
 }
+
+.user-letter img:hover {
+    transform: scale(1);
+} 
 
 .user-letter h2 {
     display: flex;
@@ -59,6 +67,10 @@ header {
     height: 14px;
     color: #29ABE2;
     font-size: 24px;
+}
+
+.user-letter h2:hover {
+    background-color: var(--lightgrey);
 }
 
 .logout-menu {

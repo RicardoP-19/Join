@@ -237,6 +237,7 @@ function handleContactUpdate(response, contactData) {
         hideOverlay();
         loadContacts();
         updateContactDetails(contactData, contactData.id);
+        initializeUserFeatures();
         return true;
     }
     return false;

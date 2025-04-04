@@ -16,44 +16,64 @@ async function initializeUserFeatures() {
 }
 
 /**
- * Loads contacts from the database and initializes user initials based on the logged-in user's email.
+ * Loads the contact data of the currently logged-in user and updates the header.
+ * Displays either the user's profile image (if available) or their initials.
  * @async
  * @function
  * @param {Object} loggedInUser - The currently logged-in user object.
  * @returns {Promise<void>}
- * @throws {Error} Throws an error if the contacts data cannot be loaded.
 */
 async function onloadFuncHeader(loggedInUser) {
   try {
     let contactsData = await loadFromDatabase('/contacts');
     contacts = Object.entries(contactsData).map(([id, contact]) => ({ id, ...contact }));
-    let contactDetails = contacts.find(c => c.email == loggedInUser.email);
-    initial = contactDetails.avatar.initials.toUpperCase();
-    await generateUserLetter(initial);
+    let contactDetails = contacts.find(c => c.email === loggedInUser.email);
+    const avatar = contactDetails.avatar;
+    const hasImage = avatar?.image?.["0"]?.base64;
+    if (hasImage) {
+      displayUserImage(avatar.image["0"].base64);
+    } else {
+      const initials = avatar?.initials?.toUpperCase() || "G";
+      await generateUserLetter(initials);
+    }
   } catch (error) {
-    console.error(error);   
-  };
+    console.error('Error in onloadFuncHeader:', error);
+  }
 }
 
 /**
- * Displays the logged-in user's initials in the header.
- * If no user is logged in or no initials are provided, defaults to "G".
+ * Displays the user's profile image in the header and hides the initials.
+ * @function
+ * @param {string} imageUrl - The base64-encoded image URL to display.
+*/
+function displayUserImage(imageUrl) {
+  const imageElement = document.getElementById('user-image');
+  const initialElement = document.getElementById('user-initial');
+  imageElement.src = imageUrl;
+  imageElement.classList.remove('d-none');
+  initialElement.classList.add('d-none');
+}
+
+/**
+ * Displays the user's initials in the header and hides the profile image (if present).
+ * Defaults to "G" if no initials are provided.
  * @async
  * @function
- * @param {string} [initial] - The initials to display.
+ * @param {string} [initial] - The user's initials to display.
  * @returns {Promise<void>}
 */
 async function generateUserLetter(initial) {
   try {
-    let userInitialRef = document.getElementById('user-initial');
-    if (userInitialRef && initial) {
-      userInitialRef.innerHTML = initial;
-    } else {
-      userInitialRef.innerHTML = "G";
-    };
+    const userInitialRef = document.getElementById('user-initial');
+    const imageElement = document.getElementById('user-image');
+    if (imageElement) imageElement.classList.add('d-none');
+    if (userInitialRef) {
+      userInitialRef.innerHTML = initial || "G";
+      userInitialRef.classList.remove('d-none');
+    }
   } catch (error) {
-    console.error(error);    
-  };
+    console.error('Error in generateUserLetter:', error);
+  }
 }
 
 /**
