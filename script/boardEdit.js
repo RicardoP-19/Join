@@ -387,7 +387,6 @@ function renderAttachmentsEdit(taskId) {
     } else {
         for (let iAttachment = 0; iAttachment < attachments.length; iAttachment++) {
             const attachment = attachments[iAttachment];
-            console.log(attachment, 'renderAttachmentsEdit');
             allAttachmentsHtml += getAttachmentTemplateEdit(iAttachment, attachment);
         }
     }
