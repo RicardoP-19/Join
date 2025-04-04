@@ -20,11 +20,11 @@
     <script defer src="/templates/contacts_templates.js"></script>
     <script defer src="/script.js"></script>
     <script src="/script/header.js"></script>
-    <script src="/script/filepicker.js"></script>
+    <script defer src="/script/filepicker.js"></script>
     <title>Join</title>
   </head>
 
-  <body onload="includeHTML(); loadContacts();  checkButtonPositionAndSetColor();">
+  <body onload="includeHTML(); loadContacts(); checkButtonPositionAndSetColor();">
     <header>
       <div w3-include-html="header.html"></div>
     </header>
@@ -128,7 +128,6 @@
               <img
                 id="profilImage"
                 class="profil-image profil-object"
-                src="`${base64}`"
                 alt="Image"
               />
               <img

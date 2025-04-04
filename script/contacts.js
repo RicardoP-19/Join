@@ -157,7 +157,8 @@ async function addNewContact() {
     const email = document.getElementById('add-email').value.trim();
     const phone = document.getElementById('add-phone').value.trim();
     if (!validateContactInput(name, email, phone)) return false;
-    const contact = { name, email, phone, avatar: generateAvatar(name) };
+    let avatar = generateAvatar(name, allImages.length > 0 ? allImages[0].base64 : null);
+    const contact = { name, email, phone, avatar };
     const response = await saveContact(contact);
     if (response) {
         clearInputFields();
