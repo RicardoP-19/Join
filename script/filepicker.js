@@ -285,7 +285,7 @@ function deleteImage(index) {
     const trash = document.getElementById('delete');
     allImages.splice(index, 1);
     createImage();
-    if (allAttachment.length == 0) {
+    if (allImages.length == 0) {
         trash.classList.add('d-none');
     }
 }
