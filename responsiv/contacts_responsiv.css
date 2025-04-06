@@ -52,6 +52,10 @@
 }
 
 @media (max-width: 1000px) {
+    .email {
+        width: 100%;
+    }
+
     .contact-detail-container {
         display: none;
     }
@@ -151,6 +155,10 @@
 }
 
 @media (max-width: 730px) {
+    .email {
+        width: 290px;
+    }
+
     button.create-contact {
         padding: 10px;
     }
@@ -255,6 +263,8 @@
 }
 
 @media (max-width: 580px) {
+
+
     .add-contact-container {
         display: none;
         padding: 0;
@@ -280,6 +290,10 @@
 }
 
 @media (max-width: 500px) {
+    .email {
+        width: 180px;
+    }
+
     .contact-group {
         padding-left: 10px;
         padding-right: 10px;
@@ -308,9 +322,7 @@
     .contacts-button {
         margin-bottom: 5px;
     }
-}
 
-@media (max-width: 370px) {
     .name {
         font-size: 16px;
     }
@@ -325,3 +337,19 @@
         font-size: 16px;
     }
 }
+
+/* @media (max-width: 370px) {
+    .name {
+        font-size: 16px;
+    }
+
+    .email {
+        font-size: 10px;
+    }
+
+    .contact-avatar {
+        width: 65px;
+        height: 65px;
+        font-size: 16px;
+    }
+} */
