@@ -140,7 +140,7 @@ function animationSummaryResponsive() {
     const greetingSummary = document.getElementById("greeting-summary");
     const headerSummary = document.getElementById("header-summary");
     const tasksSummary = document.getElementById("ctn-tasks-summary");
-    const isAnimationDone = localStorage.getItem('greetingAnimationDone') === 'true';
+    const isAnimationDone = sessionStorage.getItem('greetingAnimationDone') === 'true';
     greetingUser();
     greetingUserName();
     if (window.innerWidth <= 1280) {
@@ -185,7 +185,7 @@ function handleAnimationStart(greetingSummary, headerSummary, tasksSummary) {
         greetingSummary.style.display = "none";
         headerSummary.style.display = "flex";
         tasksSummary.style.display = "flex";
-        localStorage.setItem('greetingAnimationDone', 'true');
+        sessionStorage.setItem('greetingAnimationDone', 'true');
     }, 2000);
 }
 
