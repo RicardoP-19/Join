@@ -52,17 +52,23 @@
                 />
                 <img src="/assets/icon/person.svg" alt="Text" />
               </div>
-              <div class="input-content">
-                <input
-                  onkeyup="validateForm()"
-                  class="input"
-                  placeholder="Email"
-                  type="email"
-                  id="email"
-                  required
-                />
-                <img src="/assets/icon/mail.svg" alt="Email" />
-              </div>
+              <div>
+                <div class="input-content">
+                  <input
+                    onkeyup="validateForm()"
+                    onblur="checkEmailFormat()"
+                    class="input"
+                    placeholder="Email"
+                    type="email"
+                    id="email"
+                    required
+                  />
+                  <img src="/assets/icon/mail.svg" alt="Email" />
+                </div>
+                <div id="errorMail" class="msg-box msg-span d-none">
+                  <span>Please enter a valid email address</span>
+                </div>
+              </div>  
               <div id="inputPassword" class="input-content">
                 <input
                   onkeyup="validateForm(); validateInputValue(); passwortInput()"

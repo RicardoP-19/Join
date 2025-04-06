@@ -1,4 +1,21 @@
 /**
+ * Checks the format of the email input when the user leaves the input field.
+ * If the email is invalid and not empty, an error message is displayed.
+ * If the email is valid or empty, the error message is hidden.
+*/
+function checkEmailFormat() {
+  let email = document.getElementById('email').value;
+  let emailErrorBox = document.getElementById('errorMail');
+  const isValid = isValidEmail(email);
+  if (!isValidEmail(email) && email !== '') {
+    emailErrorBox.classList.remove('d-none');
+  } else {
+    emailErrorBox.classList.add('d-none');
+  }
+  return isValid;
+}
+
+/**
  * Validates the form by checking if all fields are filled out and if the checkbox is checked.
  * Activates or deactivates the button based on the validation.
 */
@@ -8,11 +25,22 @@ function validateForm() {
   let password = document.getElementById('password').value;
   let confirmPassword = document.getElementById('confirmPassword').value;
   let checkbox = document.getElementById('checkbox').checked;
-  if (name && email && password && confirmPassword && checkbox) {
+  const isEmailValid = checkEmailFormat(); 
+  if (name && email && isEmailValid  && password && confirmPassword && checkbox) {
     buttonAktiv();
   } else {
     buttonNotAktiv();
   };
+}
+
+/**
+ * Checks if the email has a valid format.
+ * @param {string} email - The email address to validate.
+ * @returns {boolean} - True if email format is valid, otherwise false.
+*/
+function isValidEmail(email) {
+  let emailPattern = /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailPattern.test(email);
 }
 
 /**
