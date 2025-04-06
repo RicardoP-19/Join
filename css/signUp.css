@@ -148,6 +148,7 @@ form {
   font-size: 14px;
   font-weight: 700;
   color: var(--textwhite);
+  cursor: pointer;
 }
 
 .sign-up-btn:hover {
