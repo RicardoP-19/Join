@@ -1,7 +1,11 @@
 @media (max-width: 1150px) {
-
     body {
         overflow: hidden;
+    }
+
+    main {
+        overflow-y: auto;
+        height: 88%;
     }
 
     h1 {
@@ -13,7 +17,6 @@
         flex-direction: column;
         overflow-y: scroll;
         overflow-x: hidden;
-        max-height: 60vh;
         padding-right: 16px;
     }
 
@@ -40,9 +43,9 @@
 }
 
 @media (max-width: 1000px) {
-
     main {
         margin-left: 0;
+        height: 84%;
     }
 
     .addtask-footer {
@@ -51,7 +54,7 @@
     }
 
     form {
-        max-height: 50vh;
+        overflow-y: auto;
     }
 
     .break-between {
@@ -61,7 +64,6 @@
 }
 
 @media (max-width: 660px) {
-
     .addtask-footer {
         flex-direction: column;
     }
@@ -69,7 +71,6 @@
 
 
 @media (max-width: 500px) {
-
     .subtask-buttons {
         display: inline !important;
     }
@@ -107,16 +108,15 @@
         font-size: 14px;
     }
 
-    section {
-        height: calc(100vH - 142px);
-    }
-
     main {
         padding: 12px;
     }
 }
 
 @media (max-width: 400px) {
+    main {
+        height: 80%;
+    }
     .prio-group {
         flex-direction: column;
     }

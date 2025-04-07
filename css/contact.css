@@ -117,7 +117,8 @@ form {
 
 .email {
     width: 290px;
-    overflow-x: auto;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
     color: var(--lightblue);
     font-size: 14px;
 }
@@ -319,6 +320,9 @@ input {
 }
 
 .contact-email {
+    display: inline-block;
+    width: 300px;
+    overflow-x: auto;
     color: var(--lightblue);
 }
 
