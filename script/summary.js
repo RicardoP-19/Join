@@ -91,17 +91,17 @@ function greetingUser() {
  * @returns {void}
 */
 function greetingUserName() {
-    let loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (loggedInUser) {
-        let loggedInUserMail = loggedInUser.email;
-        let contactDetails = contacts.find(c => c.email === loggedInUserMail);
-        if (contactDetails) {
-            document.getElementById('user-greeting').innerHTML = contactDetails.name;
-        }
+    let loggedInEmail = localStorage.getItem('currentUser');
+    if (loggedInEmail) {
+      let contactDetails = contacts.find(c => c.email === loggedInEmail);
+      if (contactDetails) {
+        document.getElementById('user-greeting').innerHTML = contactDetails.name;
+      }
     } else {
-        document.getElementById('user-greeting').innerHTML = "Guest";
+      document.getElementById('user-greeting').innerHTML = "Guest";
     }
 }
+  
 
 /**
  * Displays the upcoming deadline for urgent tasks or a message if there are none.

@@ -7,12 +7,12 @@ let initial = [];
  * @returns {Promise<void>} 
 */
 async function initializeUserFeatures() {
-  let loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
-  if (loggedInUser && loggedInUser.email) {
-      await onloadFuncHeader(loggedInUser);
+  let loggedInEmail = localStorage.getItem('currentUser');
+  if (loggedInEmail) {
+      await onloadFuncHeader(loggedInEmail);
   } else {
       await generateUserLetter();
-  };
+  }
 }
 
 /**
@@ -23,23 +23,22 @@ async function initializeUserFeatures() {
  * @param {Object} loggedInUser - The currently logged-in user object.
  * @returns {Promise<void>}
 */
-async function onloadFuncHeader(loggedInUser) {
+async function onloadFuncHeader(loggedInEmail) {
   try {
-    let contactsData = await loadFromDatabase('/contacts');
-    contacts = Object.entries(contactsData).map(([id, contact]) => ({ id, ...contact }));
-    let contactDetails = contacts.find(c => c.email === loggedInUser.email);
-    const avatar = contactDetails.avatar;
-    const hasImage = avatar?.image?.["0"]?.base64;
-    if (hasImage) {
-      displayUserImage(avatar.image["0"].base64);
-    } else {
-      const initials = avatar?.initials?.toUpperCase() || "G";
-      await generateUserLetter(initials);
+    let contactDetails = Object.values(await loadFromDatabase('/contacts')).find(c => c.email === loggedInEmail);
+    if (contactDetails) {
+      const avatar = contactDetails.avatar?.image?.["0"]?.base64;
+      if (avatar) {
+        displayUserImage(avatar);
+      } else {
+        await generateUserLetter(contactDetails.name?.split(' ').map(w => w.charAt(0).toUpperCase()).join('') || "G");
+      }
     }
   } catch (error) {
     console.error('Error in onloadFuncHeader:', error);
   }
 }
+
 
 /**
  * Displays the user's profile image in the header and hides the initials.
@@ -126,5 +125,6 @@ function closeMobilMenu() {
  * Logs out the user by redirecting to the login page.
 */
 function logOut() {
+  localStorage.removeItem('currentUser');
   window.location.replace('/index.html');
 }
