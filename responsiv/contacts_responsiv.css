@@ -52,10 +52,6 @@
 }
 
 @media (max-width: 1000px) {
-    .email {
-        width: 100%;
-    }
-
     .contact-detail-container {
         display: none;
     }
@@ -89,6 +85,9 @@
         margin-left: 0;
     }
 
+    .contact-email {
+        width: 200px;
+    }
 }
 
 @media (min-width: 1000px) {
@@ -156,7 +155,7 @@
 
 @media (max-width: 730px) {
     .email {
-        width: 290px;
+        width: 200px;
     }
 
     button.create-contact {
@@ -263,8 +262,6 @@
 }
 
 @media (max-width: 580px) {
-
-
     .add-contact-container {
         display: none;
         padding: 0;
@@ -306,6 +303,11 @@
 }
 
 @media (max-width: 375px) {
+    .email {
+        width: 130px;
+        font-size: 10px;
+    }
+
     .overlay-content {
         height: auto;
     }
@@ -327,29 +329,9 @@
         font-size: 16px;
     }
 
-    .email {
-        font-size: 10px;
-    }
-
     .contact-avatar {
         width: 65px;
         height: 65px;
         font-size: 16px;
     }
 }
-
-/* @media (max-width: 370px) {
-    .name {
-        font-size: 16px;
-    }
-
-    .email {
-        font-size: 10px;
-    }
-
-    .contact-avatar {
-        width: 65px;
-        height: 65px;
-        font-size: 16px;
-    }
-} */

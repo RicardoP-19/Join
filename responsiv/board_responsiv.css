@@ -1,5 +1,4 @@
 @media (max-width: 1200px) {
-
     main {
         padding: 0px 32px;
     }
@@ -62,7 +61,6 @@
 }
 
 @media (max-width: 1000px) {
-
     main {
         margin-left: 0;
         padding: 0 16px 80px 16px;
@@ -70,7 +68,6 @@
 }
 
 @media (max-width: 760px) {
-
     .btn-dark-responsive.d-none {
         display: block !important;
     }
@@ -113,7 +110,6 @@
 }
 
 @media (max-width: 500px) {
-
     .subtask-icons img,
     .horizontal-line-hover {
         height: 11px;
@@ -215,5 +211,4 @@
         width: 95%;
         height: 80vh;
     }
-
 }

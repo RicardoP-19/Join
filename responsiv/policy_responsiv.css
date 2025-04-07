@@ -1,17 +1,26 @@
 @media (max-width: 1000px) {
-
     main {
+        height: 70vh;
+        overflow-y: scroll;
         margin-left: 0px;
     }
 }
 
-@media (max-width: 470px) {
-
+@media (max-width: 540px) {
     .headline {
         font-size: 45px !important;
     }
+}
 
+@media (max-width: 470px) {
     main {
+        height: 75vh;
         padding: 20px;
+    }
+}
+
+@media (max-width: 470px) {
+    .headline {
+    font-size: 37px !important;
     }
 }

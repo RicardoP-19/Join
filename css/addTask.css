@@ -98,16 +98,16 @@ span {
 
 .assigned-list {
     max-height: 200px;
-    height: auto;
     overflow-y: auto;
     background-color: var(--textwhite);
-    border-radius: 0px 0px 8px 8px;
+    border-radius: 8px;
+    border: 0.1px solid rgba(211, 211, 211, 0.374);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
     z-index: 10;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .assigned-content {
@@ -115,7 +115,6 @@ span {
     justify-content: space-between;
     align-items: center;
     padding: 2px 12px;
-    margin: 0.7px;
 }
 
 .assigned-content:hover {
