@@ -80,6 +80,7 @@ function isValidSubtask(subtaskInput) {
 */
 function appendSubtaskToList(subtaskId, subtaskText) {
     let subtaskList = document.getElementById('subtask-list');
+    subtaskList.classList.remove('d-none');
     subtaskList.innerHTML += generateSubtaskHTML(subtaskId, subtaskText);
 }
 
@@ -147,9 +148,13 @@ function deleteSubtask(index) {
 function renderSubtasks() {
     let subtaskList = document.getElementById('subtask-list');
     subtaskList.innerHTML = '';
-    subtasks.forEach((subtask, index) => {
-        subtaskList.innerHTML += generateSubtaskItemHTML(subtask.title, index);
-    });
+    if (subtasks.length == 0) {
+        subtaskList.classList.add('d-none')
+    } else {
+        subtasks.forEach((subtask, index) => {
+            subtaskList.innerHTML += generateSubtaskItemHTML(subtask.title, index);
+        });
+    }
 }
 
 /**

@@ -364,9 +364,6 @@ textarea {
 }
 
 #subtask-list {
-    position: absolute;
-    top: 100%;
-    left: 0;
     width: 100%;
     background-color: var(--lightgrey);
     height: 60px;
