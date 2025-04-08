@@ -207,7 +207,7 @@ function getAttachmentTemplateEdit(index, attachment) {
         <div class="image-box" onclick="openImageViewer(${index})">
             <img class="upload-image" src="${attachment.base64}" alt="${attachment.filename}">
             <div class="delete-container">
-                <div class="delete icon" onclick="deleteImageOverlay(${index})"></div>
+                <div class="delete icon" onclick="deleteImageOverlay(${index}); event.stopPropagation();"></div>
             </div>
             <span class="image-filename">${attachment.filename}</span>
         </div>
