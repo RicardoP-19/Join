@@ -198,6 +198,50 @@ main::-webkit-scrollbar {
     font-size: 16px;
 }
 
+.delete-board-task {
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.500); 
+}
+
+.delete-content {
+    flex-direction: column;
+    width: 400px;
+    height: 200px;
+    border-radius: 20px;
+    background-color: var(--textwhite);
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.441));
+}
+
+.delete-content p {
+    font-size: 20px;
+}
+
+.confirm-buttons button{
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.deleteTask {
+    background-color: var(--darkblue);
+    color: white;
+    border: none;
+    padding: 9px 14px;
+}
+
+.cancel {
+    background-color: var(--lightgrey);
+    border: 2px solid var(--darkblue);
+    color: var(--darkblue);
+    padding: 7px 14px;
+}
+
 .no-hover {
     cursor: default !important;
 }

@@ -302,7 +302,7 @@ function getTaskOverlayTemplate(task) {
                 </div>
             </div>
             <div class="ctn-delete-edit d-flex-y">
-                <img id="btn-delete-task" class="btn-delete-task" onclick="deleteTask('${task.id}')" src="/assets/img/dustbinDarkText.svg" alt="Image Delete">
+                <img id="btn-delete-task" class="btn-delete-task" onclick="showDeleteModal('${task.id}')" src="/assets/img/dustbinDarkText.svg" alt="Image Delete">
                 <span class="vertikalLine"></span>
                 <img onclick="showEditTaskOverlay('${task.id}')" class="btn-edit-task" src="/assets/img/editDarkText.svg" alt="Image Close">
             </div>

@@ -185,6 +185,15 @@
           id="overlay-board-detail"
           class="overlay-board d-none d-flex"
         ></div>
+        <div class="delete-board-task d-flex d-none" id="deleteTask">
+          <div class="delete-content d-flex">
+            <p>Do you really want to delete this task?</p>
+            <div class="confirm-buttons">
+              <button class="deleteTask" onclick="deleteTask()">Yes, delete</button>
+              <button class="cancel" onclick="closeDeleteModal()">Cancel</button>
+            </div>
+          </div>
+        </div>
         <div id="overlay-board-edit" class="overlay-board d-flex d-none"></div>
         <div id="overlay-board-add-task" class="overlay-board d-flex d-none">
           <iframe

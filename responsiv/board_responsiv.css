@@ -212,3 +212,17 @@
         height: 80vh;
     }
 }
+
+@media (max-width: 420px) {
+    .delete-content {
+        width: 300px;
+    }
+
+    .delete-content p {
+        font-size: 14px;
+    }
+
+    .confirm-buttons button {
+        font-size: 15px;
+    }
+}
