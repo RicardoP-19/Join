@@ -210,13 +210,16 @@ function renderEditContactImage() {
 */
 function checkAttachments() {
     const attachmentContainer = document.getElementById('attachmentOverlay');
-    if (allImages.length > 0) {
+    if (allAttachment.length > 0) {
+        attachmentContainer.classList.remove('d-none');
+    }else if (allImages.length > 0 && allAttachment.length == 0) {
         attachmentContainer.classList.add('d-none');
     } else if (allAttachment.length == 0) {
         attachmentContainer.classList.remove('d-none');
         attachmentContainer.innerHTML = `<p>No images</p>`;
     } 
 }
+
 
 /**
  * Renders the gallery of uploaded images, including delete buttons.

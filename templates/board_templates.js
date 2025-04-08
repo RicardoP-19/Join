@@ -379,7 +379,7 @@ function getEditOverlayTemplate(task) {
                             </div>
                         </div>
                         <div id="overlayWrapper" class="gallery-overlay-wrapper">
-                            <div id="attachmentOverlay" class="attachment-image">${renderAttachmentsEdit(task.id)}</div>
+                            <div id="attachmentOverlay" class="attachment-image d-none">${renderAttachmentsEdit(task.id)}</div>
                             <div id="galleryOverlay" class="gallery-overlay-content"></div>
                         </div>
                     </div>
