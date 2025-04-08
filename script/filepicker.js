@@ -116,42 +116,54 @@ function isValidImage(file) {
 
 /**
  * Compresses an image file to a specified size and quality.
+ * Reads the image file, resizes it if needed, and returns a base64 string.
  * @param {File} file - The image file to compress.
- * @param {number} maxWidth - The maximum width of the compressed image.
- * @param {number} maxHeight - The maximum height of the compressed image.
- * @param {number} quality - The quality of the compressed image (from 0 to 1).
- * @returns {Promise<string>} - A Promise resolving to the compressed image in base64 format.
+ * @param {number} [maxWidth=800] - Maximum allowed width.
+ * @param {number} [maxHeight=800] - Maximum allowed height.
+ * @param {number} [quality=0.8] - Compression quality (0 to 1).
+ * @returns {Promise<string>} - A Promise resolving to the compressed base64 string.
 */
 async function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.8) {
+    const base64 = await readFileAsDataURL(file);
+    return await resizeAndCompressImage(base64, maxWidth, maxHeight, quality);
+}
+
+/**
+ * Reads a File object and returns its content as a base64 data URL.
+ * @param {File} file - The file to read.
+ * @returns {Promise<string>} - A Promise resolving to the base64 data URL.
+*/
+function readFileAsDataURL(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
-        reader.onload = (event) => {
-            const img = new Image();
-            img.onload = () => {
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                let width = img.width;
-                let height = img.height;
-                if (width > maxWidth || height > maxHeight) {
-                    if (width > height) {
-                        height = (height * maxWidth) / width;
-                        width = maxWidth;
-                    } else {
-                        width = (width * maxHeight) / height;
-                        height = maxHeight;
-                    }
-                }
-                canvas.width = width;
-                canvas.height = height;
-                ctx.drawImage(img, 0, 0, width, height);
-                const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
-                resolve(compressedBase64);
-            };
-            img.onerror = () => reject('Fehler beim Laden des Bildes.');
-            img.src = event.target.result;
-        };
+        reader.onload = () => resolve(reader.result);
         reader.onerror = () => reject('Fehler beim Lesen der Datei.');
         reader.readAsDataURL(file);
+    });
+}
+
+/**
+ * Resizes and compresses a base64 image string to the given dimensions and quality.
+ * @param {string} base64 - Base64-encoded image string.
+ * @param {number} maxWidth - Maximum width of the image.
+ * @param {number} maxHeight - Maximum height of the image.
+ * @param {number} quality - JPEG compression quality (0 to 1).
+ * @returns {Promise<string>} - A Promise resolving to the resized and compressed base64 string.
+*/
+function resizeAndCompressImage(base64, maxWidth, maxHeight, quality) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => {
+            let w = img.width, h = img.height;
+            const ratio = Math.min(maxWidth / w, maxHeight / h, 1);
+            w *= ratio; h *= ratio;
+            const canvas = document.createElement('canvas');
+            canvas.width = w; canvas.height = h;
+            canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+            resolve(canvas.toDataURL('image/jpeg', quality));
+        };
+        img.onerror = () => reject('Fehler beim Laden des Bildes.');
+        img.src = base64;
     });
 }
 
