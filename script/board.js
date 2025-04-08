@@ -2,6 +2,7 @@ let tasks;
 let contacts;
 let currentDraggedElement;
 let filteredSearchTasks = [];
+let taskToDelete = null;
 
 /**
  * Initializes the task board on load by fetching tasks and contacts from the database.
@@ -221,16 +222,35 @@ async function updateSubtaskStatus(indexSubTask, taskId) {
 }
 
 /**
- * Deletes a task by its ID.
- * @async
- * @param {string} taskId - The ID of the task to delete.
- * @function deleteTask
+ * Displays the delete confirmation modal for a specific task.
+ * Stores the task ID temporarily for deletion.
+ * @param {string} taskId - The ID of the task to be deleted.
 */
-async function deleteTask(taskId) {
-    await deleteFromDatabase(`tasks/${taskId}`);
-    closeDetailTaskOverlay()
-    onloadFuncBoard();
+function showDeleteModal(taskId) {
+    taskToDelete = taskId;
+    document.getElementById('deleteTask').classList.remove('d-none');
 }
+
+/**
+ * Deletes the selected task after confirmation.
+ * Removes the task from the database and updates the UI.
+*/
+async function deleteTask() {
+    if (!taskToDelete) return;
+    await deleteFromDatabase(`tasks/${taskToDelete}`);
+    closeDetailTaskOverlay();
+    onloadFuncBoard();
+    closeDeleteModal();
+}
+
+/**
+ * Closes the delete confirmation modal and resets the task ID.
+*/
+function closeDeleteModal() {
+    document.getElementById('deleteTask').classList.add('d-none');
+    taskToDelete = null;
+}
+
 
 /**
  * Filters tasks based on the input search term.
