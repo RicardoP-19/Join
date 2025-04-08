@@ -226,15 +226,7 @@ function renderGallery() {
     trash.classList.remove('d-none');
     gallery.innerHTML = '';
     allImages.forEach((image, index) => {
-        gallery.innerHTML += `
-            <div class="image-box" onmouseenter="showDeleteButton(${index})" onmouseleave="hideDeleteButton(${index})">
-                <img class="upload-image" src="${image.base64}" alt="${image.filename}">
-                <div class="delete-container" id="delete-container${index}">
-                    <div class="delete-icon" onclick="deleteImage(${index})"></div>
-                </div>
-                <span class="image-filename">${image.filename}</span>
-            </div>
-        `;
+        gallery.innerHTML += generateImageGallery(image, index);
     });
 }
 
@@ -245,15 +237,7 @@ function renderGalleryOverlay() {
     const galleryOverlay = document.getElementById('galleryOverlay');
     galleryOverlay.innerHTML = '';
     allImages.forEach((image, index) => {
-        galleryOverlay.innerHTML += `
-            <div class="image-box" onmouseenter="showDeleteButton(${index})" onmouseleave="hideDeleteButton(${index})">
-                <img class="upload-image" src="${image.base64}" alt="${image.filename}">
-                <div class="delete-container" id="delete-container${index}">
-                    <div class="delete-icon" onclick="deleteImage(${index})"></div>
-                </div>
-                <span class="image-filename">${image.filename}</span>
-            </div>
-        `;
+        galleryOverlay.innerHTML += generateImageGallery(image, index);
     });
 }
 
