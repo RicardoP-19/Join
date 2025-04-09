@@ -1,6 +1,6 @@
 @media (max-width: 1000px) {
     main {
-        height: 70vh;
+        height: 75vh;
         overflow-y: scroll;
         margin-left: 0px;
     }

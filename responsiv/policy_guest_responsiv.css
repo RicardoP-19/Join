@@ -1,0 +1,24 @@
+@media (max-width: 1000px) {
+  main {
+      overflow-y: scroll;
+      margin-left: 0px;
+  }
+}
+
+@media (max-width: 540px) {
+  .headline {
+      font-size: 45px !important;
+  }
+}
+
+@media (max-width: 470px) {
+  main {
+      padding: 20px;
+  }
+}
+
+@media (max-width: 470px) {
+  .headline {
+  font-size: 37px !important;
+  }
+}
