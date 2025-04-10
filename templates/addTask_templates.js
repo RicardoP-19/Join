@@ -102,9 +102,18 @@ function generateSubtaskItemHTML(title, index) {
     `;
 }
 
+/**
+ * Generates an HTML template for displaying an image in a gallery with options to delete.
+ * The gallery item will include the image, filename, and a delete button.
+ * @param {Object} image - The image object containing the image data.
+ * @param {string} image.base64 - The base64 encoded string of the image.
+ * @param {string} image.filename - The filename of the image.
+ * @param {number} index - The index of the image in the gallery.
+ * @returns {string} The HTML template for the image gallery item.
+*/
 function generateImageGallery(image, index) {
     return `
-        <div class="image-box" onmouseenter="showDeleteButton(${index})" onmouseleave="hideDeleteButton(${index})">
+        <div class="image-box" onclick="openImageViewer(${index}, 'addTask')" onmouseenter="showDeleteButton(${index})" onmouseleave="hideDeleteButton(${index})">
             <img class="upload-image" src="${image.base64}" alt="${image.filename}">
             <div class="delete-container" id="delete-container${index}">
                 <div class="delete-icon" onclick="deleteImage(${index})"></div>

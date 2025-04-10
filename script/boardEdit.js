@@ -387,7 +387,7 @@ function renderAttachmentsEdit(taskId) {
     } else {
         for (let iAttachment = 0; iAttachment < attachments.length; iAttachment++) {
             const attachment = attachments[iAttachment];
-            allAttachmentsHtml += getAttachmentTemplateEdit(iAttachment, attachment);
+            allAttachmentsHtml += getAttachmentTemplateEdit(attachment, iAttachment);
         }
     }
     return allAttachmentsHtml;
@@ -403,7 +403,7 @@ function deleteImageOverlay(index) {
     let galleryContainer = document.getElementById('overlayWrapper');
     let newHtml = '';
     for (let i = 0; i < allAttachment.length; i++) {
-        newHtml += getAttachmentTemplateEdit(i, allAttachment[i]);
+        newHtml += getAttachmentTemplateEdit(allAttachment[i], i);
     }
     galleryContainer.innerHTML = newHtml;
 }

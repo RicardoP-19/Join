@@ -88,7 +88,7 @@ function getAssignedToTemplateOverlay(initial, color, image = null) {
     } else {
       return `<span class="assigned-to d-flex" style="background-color:${color};">${initial}</span>`;
     }
-  }
+}
 
 /**
  * Generates a template for a subtask in the overlay.
@@ -133,7 +133,6 @@ function getAllSubtasksTemplate(iSubtasks, title) {
         </ul>
     `;
 }
-
 
 /**
  * Generates the HTML template for displaying a message when there are no subtasks.
@@ -189,7 +188,7 @@ function getAttachmentTemplateOverlay(index, attachment) {
         <div class="image-box">
             <img class="upload-image" src="${attachment.base64}" alt="${attachment.filename}">
             <div class="delete-container">
-                <div class="viewer icon" onclick="openImageViewer(${index})"></div>
+                <div class="viewer icon" onclick="openImageViewer(${index}, 'board')"></div>
             </div>
             <span class="image-filename">${attachment.filename}</span>
         </div>
@@ -202,9 +201,9 @@ function getAttachmentTemplateOverlay(index, attachment) {
  * @param {Object} attachment - The attachment object containing the base64 data and filename.
  * @returns {string} The HTML string for the attachment template in the edit mode.
 */
-function getAttachmentTemplateEdit(index, attachment) {
+function getAttachmentTemplateEdit(attachment, index) {
     return `
-        <div class="image-box" onclick="openImageViewer(${index})">
+        <div class="image-box" onclick="openImageViewer(${index}, 'edit')">
             <img class="upload-image" src="${attachment.base64}" alt="${attachment.filename}">
             <div class="delete-container">
                 <div class="delete icon" onclick="deleteImageOverlay(${index}); event.stopPropagation();"></div>
