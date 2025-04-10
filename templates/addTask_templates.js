@@ -116,7 +116,7 @@ function generateImageGallery(image, index) {
         <div class="image-box" onclick="openImageViewer(${index}, 'addTask')" onmouseenter="showDeleteButton(${index})" onmouseleave="hideDeleteButton(${index})">
             <img class="upload-image" src="${image.base64}" alt="${image.filename}">
             <div class="delete-container" id="delete-container${index}">
-                <div class="delete-icon" onclick="deleteImage(${index})"></div>
+                <div class="delete-icon" onclick="deleteImage(${index}); event.stopPropagation();"></div>
             </div>
             <span class="image-filename">${image.filename}</span>
         </div>
