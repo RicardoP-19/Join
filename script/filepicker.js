@@ -92,7 +92,11 @@ async function filesArrayIterate(files) {
         return { filename: file.name, base64: compressedBase64 };
     });
     const newImages = (await Promise.all(imagePromises)).filter(Boolean);
-    allImages.push(...newImages);
+    if (!addTaskOpen) {
+        allAttachment.push(...newImages)
+    } else {
+        allImages.push(...newImages);
+    }
     createImage();
 }
 
@@ -179,7 +183,7 @@ function createImage() {
         renderGallery();
     } else if (!addTaskOpen) {
         renderGalleryOverlay();
-        checkAttachments();
+        // checkAttachments();
     }
 }
 
@@ -237,10 +241,10 @@ function renderGallery() {
  * Renders the gallery in an overlay format for displaying images in a fullscreen or popup view.
 */
 function renderGalleryOverlay() {
-    const galleryOverlay = document.getElementById('galleryOverlay');
+    const galleryOverlay = document.getElementById('overlayWrapper');
     galleryOverlay.innerHTML = '';
-    allImages.forEach((image, index) => {
-        galleryOverlay.innerHTML += generateImageGallery(image, index);
+    allAttachment.forEach((image, index) => {
+        galleryOverlay.innerHTML += getAttachmentTemplateEdit(image, index);
     });
 }
 
@@ -307,37 +311,52 @@ function clearGallery() {
  * Opens the image viewer to display an image at a specific index.
  * @param {number} index - The index of the image to view in the viewer.
 */
-function openImageViewer(index) {
+function openImageViewer(index, context) {
+    let combinedImages = [];
     const gallery = document.getElementById('viewerGallery');
     gallery.innerHTML = '';
-    showClickImage(index, gallery);
-    showAllImage(index, gallery);
+    if (context === 'addTask') {
+        combinedImages = [...allAttachment, ...allImages]
+    } else if (context === 'board') {
+        combinedImages = allAttachment;
+    } else if (context === 'edit') {
+        combinedImages = allAttachment;
+    }
+    showClickImage(index, gallery, combinedImages);
+    showAllImage(index, gallery, combinedImages);
     window.imageViewer = new Viewer(gallery);
     window.imageViewer.show();
 }
 
 /**
- * Displays the selected image in the image viewer.
- * @param {number} index - The index of the image to show in the viewer.
- * @param {HTMLElement} gallery - The gallery container to display the image.
+ * Displays the selected image in the gallery when clicked.
+ * The image at the specified index is added to the gallery element for viewing.
+ * @param {number} index - The index of the image to display in the gallery.
+ * @param {HTMLElement} gallery - The container element where the selected image will be added.
+ * @param {Array} images - An array of image objects containing base64 data and filenames.
+ * @param {string} images[].base64 - The base64 encoded image data.
+ * @param {string} images[].filename - The filename of the image.
 */
-function showClickImage(index, gallery) {
-    allAttachment.forEach((image, i) => {
-        if (i === index) {
-            gallery.innerHTML += `
-                <img src="${image.base64}" alt="${image.filename}" class="viewer-image">
-        `;
-        }
-    });
+function showClickImage(index, gallery, images) {
+    const image = images[index];
+    gallery.innerHTML += `
+        <img src="${image.base64}" alt="${image.filename}" class="viewer-image">
+    `;
 }
 
+
 /**
- * Displays all images in the gallery, except the currently selected image, in the image viewer.
+ * Displays all images in the gallery except for the one at the specified index.
+ * The images are added to the gallery element, with the "display:none" style applied to all but the selected image.
+ * This function is used to populate the gallery for viewing multiple images while excluding the current one.
  * @param {number} index - The index of the image to exclude from the gallery.
- * @param {HTMLElement} gallery - The gallery container to display the images.
+ * @param {HTMLElement} gallery - The container element where the images will be added.
+ * @param {Array} images - An array of image objects containing base64 data and filenames.
+ * @param {string} images[].base64 - The base64 encoded image data.
+ * @param {string} images[].filename - The filename of the image.
 */
-function showAllImage(index, gallery) {
-    allAttachment.forEach((image, i) => {
+function showAllImage(index, gallery, images) {
+    images.forEach((image, i) => {
         if (i !== index) {
             gallery.innerHTML += `
                 <img src="${image.base64}" alt="${image.filename}" class="viewer-image" style="display:none;">

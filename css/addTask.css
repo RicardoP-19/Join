@@ -297,6 +297,7 @@ textarea {
     border: 1px solid var(--middlegrey);
     border-radius: 10px;
     margin-bottom: 12px;
+    cursor: pointer;
 }
 
 .upload-image {
