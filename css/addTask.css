@@ -375,7 +375,6 @@ textarea {
 li {
     overflow-wrap: break-word;
     white-space: normal;
-    padding: 4px;
     border-radius: 4px;
     width: 100%;
 }

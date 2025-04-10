@@ -183,7 +183,6 @@ function createImage() {
         renderGallery();
     } else if (!addTaskOpen) {
         renderGalleryOverlay();
-        // checkAttachments();
     }
 }
 
@@ -223,7 +222,6 @@ function checkAttachments() {
         attachmentContainer.innerHTML = `<p>No images</p>`;
     } 
 }
-
 
 /**
  * Renders the gallery of uploaded images, including delete buttons.
@@ -312,18 +310,18 @@ function clearGallery() {
  * @param {number} index - The index of the image to view in the viewer.
 */
 function openImageViewer(index, context) {
-    let combinedImages = [];
+    let images = [];
     const gallery = document.getElementById('viewerGallery');
     gallery.innerHTML = '';
     if (context === 'addTask') {
-        combinedImages = [...allAttachment, ...allImages]
+        images = allImages;
     } else if (context === 'board') {
-        combinedImages = allAttachment;
+        images = allAttachment;
     } else if (context === 'edit') {
-        combinedImages = allAttachment;
+        images = allAttachment;
     }
-    showClickImage(index, gallery, combinedImages);
-    showAllImage(index, gallery, combinedImages);
+    showClickImage(index, gallery, images);
+    showAllImage(index, gallery, images);
     window.imageViewer = new Viewer(gallery);
     window.imageViewer.show();
 }

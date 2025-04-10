@@ -1,8 +1,4 @@
 @media (max-width: 1000px) {
-    * {
-        font-size: 14px;
-    }
-
     body {
         overflow: hidden !important;
     }

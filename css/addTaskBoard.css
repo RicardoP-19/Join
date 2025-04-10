@@ -1,60 +1,64 @@
-* {
-    box-sizing: border-box;
-}
-
-html,
-body {
-    background-color: white !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    height: 100% !important;
-    width: 100% !important;
-}
-
-ul {
-    background-color: white !important;
-    max-height: 100px !important;
-    height: auto;
-    overflow-y: auto;
-    width: 100% !important;
-}
-
-main {
-    height: 100%;
-    margin-left: 0 !important;
-    display: flex;
-    justify-content: center !important;
-    align-items: center !important;
-    padding: 0 !important;
-    width: 100% !important;
-}
-
-body {
-    overflow: hidden !important;
-}
-
 .task-form-section {
-    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-color: gray;
+}
+
+.task-container {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    flex-direction: column;
+    width: 80%;
     height: 100%;
+    padding: 12px;
+    background-color: white;
 }
 
 h1 {
     margin: 0px 0 16px 0;
 }
 
-.task-container {
-    width: 100% !important;
-    height: 100%;
-}
-
-form {
-    gap: 0;
-}
-
 .ctn-board-add-task-overlay {
     justify-content: space-between;
     align-items: flex-start;
+}
+
+.form-board-addTask {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: row !important;
+}
+
+.form-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 44%;
+}
+
+.break-between {
+    width: 1px;
+    background-color: var(--middlegrey);
+    margin: 0 0;
+}
+
+.form-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 44%;   
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 .btn-close-add-task {
@@ -72,10 +76,6 @@ form {
 .btn-close-add-task:hover {
     background-color: var(--lightgrey);
     cursor: pointer;
-}
-
-li {
-    width: 100% !important;
 }
 
 @keyframes slide-in {
