@@ -5,17 +5,17 @@
 */
 function menuColor() {
   const currentURL = window.location.href;
-  if (currentURL === 'http://127.0.0.1:5502/html/summary.html') {
+  if (currentURL === 'http://127.0.0.1:5503/html/summary.html') {
     summaryBackgroundColor();
-  } else if (currentURL === 'http://127.0.0.1:5502/html/addTask.html') {
+  } else if (currentURL === 'http://127.0.0.1:5503/html/addTask.html') {
     addTaskBackgroundColor();
-  } else if (currentURL === 'http://127.0.0.1:5502/html/board.html') {
+  } else if (currentURL === 'http://127.0.0.1:5503/html/board.html') {
     boardBackgroundColor();
-  } else if (currentURL === 'http://127.0.0.1:5502/html/contacts.html') {
+  } else if (currentURL === 'http://127.0.0.1:5503/html/contacts.html') {
     contactsBackgroundColor();
-  } else if (currentURL === 'http://127.0.0.1:5502/html/privacy.html') {
+  } else if (currentURL === 'http://127.0.0.1:5503/html/privacy.html') {
     privacyBackgroundColor();
-  } else if (currentURL === 'http://127.0.0.1:5502/html/legalnotice.html') {
+  } else if (currentURL === 'http://127.0.0.1:5503/html/legalnotice.html') {
     legalNoticeBackgroundColor();
   }
 }
