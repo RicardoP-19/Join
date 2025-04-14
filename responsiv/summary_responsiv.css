@@ -219,7 +219,7 @@
     }
 
     .text-counter {
-        font-size: 13px;
+        font-size: 16px;
     }
 
     a.summary-done.d-flex.ctn-tasks.gap-20.ctn-task-middle {
@@ -231,7 +231,7 @@
     }
 
     .date-upcoming-deadline {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     a.main-summary-middle-left.d-flex.gap-20 {
@@ -239,7 +239,7 @@
     }
 
     .text-deadline {
-        font-size: 13px;
+        font-size: 16px;
     }
 
     a#main-summary-middle-right {

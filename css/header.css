@@ -94,6 +94,7 @@ header {
 
 .show-logout-mobile {
     position: absolute;
+    z-index: 999;
     right: 20px;
     display: flex;
     flex-direction: column;

@@ -4,7 +4,6 @@
     }
 
     main {
-        overflow-y: auto;
         height: 88%;
     }
 
@@ -15,9 +14,17 @@
 
     form {
         flex-direction: column;
-        overflow-y: scroll;
         overflow-x: hidden;
         padding-right: 16px;
+        scrollbar-width: none;
+    }
+
+    form::-webkit-scrollbar {
+        display: none;
+    }
+
+    .task-form-section {
+        overflow-y: scroll;
     }
 
     .task-container {
@@ -44,6 +51,7 @@
 
 @media (max-width: 1000px) {
     main {
+        overflow-y: auto;
         margin-left: 0;
         height: 84%;
     }
@@ -53,8 +61,8 @@
         padding-top: 0;
     }
 
-    form {
-        overflow-y: auto;
+    .task-form-section {
+        height: 75vh;
     }
 
     .break-between {
@@ -105,7 +113,7 @@
     }
 
     .addtask-footer span {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     main {
