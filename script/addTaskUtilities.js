@@ -91,6 +91,9 @@ function openAssignedList(list, users) {
     users.classList.add('d-none');
     listOpen = true;
     document.addEventListener('click', closeListOnClickOutside);
+    setTimeout(() => {
+        list.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100);
 }
 
 /**

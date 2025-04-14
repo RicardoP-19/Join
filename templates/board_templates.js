@@ -185,11 +185,8 @@ function getAssignedToEditTemplateOverlay(initial, color, name, imageUrl, contac
 */
 function getAttachmentTemplateOverlay(index, attachment) {
     return `
-        <div class="image-box">
+        <div  onclick="openImageViewer(${index}, 'board')"  class="image-box">
             <img class="upload-image" src="${attachment.base64}" alt="${attachment.filename}">
-            <div class="delete-container">
-                <div class="viewer icon" onclick="openImageViewer(${index}, 'board')"></div>
-            </div>
             <span class="image-filename">${attachment.filename}</span>
         </div>
     `;

@@ -410,10 +410,6 @@ main::-webkit-scrollbar {
     background-image: url('/assets/icon/trash.png');
 }
 
-.viewer {
-    background-image: url('/assets/icon/cloud_download.png');
-}
-
 .icon:hover {
     background-color: #29ABE2;
     border-radius: 50px;

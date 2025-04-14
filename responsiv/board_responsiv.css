@@ -158,7 +158,7 @@
     }
 
     .overlay-detail-task-board {
-        height: auto;
+        height: 95vh;
         width: 95%;
         gap: 16px;
         font-size: 14px;
@@ -176,11 +176,11 @@
     }
 
     .input-subtask-edit {
-        font-size: 13px;
+        font-size: 14px;
     }
 
     .task-description-detail {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .label-overlay-template {
@@ -207,7 +207,7 @@
     }
 
     .overlay-add-task-board-add {
-        padding: 24px 12px;
+        padding: 12px;
         width: 95%;
         height: 80vh;
     }
@@ -224,5 +224,13 @@
 
     .confirm-buttons button {
         font-size: 15px;
+    }
+
+    .assigned-image {
+        height: 27px;
+    }
+
+    .assigned-to {
+        height: 28px;
     }
 }

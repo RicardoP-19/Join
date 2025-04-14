@@ -92,10 +92,10 @@ async function filesArrayIterate(files) {
         return { filename: file.name, base64: compressedBase64 };
     });
     const newImages = (await Promise.all(imagePromises)).filter(Boolean);
-    if (!addTaskOpen) {
-        allAttachment.push(...newImages)
-    } else {
+    if (contact || edit || addTaskOpen) {
         allImages.push(...newImages);
+    } else {
+        allAttachment.push(...newImages);
     }
     createImage();
 }
