@@ -1,36 +1,80 @@
+let isNameValid = false;
+let isEmailValid = false;
+let isPasswordValid = false;
+
+/**
+ * Validates the name input field.
+ * Shows an error message if the input is empty, hides it otherwise.
+ * @returns {boolean} - True if valid, false if empty.
+*/
+function validateName() {
+  let nameInput = document.getElementById('name');
+  let errorName = document.getElementById('errorName');
+  let value = nameInput.value.trim();
+  if (value === '') {
+    errorName.classList.remove('d-none');
+    isNameValid = false;
+  } else {
+    errorName.classList.add('d-none');
+    isNameValid = true;
+  }
+  validateForm();
+}
+
 /**
  * Checks the format of the email input when the user leaves the input field.
  * If the email is invalid and not empty, an error message is displayed.
  * If the email is valid or empty, the error message is hidden.
 */
 function checkEmailFormat() {
-  let email = document.getElementById('email').value;
+  let email = document.getElementById('email').value.trim();
   let emailErrorBox = document.getElementById('errorMail');
-  const isValid = isValidEmail(email);
-  if (!isValidEmail(email) && email !== '') {
+  if (!isValidEmail(email) || email === '') {
     emailErrorBox.classList.remove('d-none');
+    isEmailValid = false;
   } else {
     emailErrorBox.classList.add('d-none');
+    isEmailValid = true;
   }
-  return isValid;
+  validateForm();
 }
+
+/**
+ * Validates the password input field.
+ * Shows an error if the password is shorter than 5 characters.
+ * @returns {boolean} - True if password is valid, false otherwise.
+*/
+function validatePassword() {
+  let passwordInput = document.getElementById('password');
+  let errorPassword = document.getElementById('errorPassword');
+  let value = passwordInput.value.trim();
+  if (value.length < 5) {
+    errorPassword.classList.remove('d-none');
+    isPasswordValid = false;
+  } else {
+    errorPassword.classList.add('d-none');
+    isPasswordValid = true;
+  }
+  validateForm();
+}
+
 
 /**
  * Validates the form by checking if all fields are filled out and if the checkbox is checked.
  * Activates or deactivates the button based on the validation.
 */
 function validateForm() {
-  let name = document.getElementById('name').value;
-  let email = document.getElementById('email').value;
-  let password = document.getElementById('password').value;
-  let confirmPassword = document.getElementById('confirmPassword').value;
-  let checkbox = document.getElementById('checkbox').checked;
-  const isEmailValid = checkEmailFormat(); 
-  if (name && email && isEmailValid  && password && confirmPassword && checkbox) {
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value.trim();
+  const confirmPassword = document.getElementById('confirmPassword').value.trim();
+  const checkbox = document.getElementById('checkbox').checked;
+  const allFieldsFilled = name && email && password && confirmPassword;
+  if (isNameValid && isEmailValid && isPasswordValid && allFieldsFilled && checkbox) {
     buttonAktiv();
   } else {
     buttonNotAktiv();
-  };
+  }
 }
 
 /**

@@ -222,20 +222,12 @@
         font-size: 16px;
     }
 
-    a.summary-done.d-flex.ctn-tasks.gap-20.ctn-task-middle {
-        gap: 12px;
-    }
-
     .ctn-tasks {
         height: 76px;
     }
 
     .date-upcoming-deadline {
         font-size: 16px;
-    }
-
-    a.main-summary-middle-left.d-flex.gap-20 {
-        gap: 12px;
     }
 
     .text-deadline {
