@@ -61,16 +61,25 @@
     .greeting-hide {
         animation: showAndHide 2s forwards;
     }
-
 }
 
 @media (max-width: 1000px) {
     main {
+        padding: 0;
         margin-left: 0;
     }
 
     .main-summary {
         justify-content: center;
+    }
+
+    .headline-summary {
+        margin: 20px;
+        font-size: 55px;
+    }
+
+    .headline-right {
+        font-size: 26px;
     }
 
     .header-summary {
@@ -79,47 +88,38 @@
 
     .summary-container {
         display: block;
+    }
 
+    .ctn-task-middle {
+        height: 130px;
+    }
+
+    .ctn-task-large {
+        height: 130px;
+    }
+
+    .ctn-task-smal {
+        height: 130px;
     }
 }
 
-@media (max-width: 800px) {
-    main {
-        padding: 32px;
-        margin-bottom: 100px;
-        overflow-y: scroll;
-    }
-
+@media (max-width: 630px) {
     .headline-summary {
-        font-size: 52px;
+        margin: 20px 0 0;
     }
 
-    .headline-right {
-        font-size: 20px;
-    }
-
-    .counter {
-        font-size: 36px;
-    }
-}
-
-@media (max-width: 620px) {
     .ctn-tasks-summary {
         min-width: 100%;
     }
 
     .header-summary.d-flex-y {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 6px;
     }
 
     .vertical-line-blue {
         display: none;
-    }
-
-    h1.headline-summary {
-        margin: 0;
     }
 
     .horizontal-line-blue.d-none {
@@ -134,16 +134,24 @@
         font-size: 16px;
     }
 
+    .main-summary {
+        padding: 0 12px;
+    }
+
     .main-summary-middle-left {
         width: 47%;
     }
 
     .text-counter {
-        font-size: 16px;
+        font-size: 18px;
     }
 
     .ctn-tasks {
         height: 124px;
+    }
+
+    .ctn-tasks:hover {
+        transform: scale(1);
     }
 
     .date-upcoming-deadline {
@@ -166,101 +174,40 @@
 }
 
 @media (max-width: 450px) {
-    main {
-        padding: 24px 16px;
-        margin-bottom: 60px;
+    .summary-container {
+        height: 78vh;
         overflow-y: auto;
     }
 
-    .ctn-tasks-summary {
-        min-width: 552px;
-    }
-
-    .header-summary.d-flex-y {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-    }
-
-    .vertical-line-blue {
-        display: none;
-    }
-
-    h1.headline-summary {
-        margin: 0;
-        font-size: 32px;
-    }
-
-    .horizontal-line-blue.d-none {
-        display: block !important;
-        margin-bottom: 24px;
-    }
-
-    .headline-right {
-        margin-bottom: 4px;
-    }
-
-    .ctn-tasks-summary {
-        min-width: 100%;
-        gap: 12px;
-    }
-
-    .main-summary-middle-left {
-        width: 47%;
-    }
-
     .img {
-        width: 23%;
-        min-width: 35px !important;
+        width: 55px;
     }
 
     .counter {
-        font-size: 24px
+        font-size: 40px;
+    }
+
+    .main-summary-top {
+        gap: 10px;
+    }
+
+    .main-summary-bottom {
+        gap: 10px;
+    }
+
+    .img {
+        width: 45px;
+    }
+
+    .summary-done {
+        gap: 10px;
+    }
+
+    .main-summary-middle-left {
+        gap: 10px;
     }
 
     .text-counter {
         font-size: 16px;
-    }
-
-    .ctn-tasks {
-        height: 76px;
-    }
-
-    .date-upcoming-deadline {
-        font-size: 16px;
-    }
-
-    .text-deadline {
-        font-size: 16px;
-    }
-
-    a#main-summary-middle-right {
-        padding: 0 6px;
-        text-align: center;
-    }
-
-    .ctn-task-smal {
-        gap: 0px;
-    }
-
-    .vertical-line-grey {
-        height: 55px;
-        width: 1px;
-    }
-
-    .main-summary-bottom {
-        gap: 16px;
-    }
-
-    .main-summary-top {
-        gap: 16px;
-    }
-
-    .daytime-greeting {
-        font-size: 28px;
-    }
-
-    .user-greeting {
-        font-size: 32px;
     }
 }

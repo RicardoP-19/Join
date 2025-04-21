@@ -139,7 +139,7 @@ function getErrorText(fieldId, input) {
         errorText = document.createElement("small");
         errorText.id = `${fieldId}-error`;
         errorText.style.color = "red";
-        errorText.style.fontSize = "10px";
+        errorText.style.fontSize = "16px";
         errorText.style.display = "block";
         input.parentNode.appendChild(errorText);
     }

@@ -99,7 +99,7 @@ form {
 
 .msg-span {
   margin-top: 8px;
-  font-size: 12px;
+  font-size: 14px;
   border-color: var(--red) !important;
   color: var(--red);
 }
@@ -134,7 +134,7 @@ form {
   height: 40px;
   width: 94px;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--textwhite);
   border: none;

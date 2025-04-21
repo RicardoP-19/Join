@@ -1,21 +1,21 @@
 @media (max-width: 1150px) {
-    body {
-        overflow: hidden;
-    }
-
-    main {
-        height: 88%;
-    }
-
     h1 {
         margin-top: 16px;
         font-size: 40px !important;
     }
 
+    .task-form-section {
+        scrollbar-width: none;
+    }
+
+    .task-form-section::-webkit-scrollbar {
+        display: none;
+    }
+
     form {
         flex-direction: column;
-        overflow-x: hidden;
-        padding-right: 16px;
+        overflow-y: auto;
+        padding-right: 10px;
         scrollbar-width: none;
     }
 
@@ -25,10 +25,6 @@
 
     .task-form-section {
         overflow-y: scroll;
-    }
-
-    .task-container {
-        width: 100%;
     }
 
     .form-left,
@@ -44,16 +40,14 @@
     }
 
     .addtask-footer {
-        padding-top: 16px;
         padding-right: 21px;
     }
 }
 
 @media (max-width: 1000px) {
     main {
-        overflow-y: auto;
         margin-left: 0;
-        height: 84%;
+        padding: 0 12px;
     }
 
     .addtask-footer {
@@ -62,12 +56,21 @@
     }
 
     .task-form-section {
-        height: 75vh;
+        overflow-y: scroll;
+        height: 80vh;
     }
 
     .break-between {
         padding: 10px;
         background-color: var(--lightgrey);
+    }
+
+    .assigned-list  {
+        scrollbar-width: none;
+    }
+
+    .assigned-list::-webkit-scrollbar {
+        display: none;
     }
 }
 
@@ -125,6 +128,7 @@
     main {
         height: 80%;
     }
+
     .prio-group {
         flex-direction: column;
     }

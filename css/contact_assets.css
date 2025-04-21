@@ -78,7 +78,7 @@ button.delete:hover {
     height: 15px;
     position: relative;
     top: 40px;
-    left: 60px;
+    left: 40px;
 }
 
 button.create-contact {
@@ -135,7 +135,7 @@ button.save-changes:hover {
 .contacts-button {
     display: flex; 
     gap: 5px;
-    margin-top: 25px;
+    padding: 12px;
 }
 
 .delete-btn:hover {
@@ -159,7 +159,7 @@ button.save-changes:hover {
     border: none;
     font-size: 24px;
     position: absolute; 
-    right: 40px;
+    right: 30px;
     top: 130px;
     cursor: pointer;
     color: #000;
@@ -170,13 +170,18 @@ button.save-changes:hover {
     position: fixed;
     bottom: 100px;
     right: 20px;
+    width: 40px;
+    height: 40px;
+    background-image: url('/assets/img/edit-points.png');
+    background-repeat: no-repeat;
+    background-position: center;
     background-color: var(--darkblue);
     border: none;
-    border-radius: 50%;
+    border-radius: 100%;
     cursor: pointer;
-  }
+}
   
-  #edit-btn, #delete-btn {
+#edit-btn, #delete-btn {
     position: fixed;
     bottom: 170px; 
     right: 20px;
@@ -184,29 +189,29 @@ button.save-changes:hover {
     padding: 10px;
     opacity: 0;
     cursor: pointer;
-  }
+}
 
-  #edit-btn {
+#edit-btn {
     bottom: 178px !important;
     border-radius: 10px 10px 0 0;
     width: 84px;
-  }
+}
 
-  #delete-btn {
+#delete-btn {
     border-radius: 0 0 0 10px;
-  }
-  
-  #edit-btn.show, #delete-btn.show {
+}
+
+#edit-btn.show, #delete-btn.show {
     display: flex;
     opacity: 1;
     transform: translateY(-10px); 
-  }
-  
-  #delete-btn {
-    bottom: 140px; 
-  }
+}
 
-  #edit-points-btn img {
+#delete-btn {
+    bottom: 140px; 
+}
+
+#edit-points-btn img {
     height: 14px;
     padding: 10px;
-  }
+}

@@ -115,7 +115,7 @@
                                 <div id="error"></div>
                             </div>
                             <div class="form-group">
-                                <span for="category">Category<span class="required">*</span></span>
+                                <label for="category">Category<span class="required">*</span></label>
                                 <select id="category" name="category" required>
                                     <option value="" disabled selected>Select task category</option>
                                     <option>User Story</option>
@@ -138,15 +138,15 @@
                             </div>
                         </div>
                 </form>
-            </div>
-            <div class="addtask-footer">
-                <div><span class="required">*</span><span>This field is required</span></div>
-                <div class="form-actions">
-                    <button type="button" class="clear" onmouseover="changeImage(this, 'hover')"
-                        onmouseout="changeImage(this, 'default')" onclick="clearForm()">Clear <img
-                            src="/assets/img/close.svg" alt=""></button>
-                    <button type="submit" class="create-task" onclick="submitForm()">Create Task <img
-                            src="/assets/img/check-white.svg" alt=""></button>
+                <div class="addtask-footer">
+                    <div><span class="required">*</span><span>This field is required</span></div>
+                    <div class="form-actions">
+                        <button type="button" class="clear" onmouseover="changeImage(this, 'hover')"
+                            onmouseout="changeImage(this, 'default')" onclick="clearForm()">Clear <img
+                                src="/assets/img/close.svg" alt=""></button>
+                        <button type="submit" class="create-task" onclick="submitForm()">Create Task <img
+                                src="/assets/img/check-white.svg" alt=""></button>
+                    </div>
                 </div>
             </div>
             <div id="viewerGallery" class="viewer-overlay d-flex d-none"></div>
