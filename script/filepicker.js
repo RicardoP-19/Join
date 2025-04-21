@@ -306,6 +306,27 @@ function clearGallery() {
 }
 
 /**
+ * Shows the image viewer by revealing the viewer container and setting the appropriate attributes.
+*/
+function showViewer() {
+    const viewerContainer = document.getElementById('viewer8');
+    viewerContainer.setAttribute('aria-hidden', 'false');
+    viewerContainer.classList.add('viewer-in');
+    viewerContainer.removeAttribute('inert');
+    viewerContainer.focus();
+}
+
+/**
+ * Hides the image viewer by removing the viewer container's class and resetting the focus.
+*/
+function hideViewer() {
+    const viewerContainer = document.getElementById('viewer8');
+    viewerContainer.classList.remove('viewer-in');
+    viewerContainer.setAttribute('inert', '');
+    document.body.focus();
+}
+
+/**
  * Opens the image viewer to display an image at a specific index.
  * @param {number} index - The index of the image to view in the viewer.
 */
@@ -322,8 +343,7 @@ function openImageViewer(index, context) {
     }
     showClickImage(index, gallery, images);
     showAllImage(index, gallery, images);
-    window.imageViewer = new Viewer(gallery);
-    window.imageViewer.show();
+    initializeAndShowImageViewer(gallery);
 }
 
 /**
@@ -361,6 +381,20 @@ function showAllImage(index, gallery, images) {
             `;
         }
     });
+}
+
+/**
+ * Initialisiert den ImageViewer und zeigt ihn an.
+ * @param {HTMLElement} gallery - Das Galerie-Element, in dem der ImageViewer angezeigt wird.
+*/
+function initializeAndShowImageViewer(gallery) {
+    if (window.imageViewer) {
+        window.imageViewer.destroy();
+    }
+    window.imageViewer = new Viewer(gallery, {
+        ariaHidden: false,
+    });
+    window.imageViewer.show();
 }
 
 /**
