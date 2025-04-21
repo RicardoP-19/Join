@@ -273,6 +273,11 @@
         width: 100px;
         height: 85px;
     }
+
+    #profilImageOverlay {
+        width: 100px;
+        height: 100px;
+    }
 }
 
 @media (max-width: 375px) {
