@@ -82,19 +82,8 @@
   .menu-content {
     width: 100%;
   }
-}
 
-@media (max-width: 400px) {
   .sidebar-menu {
     gap: 0;
-  }
-
-  .menu-content img {
-    width: 25px;
-    height: 25px;
-  }
-
-  .menu-content p {
-    font-size: 13px;
-  }
+}
 }

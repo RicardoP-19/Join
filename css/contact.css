@@ -45,7 +45,7 @@ form {
 }
 
 .contact-information {
-    font-size: 21px;
+    font-size: 22px;
 }
 
 .contacts {
@@ -54,16 +54,15 @@ form {
 }
 
 .contact-group {
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .contact-group h2 {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 300;
-    margin-bottom: 5px;
-    padding: 10px;
-    margin-left: 16px;
+    margin: 0;
+    padding: 10px 0;
 }
 
 .contact-group hr {
@@ -75,8 +74,7 @@ form {
 .contact {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
-    padding: 16px;
+    padding: 16px 0;
 }
 
 .contact:hover {
@@ -115,7 +113,7 @@ form {
 
 .name {
     font-weight: 300;
-    font-size: 21px;
+    font-size: 24px;
     margin-bottom: 5px;
 }
 
@@ -124,7 +122,7 @@ form {
     overflow-x: hidden;
     text-overflow: ellipsis;
     color: var(--lightblue);
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .contact-details {
@@ -145,7 +143,8 @@ form {
 }
 
 .headline-right {
-    font-size: 28px;
+    font-size: 24px;
+    padding-left: 20px;
 }
 
 .horizontal-line-blue {
@@ -191,8 +190,8 @@ form {
     align-items: flex-start;
     flex-direction: column;
     border-radius: 20px 0 0 20px;
-    width: 250px;
-    padding-left: 30px;
+    width: 240px;
+    padding-left: 20px;
     position: relative; 
 }
 
@@ -224,7 +223,7 @@ form {
 
 .profil-image{
     width: 110px;
-    height: 110px;
+    height: 100px;
 }
 
 .profil-image-list {
@@ -296,7 +295,7 @@ input {
 }
 
 .contact-details p {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .contact-actions {
@@ -321,6 +320,7 @@ input {
 .direction-row {
     display: flex;
     flex-direction: row;
+    padding-top: 20px;
 }
 
 .contact-email {
@@ -340,7 +340,7 @@ input {
 }
 
 .contact-name {
-    font-size: 36px;
+    font-size: 30px;
 }
 
 .selected-contact {
@@ -392,7 +392,7 @@ input {
 
 .error-message {
     color: red;
-    font-size: 10px;
+    font-size: 14px;
     display: none;
     text-align: left;
 }

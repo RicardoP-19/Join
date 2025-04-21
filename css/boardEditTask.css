@@ -308,7 +308,7 @@ input[type="checkbox"]:checked+.custom-checkbox-edit {
     outline: none;
     background-color: transparent;
     width: 100%;
-    font-size: 13px;
+    font-size: 14px;
     overflow: hidden;
     text-overflow: ellipsis;
 }

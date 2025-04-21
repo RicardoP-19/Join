@@ -108,7 +108,7 @@ async function filesArrayIterate(files) {
 */
 function isValidImage(file) {
     if (!file.type.startsWith('image/')) {
-        error.textContent = `Die Datei "${file.name}" ist kein gültiges Bild.`;
+        error.textContent = `The File "${file.name}" is not a valid image.`;
         error.classList.add('error-text');
         setTimeout(() => {
             error.textContent = '';
